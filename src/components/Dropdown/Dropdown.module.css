@@ -1,0 +1,22 @@
+.custom-select {
+  position: relative;
+}
+
+.custom-select select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent; /* Optional: Set background to transparent */
+  border: none; /* Remove border */
+  padding: 0.5rem; /* Optional: Adjust padding */
+}
+
+.custom-select select {
+  /* styles for the select element */
+  height: 50px;
+  background-color: aquamarine;
+}
+
+.custom-select select option {
+  /* styles for the options within the select */
+}

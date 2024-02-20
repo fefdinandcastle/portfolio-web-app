@@ -1,0 +1,12 @@
+.Navbar {
+  width: 100%;
+  background-color: gray;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Navbar__title {
+  font-size: 25px;
+  line-height: 64px;
+}
