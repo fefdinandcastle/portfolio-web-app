@@ -6,21 +6,21 @@
 }
 
 .welcome-avatar{
-  background-color: rgb(24, 208, 134);
+  background-color: #EAC696;
   width: 150px;
   height: 150px;
   border-radius: 100%;
 }
 
 .welcome-data{
-  background-color: rgb(42, 165, 126);
+  /* background-color: rgb(42, 165, 126); */
   display: flex;
   flex-direction: column;
   flex-grow: 1; 
 }
 
 .welcome-name {
-  background-color: rgb(42, 165, 126);
+  /* background-color: rgb(42, 165, 126); */
   display: flex;
   flex-direction: row;
 }
@@ -48,7 +48,7 @@
 }
 
 .welcome-showcase {
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
   width: 200px;
   height: 200px;
 }
@@ -57,7 +57,7 @@
   max-width: calc(50%);
   margin: 5px; 
   box-sizing: border-box; 
-  background-color: chocolate;
+  /* background-color: chocolate; */
   display: flex;
   justify-content: center;
 }
@@ -66,7 +66,7 @@
   flex-basis: 100%; 
   display: flex;
   justify-content: center;
-  background-color: mediumpurple;
+  /* background-color: mediumpurple; */
 }
 
 .welcome-avatar img {
@@ -102,9 +102,6 @@
     width: 150px;
     height: 150px;
   }
-  /* .welcome-bio {
-    max-width: 200px;
-  } */
 }
 
 
@@ -115,7 +112,6 @@
   .welcome-avatar{
     width: 75px;
     height: 75px;
-    background-color: rgb(34, 83, 67);
   }
   .welcome-name p {
     font-size: 23px;

@@ -1,13 +1,5 @@
-.content-parent {
-  background-color: blue;
-  /* display: flex; */
-  /* justify-content: center;  
-  flex-direction: column; */
-  width: 100%;
-}
-
 .content-container {
-  background-color: rgb(19, 130, 32);
+  /* background-color: rgb(19, 130, 32); */
   width: 100%;
 }
 
