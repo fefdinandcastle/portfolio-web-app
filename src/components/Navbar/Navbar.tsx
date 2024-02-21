@@ -11,23 +11,26 @@ const languageOptions: {value: Language, label: string}[] = [
 ];
 
 export const Navbar = () => {
-  const {language, changeLanguage} = useContext(AppContext);
+  const {changeLanguage} = useContext(AppContext);
 
   const handleLanguageChange = (selectedOption: Option) => {
     changeLanguage(selectedOption.value as Language);
   };
 
-	return (
-		<div className={styles.Navbar}>
-        <Dropdown 
+  return (
+    <div className={styles.navbar}>
+      <div className={styles["navbar-dropdown-container"]}>
+        <Dropdown
           options={languageOptions}
           onSelect={handleLanguageChange}
-          defaultValue={language}
+          defaultValue={languageOptions[0]}
         />
-        <div className="Navbar__title">GL</div>
-        <div>Weather</div>
       </div>
-	);
+      
+      <div className={styles["navbar-title"]}>GL</div>
+      <div style={{flex: "1"}}>Weather</div>
+    </div>
+  );
 }
 
 export default Navbar;

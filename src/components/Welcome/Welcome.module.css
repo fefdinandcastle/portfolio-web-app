@@ -1,0 +1,136 @@
+.welcome-container{
+  /* background-color: rgb(69, 69, 69); */
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 200px;
+}
+
+.welcome-avatar{
+  background-color: rgb(24, 208, 134);
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+}
+
+.welcome-data{
+  background-color: rgb(42, 165, 126);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; 
+}
+
+.welcome-name {
+  background-color: rgb(42, 165, 126);
+  display: flex;
+  flex-direction: row;
+}
+
+.welcome-name p {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.welcome-subtitle {
+  text-align: start;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.welcome-bio {
+  text-align: start;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  max-width: 500px;
+}
+
+.welcome-showcase {
+  background-color: aquamarine;
+  width: 200px;
+  height: 200px;
+}
+
+.welcome-column {
+  max-width: calc(50%);
+  margin: 5px; 
+  box-sizing: border-box; 
+  background-color: chocolate;
+  display: flex;
+  justify-content: center;
+}
+
+.welcome-row {
+  flex-basis: 100%; 
+  display: flex;
+  justify-content: center;
+  background-color: mediumpurple;
+}
+
+.welcome-avatar img {
+  width: 100%;
+  height: 100%; 
+  object-fit: cover; 
+  border-radius: 100%; 
+}
+
+@media (max-width: 1200px) {
+  .welcome-container{
+    margin: 0 75px;
+  }
+  .welcome-avatar{
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 750px) {
+  .welcome-container{
+    margin: 0 30px;
+  }
+  .welcome-column {
+    flex-basis: 100%; 
+    margin: 10px 0; 
+  }
+  .welcome-column:first-child {
+    flex-basis: 100%;
+    max-width: 100%; 
+  }
+  .welcome-showcase {
+    width: 150px;
+    height: 150px;
+  }
+  /* .welcome-bio {
+    max-width: 200px;
+  } */
+}
+
+
+@media (max-width: 380px) {
+  .welcome-container{
+    margin: 0 15px; 
+  }
+  .welcome-avatar{
+    width: 75px;
+    height: 75px;
+    background-color: rgb(34, 83, 67);
+  }
+  .welcome-name p {
+    font-size: 23px;
+  }
+  .welcome-subtitle {
+    font-size: 17px;
+  }
+  .welcome-bio {
+    font-size: 14px;
+    max-width: 200px;
+  }
+  .welcome-showcase {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+

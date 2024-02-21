@@ -1,18 +1,13 @@
-import React, { useContext, useState } from 'react';
 import './App.css';
-import Dropdown from './components/Dropdown/Dropdown';
-import { Language } from './utils/globals';
-import { AppContext, AppProvider } from './context/appContext';
-import { Option } from './interfaces/Global';
+import { Content } from './components/Content/Content';
 import Navbar from './components/Navbar/Navbar';
-
+import "./styles/globals.css";
 
 function App() {
-
-
   return (
     <div className="App">
       <Navbar/>
+      <Content/>
     </div>
   );
 }

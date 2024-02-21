@@ -1,22 +1,54 @@
-.custom-select {
+.dropdown-parent {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown {
+  margin: 0px 0px 0px 20px;
+  z-index: 1;
+  width: 90px;
   position: relative;
+  user-select: none;
 }
 
-.custom-select select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background: transparent; /* Optional: Set background to transparent */
-  border: none; /* Remove border */
-  padding: 0.5rem; /* Optional: Adjust padding */
+.dropdown .dropdown-btn {
+  cursor: pointer;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background: white;
+  font-size: 24px;
 }
 
-.custom-select select {
-  /* styles for the select element */
-  height: 50px;
-  background-color: aquamarine;
+.dropdown-content {
+  position: absolute;
+  left: 0;
+  width: 100%;
 }
 
-.custom-select select option {
-  /* styles for the options within the select */
+.dropdown-icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-content .item {
+  background: white;
+  font-size: 24px;
+  padding: 10px;
+  text-align: start;
+  cursor: pointer;
+  transition: background-color 100ms linear;
+}
+
+.dropdown-content .item:hover {
+  background: #c9c9c9;
+}
+
+.button {
+  z-index: -1;
+  display: block;
+  width: 300px;
+  margin: 0 auto;
 }
