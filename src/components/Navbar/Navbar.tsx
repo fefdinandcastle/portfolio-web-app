@@ -18,18 +18,22 @@ export const Navbar = () => {
   };
 
   return (
-    <div className={styles.navbar}>
-      <div className={styles["navbar-dropdown-container"]}>
-        <Dropdown
-          options={languageOptions}
-          onSelect={handleLanguageChange}
-          defaultValue={languageOptions[0]}
-        />
+    <header className={styles["header"]}>
+      <div className={styles["wrapper"]}>
+        <div className={styles["menu-icon"]}>
+          <Dropdown
+            options={languageOptions}
+            onSelect={handleLanguageChange}
+            defaultValue={languageOptions[0]}
+          />
+        </div>
+        <h1>GL</h1>
+        <div className={styles["weather-container"]}>
+          32
+          <div style={{background: "url(/weather/cloudy.svg)", width: "50px", height: "50px"}}/>
+        </div>
       </div>
-      
-      <div className={styles["navbar-title"]}>GL</div>
-      <div style={{flex: "1"}}>Weather</div>
-    </div>
+    </header>
   );
 }
 

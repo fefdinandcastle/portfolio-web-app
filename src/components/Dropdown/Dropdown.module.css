@@ -4,7 +4,7 @@
 }
 
 .dropdown {
-  margin: 0px 0px 0px 20px;
+  margin: 0px 0px 0px 0px;
   z-index: 1;
   width: 90px;
   position: relative;
@@ -13,12 +13,11 @@
 
 .dropdown .dropdown-btn {
   cursor: pointer;
-  background: white;
+  background: var(--grey-3);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  background: white;
   font-size: 24px;
 }
 
@@ -34,7 +33,7 @@
 }
 
 .dropdown-content .item {
-  background: white;
+  background-color: var(--grey-3);
   font-size: 24px;
   padding: 10px;
   text-align: start;
@@ -43,7 +42,7 @@
 }
 
 .dropdown-content .item:hover {
-  background: #c9c9c9;
+  background: rgb(196, 196, 196);
 }
 
 .button {

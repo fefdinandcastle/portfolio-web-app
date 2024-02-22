@@ -24,9 +24,6 @@ export const Welcome = () => {
         <p className={styles["welcome-subtitle"]}>{getString(language, "degree")}</p>
         <p className={styles["welcome-bio"]}>{getString(language, "bio")}</p>
       </div>
-      <div className={styles["welcome-showcase"]}>
-        <Showcase/>
-      </div>
     </div>
 
   );

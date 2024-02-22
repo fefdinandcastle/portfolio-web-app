@@ -1,0 +1,50 @@
+.capsulesContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.capsule, .capsuleSelected {
+  width: auto;
+  height: 50px;
+  border-radius: 200px;
+  background-color: burlywood;
+  cursor: pointer;
+  transition: background-color 100ms linear;
+  user-select: none;
+}
+
+.capsuleSelected {
+  background-color: rgb(155, 129, 95);
+}
+
+.capsule p, .capsuleSelected p{
+  margin: 0px 30px 0px 30px;
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+  line-height: 50px;
+}
+
+.capsule:hover {
+  background-color: rgb(155, 129, 95);
+}
+
+@media (max-width: 380px) {
+ .capsule, .capsuleSelected {
+  height: 40px;
+ }
+ .capsule p, .capsuleSelected p{
+  margin: 0px 20px 0px 20px;
+  line-height: 40px;
+  font-size: 18px;
+ }
+}
+
+@media (max-width: 750px) {
+  
+  
+}
+
+@media (max-width: 1250px) {
+
+}

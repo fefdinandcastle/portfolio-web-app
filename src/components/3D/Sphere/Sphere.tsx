@@ -4,42 +4,41 @@ import { CubeTextureLoader } from 'three/src/loaders/CubeTextureLoader';
 import { Environment, MeshTransmissionMaterial, OrbitControls, useGLTF, useMask, useTexture } from '@react-three/drei';
 import { Object3D, Texture } from 'three';
 
-interface GlassProps {
+interface SphereProps {
   children: React.ReactNode;
 }
 
-const Glass : React.FC<GlassProps> = ({ children, ...props }) => {
+const Sphere : React.FC<SphereProps> = ({ children, ...props }) => {
   const ref: any = useRef()
-  const { nodes, materials } = useGLTF('/assets_3d/cube.glb');
   const meshRef: any = useRef<any>();
 
   useFrame(() => {
     // Check if the reference is valid before accessing its properties
     if (meshRef.current) {
       // meshRef.current.rotation.x += 0.01;
-      // meshRef.current.rotation.y += 0.01;
+      meshRef.current.rotation.y += 0.001;
     }
   });
 
   return (
     <group>
-      <primitive object={nodes.Cube} material={nodes['Material.001']}  scale={[2, 1, 1]} ref={meshRef}>
+      <mesh ref={meshRef}>
+        <sphereGeometry args={[4.8, 20, 20]} />
         <MeshTransmissionMaterial
           backside
           samples={1}
           thickness={3}
           chromaticAberration={0.05}
           anisotropy={0.1}
-          distortion={0}
+          distortion={0.1}
           distortionScale={0.1}
           temporalDistortion={0.2}
           iridescence={1}
-          iridescenceIOR={1}
+          iridescenceIOR={0.9}
           iridescenceThicknessRange={[0, 1400]}
-          transmission={1}
-          color={"white"}
+          transmission={1} // Increase transmission
         />
-      </primitive>
+      </mesh>
         {/* <meshNormalMaterial/> */}
         {/* <meshToonMaterial/> */}
       <group ref={ref}>{children}</group>
@@ -47,4 +46,4 @@ const Glass : React.FC<GlassProps> = ({ children, ...props }) => {
   );
 };
 
-export default Glass;
+export default Sphere;
