@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/portfolio-web-app/static/css/main.0764d1b1.css",
+    "main.js": "/portfolio-web-app/static/js/main.2525986c.js",
+    "static/js/453.c88b1724.chunk.js": "/portfolio-web-app/static/js/453.c88b1724.chunk.js",
+    "static/media/Montserrat-Medium.woff2": "/portfolio-web-app/static/media/Montserrat-Medium.e06c107cc50506570954.woff2",
+    "static/media/Montserrat-Regular.woff2": "/portfolio-web-app/static/media/Montserrat-Regular.58a8d7ebc386843b62c5.woff2",
+    "static/media/Montserrat-Bold.woff2": "/portfolio-web-app/static/media/Montserrat-Bold.0af89c10df9bc2f8d646.woff2",
+    "static/media/Montserrat-SemiBold.woff2": "/portfolio-web-app/static/media/Montserrat-SemiBold.109e3207d9afea8524be.woff2",
+    "static/media/Montserrat-Light.woff2": "/portfolio-web-app/static/media/Montserrat-Light.0323e955f74b515cc779.woff2",
+    "index.html": "/portfolio-web-app/index.html",
+    "main.0764d1b1.css.map": "/portfolio-web-app/static/css/main.0764d1b1.css.map",
+    "main.2525986c.js.map": "/portfolio-web-app/static/js/main.2525986c.js.map",
+    "453.c88b1724.chunk.js.map": "/portfolio-web-app/static/js/453.c88b1724.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0764d1b1.css",
+    "static/js/main.2525986c.js"
+  ]
+}
