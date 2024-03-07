@@ -4,24 +4,29 @@ import { CubeTextureLoader } from 'three/src/loaders/CubeTextureLoader';
 import { Environment, Lightformer, MeshTransmissionMaterial, OrbitControls, PerspectiveCamera, useTexture } from '@react-three/drei';
 import { Mesh, Texture } from 'three';
 import * as THREE from "three";
-import Glass from '../Glass/Glass';
+import Icosahedron from '../Icosahedron/Icosahedron';
 import Plumbob from '../Plumbob/Plumbob';
-import Sphere from '../Sphere/Sphere';
 
-const Showcase = () => {
+interface ShowcaseProps {
+  scrollableRef?: React.RefObject<HTMLElement>
+}
+
+const PlumbobScene : React.FC<ShowcaseProps> = ({ scrollableRef, ...props }) => {
+
+  console.log(`[PlumbobScene - R]`);
+
   const controlsRef: any = useRef();
-  let camera = new THREE.PerspectiveCamera (75, 1, 0.1, 1000);
+  let camera = new THREE.PerspectiveCamera (70, 1, 0.1, 1000);
 
   return (
-    <Canvas>
+    <Canvas gl={{ alpha: true }} style={{ background: 'transparent' }}>
       <PerspectiveCamera makeDefault fov={4.5} position={[0, 0, 5]} />
-      <color attach="background" args={['#ffffff']} />
-      <ambientLight intensity={1} />
+      {/* <ambientLight intensity={1} color={"red"}/> */}
       <directionalLight intensity={1} position={[0, 10, 0]} />
       <directionalLight intensity={1} position={[0, -10, 0]} />
       <directionalLight intensity={1} position={[10, 0, 0]} />
-      <Environment files="./assets_3d/49TH_STREET.hdr" />
-      {/* <Environment resolution={1024} >
+      {/* <Environment files="./assets_3d/rooftop_night_1k.hdr" /> */}
+      <Environment resolution={1024} background>
         <group rotation={[-Math.PI / 3, 0, 0]}>
           <Lightformer intensity={4} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={[10, 10, 1]} />
           {[2, 0, 2, 0, 2, 0, 2, 0].map((x, i) => (
@@ -33,14 +38,14 @@ const Showcase = () => {
         <group rotation={[-Math.PI / 1, 0, 0]}>
           <Lightformer intensity={4} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={[10, 10, 1]} />
         </group>
-      </Environment> */}
-      <Glass>
-        <Plumbob/>
-      </Glass>
+      </Environment>
+      {/* <Glass> */}
+      <Plumbob scrollableRef={scrollableRef} size={0.08}/>
+      {/* </Glass> */}
       {/* <OrbitControls ref={controlsRef} /> */}
 
     </Canvas>
   );
 };
 
-export default Showcase;
+export default PlumbobScene;

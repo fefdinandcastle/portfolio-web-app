@@ -1,13 +1,16 @@
 import './App.css';
-import { Content } from './components/Content/Content';
+import LandingContent from './components/LandingContent/LandingContent';
 import Navbar from './components/Navbar/Navbar';
 import "./styles/globals.css";
 
 function App() {
+
+  console.log(`[App - R]`);
+
   return (
     <div className="App">
       <Navbar/>
-      <Content/>
+      <LandingContent/>
     </div>
   );
 }

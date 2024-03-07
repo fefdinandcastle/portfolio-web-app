@@ -1,14 +1,23 @@
 .welcome-container{
   /* background-color: rgb(69, 69, 69); */
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   /* margin: 0 700px; */
   user-select: none;
-  margin-top: 40px;
+  /* margin-top: 40px; */
+  align-items: center;
+  /* background-color: #ffffff55;
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 20px;
+  margin: 0px 50px 0px 50px; */
 }
 
 .welcome-avatar{
-  background-color: #EAC696;
+  /* background-color: #EAC696; */
+  background-color: #ffffff55;
+  backdrop-filter: blur(10px);
   width: 200px;
   height: 200px;
   border-radius: 100%;
@@ -20,13 +29,15 @@
   flex-direction: column;
   flex-grow: 1; 
   margin-left: 20px;
+  margin-right: 20px;
   gap: 7px;
+  text-align: center;
 }
 
 .welcome-name {
-  /* background-color: rgb(42, 165, 126); */
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .welcome-name p {
@@ -36,7 +47,6 @@
 }
 
 .welcome-subtitle {
-  text-align: start;
   margin: 0;
   font-size: 25px;
   font-weight: 500;
@@ -44,7 +54,6 @@
 }
 
 .welcome-bio {
-  text-align: start;
   margin: 0;
   font-size: 18px;
   font-weight: 500;
@@ -53,7 +62,7 @@
 
 .welcome-column {
   max-width: calc(50%);
-  margin: 5px; 
+  margin: 0px 0px 20px 0px; 
   box-sizing: border-box; 
   /* background-color: chocolate; */
   display: flex;
@@ -75,69 +84,54 @@
 }
 
 @media (max-width: 1200px) {
-  .welcome-container{
-    margin: 0 75px;
-  }
   .welcome-avatar{
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
+  }
+  .welcome-name p {
+    font-size: 36px;
+  }
+  .welcome-subtitle {
+    font-size: 23px;
+  }
+  
+  .welcome-bio {
+    font-size: 16px;
   }
 }
 
 @media (max-width: 750px) {
-  .welcome-container{
-    margin: 0 30px;
-  }
-  .welcome-column {
-    flex-basis: 100%; 
-    margin: 10px 0; 
-  }
-  .welcome-name {
-    justify-content: center;
+  .welcome-avatar{
+    width: 130px;
+    height: 130px;
   }
   .welcome-name p {
-    font-size: 30px;
+    font-size: 32px;
   }
   .welcome-subtitle {
-    text-align: center;
     font-size: 20px;
   }
-  .welcome-column:first-child {
-    flex-basis: 100%;
-    max-width: 100%; 
-  }
+  
   .welcome-bio {
     font-size: 16px;
-  }
-  .welcome-showcase {
-    width: 150px;
-    height: 150px;
   }
 }
 
 
 @media (max-width: 380px) {
-  .welcome-container{
-    margin: 0 15px; 
-  }
   .welcome-avatar{
-    width: 75px;
-    height: 75px;
+    width: 100px;
+    height: 100px;
   }
-  
   .welcome-name p {
-    font-size: 25px;
+    font-size: 28px;
   }
   .welcome-subtitle {
-    font-size: 17px;
+    font-size: 18px;
   }
+  
   .welcome-bio {
     font-size: 14px;
-    /* max-width: 300px; */
-  }
-  .welcome-showcase {
-    width: 120px;
-    height: 120px;
   }
 }
 

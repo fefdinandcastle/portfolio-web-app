@@ -1,0 +1,80 @@
+.page-sections {
+  
+}
+
+.card-test {
+  position: relative;
+  top: -50px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+  z-index: 10; 
+  margin: 0 auto;
+  padding: 20px;
+  /* width: 50%; */
+  max-width: var(--max-w);
+  border-radius: 20px 20px 20px 20px;
+  animation: cardTransitionLarge 1s ease forwards; 
+  height: auto;
+}
+
+
+
+@media (max-width: 1280px) {
+  .card-test{
+    /* background-color: aqua; */
+    max-width: var(--max-w);
+    margin: 0px 30px 0px 30px;
+  }
+}
+
+@media (max-width: 750px) {
+  .card-test{
+    /* background-color: red; */
+    margin: 0px 20px 0px 20px;
+  }
+  
+}
+
+@media (max-width: 380px) {
+  .card-test{
+    /* background-color: yellow; */
+    top: -40px;
+    margin: 0px 0px 0px 0px;
+    animation: cardTransitionSmall 1s ease forwards; 
+    padding: 10px;
+  }
+}
+
+@keyframes cardTransitionLarge {
+  0% {
+      top: 50px;
+      opacity: 0;
+  }
+  100% {
+      top: -100px; 
+      opacity: 1;
+  }
+}
+
+@keyframes cardTransitionMedium {
+  0% {
+      top: 50px;
+      opacity: 0;
+  }
+  100% {
+      top: -100px; 
+      opacity: 1;
+  }
+}
+
+@keyframes cardTransitionSmall {
+  0% {
+      top: 50px;
+      opacity: 0;
+  }
+  100% {
+      top: -40px;
+      opacity: 1;
+  }
+}
+
