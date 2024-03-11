@@ -17,13 +17,13 @@ export const LandingContent = () => {
 		<main>
 			<div className={styles["content-container"]} ref={containerRef}>
 				<div className={styles["banner"]}>
-					<Suspense fallback={<div>Holaaaaaaaaa</div>}>
+					<Suspense fallback={<div></div>}>
 						<ShowcaseBG scrollableRef={containerRef} />
 					</Suspense>
 					<div className={styles["banner-container"]}>
 						{/* <div style={{ width: "100%", height: "100%", position: "absolute", backgroundColor: "#FFFFFFAA" }} /> */}
 						<div className={styles["banner-obj-container"]} >
-							<Suspense fallback={<div>Hola</div>}>
+							<Suspense fallback={<div></div>}>
 								<PlumbobScene scrollableRef={containerRef} />
 							</Suspense>
 						</div>
