@@ -12,7 +12,7 @@ export const Welcome = () => {
     <div className={styles["welcome-container"]}>
       <div className={styles["welcome-column"]}>
         <div className={styles["welcome-avatar"]}>
-          <img src="/avatar.png" alt="Description of your image"/>
+          <img src="/avatar_real.png" alt="Description of your image"/>
         </div>
       </div>
       <div className={styles["welcome-data"]}>
