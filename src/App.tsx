@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import './App.css';
 import LandingContent from './components/LandingContent/LandingContent';
 import Navbar from './components/Navbar/Navbar';

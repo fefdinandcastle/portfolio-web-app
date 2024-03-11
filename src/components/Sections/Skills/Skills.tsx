@@ -1,12 +1,12 @@
 import { FC, useCallback, useContext, useEffect, useRef, useState } from "react";
-import { Option } from "../../interfaces/Global";
-import styles from "./SkillsSection.module.css";
-import { AppContext } from "../../context/appContext";
-import { getString } from "../../utils/language";
-import Capsules from "../Capsules/Capsules";
-import skillsData, { Category, SkillInterface } from "../../utils/skills";
-import Skill from "../Skill/Skill";
-export const SkillsSection = () => {
+import { Option } from "../../../interfaces/Global";
+import styles from "./Skills.module.css";
+import { AppContext } from "../../../context/appContext";
+import { getString } from "../../../utils/language";
+import Capsules from "../../Capsules/Capsules";
+import skillsData, { Category, SkillInterface } from "../../../utils/skills";
+import Skill from "../../Skill/Skill";
+export const Skills = () => {
   const { language } = useContext(AppContext);
   const categories: Option[] = [
     {value: "frontend", label: "Frontend"},
@@ -43,4 +43,4 @@ export const SkillsSection = () => {
   );
 }
 
-export default SkillsSection;
+export default Skills;

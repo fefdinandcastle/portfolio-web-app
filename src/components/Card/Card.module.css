@@ -30,7 +30,7 @@
 @media (max-width: 750px) {
   .card-test{
     /* background-color: red; */
-    margin: 0px 20px 0px 20px;
+    margin: 0px 10px 0px 10px;
   }
   
 }
@@ -47,33 +47,33 @@
 
 @keyframes cardTransitionLarge {
   0% {
-      top: 50px;
-      opacity: 0;
+    transform: translateY(50px);
+    opacity: 0;
   }
   100% {
-      top: -100px; 
+      transform: translateY(-100px);
       opacity: 1;
   }
 }
 
 @keyframes cardTransitionMedium {
   0% {
-      top: 50px;
-      opacity: 0;
+    transform: translateY(50px);
+    opacity: 0;
   }
   100% {
-      top: -100px; 
+      transform: translateY(-100px);
       opacity: 1;
   }
 }
 
 @keyframes cardTransitionSmall {
   0% {
-      top: 50px;
-      opacity: 0;
+    transform: translateY(50px);
+    opacity: 0;
   }
   100% {
-      top: -40px;
+      transform: translateY(-40px);
       opacity: 1;
   }
 }

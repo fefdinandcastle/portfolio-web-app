@@ -18,3 +18,14 @@ body {
 :root {
   --max-w: 1200px;
 }
+
+#gradient-canvas {
+  width: 100%;
+  /* height: auto; */
+  --gradient-color-1: #900273;
+  --gradient-color-2: #024fcf;
+  --gradient-color-3: #3c1351;
+  --gradient-color-4: #0a3070;
+  /* --gradient-color-2: #0e2455; */
+  border-radius: 20px;
+}

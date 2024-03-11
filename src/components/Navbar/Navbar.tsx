@@ -28,10 +28,10 @@ export const Navbar = () => {
           />
         </div>
         <h1>GL</h1>
-        <div className={styles["weather-container"]}>
+        {/* <div className={styles["weather-container"]}>
           32
           <div style={{background: "url(/weather/cloudy.svg)", width: "50px", height: "50px"}}/>
-        </div>
+        </div> */}
       </div>
     </header>
   );

@@ -17,7 +17,7 @@
 .welcome-avatar{
   /* background-color: #EAC696; */
   background-color: #ffffff55;
-  backdrop-filter: blur(10px);
+  /* backdrop-filter: blur(10px); */
   width: 200px;
   height: 200px;
   border-radius: 100%;

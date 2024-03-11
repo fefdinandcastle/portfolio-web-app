@@ -18,8 +18,9 @@ export const skillsData: SkillInterface[] = [
   {id: 5, title: "Photoshop", categories: ["design"], yearsExperience: 5, logo: "/skills_logos/photoshop.png", gradient: ["#40D0FB", "#4FCCFE"]},
   {id: 6, title: "Three.js", categories: ["frontend"], yearsExperience: 1, logo: "/skills_logos/three.png", gradient: ["#40D0FB", "#4FCCFE"]},
   {id: 7, title: "Angular", categories: ["frontend"], yearsExperience: 1, logo: "/skills_logos/angular.png", gradient: ["#40D0FB", "#4FCCFE"]},
-  {id: 8, title: "AWS Lambda", categories: ["backend"], yearsExperience: 1, logo: "/skills_logos/aws_lambda.png", gradient: ["#40D0FB", "#4FCCFE"]}, //Corte
-  
+  {id: 8, title: "AWS Lambda", categories: ["backend"], yearsExperience: 1, logo: "/skills_logos/aws_lambda.png", gradient: ["#40D0FB", "#4FCCFE"]},
+  {id: 9, title: "Figma", categories: ["frontend", "design"], yearsExperience: 3, logo: "/skills_logos/figma.png", gradient: ["#40D0FB", "#4FCCFE"]},
+  {id: 10, title: "Blender", categories: ["design"], yearsExperience: 3, logo: "/skills_logos/blender.png", gradient: ["#40D0FB", "#4FCCFE"]},
 ]
 
 export default skillsData;

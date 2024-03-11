@@ -35,7 +35,18 @@
 }
 
 @media (max-width: 750px) {
-
+  .skills-container {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+  .content h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+  .content, .recipes {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0px 10px 35px;
+  }
 }
 
 @media (max-width: 380px) {

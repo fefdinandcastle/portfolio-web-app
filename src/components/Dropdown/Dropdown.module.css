@@ -25,6 +25,7 @@
   position: absolute;
   left: 0;
   width: 100%;
+  border-radius: 10px 10px 10px 10px;
 }
 
 .dropdown-icon-container {
@@ -33,7 +34,7 @@
 }
 
 .dropdown-content .item {
-  background-color: var(--grey-3);
+  background-color: #f8f8f8;
   font-size: 24px;
   padding: 10px;
   text-align: start;
@@ -41,8 +42,13 @@
   transition: background-color 100ms linear;
 }
 
+.item:last-child {
+  border-radius: 0px 0px 10px 10px;
+}
+
 .dropdown-content .item:hover {
-  background: rgb(196, 196, 196);
+  background: #2D8EFF;
+  color: white;
 }
 
 .button {

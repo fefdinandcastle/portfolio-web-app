@@ -43,7 +43,14 @@
 }
 
 @media (max-width: 750px) {
-  
+  .capsule, .capsuleSelected {
+    height: 40px;
+   }
+   .capsule p, .capsuleSelected p{
+    margin: 0px 20px 0px 20px;
+    line-height: 40px;
+    font-size: 18px;
+   }
   
 }
 
