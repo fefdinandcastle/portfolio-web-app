@@ -13,7 +13,7 @@ const ShowcaseBG : React.FC<ShowcaseProps> = ({ scrollableRef, ...props }) => {
   return (
     <Canvas gl={{ antialias: false }} dpr={[1, 1.5]}>
         <PerspectiveCamera makeDefault fov={2} position={[0, 0, 5]} />
-        <Icosahedron size={0.3} />
+        <Icosahedron size={0.4} />
     </Canvas>
   );
 };

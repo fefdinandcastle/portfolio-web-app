@@ -34,7 +34,7 @@ export const Skills = () => {
       {/* {`SelectedCategory: ${selectedCategory.label}`} */}
       <div className={styles["skills-container"]}>
         {skills && skills.map((skill: SkillInterface) => {
-          return <Skill skill={skill}/>
+          return <Skill key={skill.id} skill={skill}/>
         })}
       </div>
      

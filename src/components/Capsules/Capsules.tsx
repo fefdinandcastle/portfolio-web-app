@@ -14,7 +14,7 @@ export const Capsules: FC<CapsulesProps> = ({ options, onSelect, defaultOption }
 	return (
 		<div className={styles["capsulesContainer"]}>
       {options.map((option: Option) => {
-        return <div className={selected && selected.value === option.value ? styles["capsuleSelected"] : styles["capsule"]} onClick={(e: any) => {
+        return <div key={option.value} className={selected && selected.value === option.value ? styles["capsuleSelected"] : styles["capsule"]} onClick={(e: any) => {
           setSelected(option);
           onSelect(option);
         }}>

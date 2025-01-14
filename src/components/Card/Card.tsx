@@ -6,14 +6,17 @@ import Showcase from "../3D/Scenes/ShowcaseBG";
 import ShowcaseBG from "../3D/Scenes/ShowcaseBG";
 import PlumbobScene from "../3D/Scenes/PlumbobScene";
 import Skills from "../Sections/Skills/Skills";
-import Experience from "../Sections/Experience/Experience";
+import Sky from "../Sections/Sky/Sky";
+import { getString } from "../../utils/language";
+import { AppContext } from "../../context/appContext";
 
 export const Card = () => {
+  const { language } = useContext(AppContext);
 	return (
     <div className={styles["card-test"]}>
       <div className={styles["page-sections"]}>
         <Skills/>
-        <Experience/>
+        <Sky/>
       </div>
     </div>
 	);

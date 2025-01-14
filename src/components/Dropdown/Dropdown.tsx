@@ -3,7 +3,7 @@ import { AppContext } from "../../context/appContext";
 import { Language } from "../../utils/globals";
 import { Option } from "../../interfaces/Global";
 import styles from "./Dropdown.module.css";
-import {FaChevronDown, FaChevronUp} from "react-icons/fa";
+import { TbChevronUp, TbChevronDown } from "react-icons/tb";
 
 interface DropdownProps {
 	options: Option[]
@@ -40,7 +40,7 @@ export const Dropdown: FC<DropdownProps> = ({ options, onSelect, defaultValue })
 				<div className={styles["dropdown-btn"]}>
 					{selected.label}
 					<span className={styles["dropdown-icon-container"]}>
-						{open ? <FaChevronUp /> : <FaChevronDown />}
+						{open ? <TbChevronUp/> : <TbChevronDown/>}
 					</span>
 				</div>
 				<div

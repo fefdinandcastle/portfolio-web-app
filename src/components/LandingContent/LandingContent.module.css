@@ -4,7 +4,7 @@
 }
 
 .banner {
-  height: 80vh;
+  height: 60vh;
   width: 100%;
   position: relative;
   /* background: linear-gradient(45deg, #caafca, #9ac3be, #a48fb7,#99c1c9); */
@@ -78,7 +78,7 @@ main {
   .page-sections {
     margin: 0px 20px 10px 20px;
   }
-  .banner{
-    height: 70vh;
-  }
+  /* .banner{
+    height: 60vh;
+  } */
 }
