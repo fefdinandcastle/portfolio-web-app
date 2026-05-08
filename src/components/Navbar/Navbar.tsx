@@ -32,10 +32,7 @@ export const Header = () => {
 
         {/* Left — Brand */}
         <a href="#" className="flex items-center gap-2.5 no-underline">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-indigo-500 text-sm font-semibold text-white">
-            JD
-          </div>
-          <span className="text-base font-semibold text-gray-900">John Doe</span>
+          <span className="text-base font-semibold text-gray-900">GL</span>
         </a>
 
         {/* Center — Nav links (hidden on mobile) */}
@@ -56,29 +53,20 @@ export const Header = () => {
         {/* Right — Lang toggle + CTA */}
         <div className="flex items-center gap-2.5">
           {/* Language toggle */}
-          <div className="flex overflow-hidden rounded-lg border border-gray-200">
+          <div className="flex items-center gap-0.5 rounded-full bg-gray-100 p-1 ring-1 ring-gray-200">
             {languageOptions.map(({ label, value }) => (
               <button
                 key={value}
                 onClick={() => handleLanguageChange(value)}
-                className={`px-3 py-1.5 text-xs font-medium transition-colors ${
-                  activeLang === value
-                    ? "bg-gray-900 text-white"
-                    : "bg-transparent text-gray-500 hover:text-gray-800"
-                }`}
+                className={`rounded-full px-3.5 py-1 text-xs font-medium transition-all duration-200 ${activeLang === value
+                    ? "bg-white text-gray-800 shadow-sm ring-1 ring-gray-200/80"
+                    : "bg-transparent text-gray-400 hover:text-gray-600"
+                  }`}
               >
                 {label}
               </button>
             ))}
           </div>
-
-          {/* CTA — hidden on mobile, shown alongside hamburger */}
-          <a
-            href="#contact"
-            className="hidden rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700 md:block"
-          >
-            Let's Talk
-          </a>
 
           {/* Hamburger — mobile only */}
           <button
@@ -107,12 +95,6 @@ export const Header = () => {
                 {label}
               </a>
             ))}
-            <a
-              href="#contact"
-              className="mt-1 w-full rounded-lg bg-gray-900 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700"
-            >
-              Let's Talk
-            </a>
           </nav>
         </div>
       )}

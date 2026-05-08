@@ -1,32 +1,69 @@
-import { FC, useCallback, useContext, useEffect, useRef, useState } from "react";
-import { Option } from "../../interfaces/Global";
-import styles from "./Welcome.module.css";
+// Welcome.tsx
+import { useContext } from "react";
 import { AppContext } from "../../context/appContext";
 import { getString } from "../../utils/language";
-import Showcase from "../3D/Scenes/ShowcaseBG";
 
 export const Welcome = () => {
-  const {language} = useContext(AppContext);
+  const { language } = useContext(AppContext);
+  const skills = ["React", "TypeScript", "Node.js"];
 
   return (
-    <div className={styles["welcome-container"]}>
-      <div className={styles["welcome-column"]}>
-        <div className={styles["welcome-avatar"]}>
-          <img src="/avatar_real.png" alt="Description of your image"/>
-        </div>
-      </div>
-      <div className={styles["welcome-data"]}>
-        <div className={styles["welcome-name"]}>
-          <p style={{ color: "black" }}>Gerardo&nbsp;</p>
-          <p style={{ color: "black" }}>Lerma&nbsp;</p>
-          {/* <p>👋</p> */}
-        </div>
-        <p className={styles["welcome-subtitle"]}>{getString(language, "degree")}</p>
-        <p className={styles["welcome-bio"]}>{getString(language, "bio")}</p>
-      </div>
-    </div>
+    <div className="flex flex-col items-center gap-0 text-center max-w-[480px] w-full px-4">
 
+      {/* Avatar */}
+      <div className="relative mb-7">
+        <div className="p-[2px] rounded-full ">
+          <div className="w-[118px] h-[118px] rounded-full overflow-hidden bg-indigo-50/50">
+            <img
+              src="/avatar_real.png"
+              alt="Gerardo Lerma"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Nombre */}
+      <h1
+        className="text-[44px] leading-none tracking-tight mb-3.5"
+        style={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 400 }}
+      >
+        <span className="text-gray-900">Gerardo </span>
+        <span className="text-indigo-500">Lerma</span>
+      </h1>
+
+      {/* Grado con líneas decorativas */}
+      <div className="flex items-center justify-center gap-2.5 mb-7">
+        
+        <p className="text-[13px] font-medium tracking-[0.12em] uppercase text-black/55">
+          {getString(language, "degree")}
+        </p>
+       
+      </div>
+
+      {/* Bio */}
+      <p className="text-[14.5px] text-gray-500 leading-[1.75] max-w-[360px] mb-7">
+        {getString(language, "bio")}
+      </p>
+
+      {/* Skills chips */}
+      <div className="flex flex-wrap justify-center gap-2">
+        {skills.map((skill) => (
+          <span
+            key={skill}
+            className="text-xs font-medium text-gray-700 border border-black/[0.09] rounded-md px-3 py-1 tracking-wide"
+            style={{
+              background: "rgba(255,255,255,0.85)",
+              backdropFilter: "blur(6px)",
+            }}
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
+
+    </div>
   );
-}
+};
 
 export default Welcome;
