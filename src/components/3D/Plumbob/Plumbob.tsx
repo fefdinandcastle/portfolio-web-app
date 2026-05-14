@@ -1,77 +1,82 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { CubeTextureLoader } from 'three/src/loaders/CubeTextureLoader';
-import { Environment, MeshTransmissionMaterial, OrbitControls, useGLTF, useTexture } from '@react-three/drei';
-import { MeshPhysicalMaterial, Texture } from 'three';
+import React, { useEffect, useRef } from 'react';
+import { useFrame, useLoader } from '@react-three/fiber';
+import { MeshTransmissionMaterial, useGLTF } from '@react-three/drei';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+
 interface PlumbobProps {
   children?: React.ReactNode;
-  scrollableRef?: React.RefObject<HTMLElement>;
   size: number;
 }
 
-const Plumbob : React.FC<PlumbobProps> = ({ children, scrollableRef, size, ...props }) => {
-  const ref: any = useRef()
-  const { nodes, materials } = useGLTF('/assets_3d/plumbob.glb');
-  // const { nodes, materials } = useLoader(GLTFLoader, '/assets_3d/plumbob.glb');
+const Plumbob: React.FC<PlumbobProps> = ({ children, size }) => {
+  const groupRef = useRef<THREE.Group>(null);
+  const meshRef  = useRef<THREE.Mesh>(null);
 
-  const meshRef: any = useRef<any>();
+  const { nodes } = useGLTF('/assets_3d/plumbob.glb');
+  const [envMap]  = useLoader(RGBELoader, ['./assets_3d/abstract_05.hdr']);
 
-  let lastScrollY = window.scrollY;
-  let scrollSpeed = 0;
-
-  useFrame(() => {
-    if (meshRef.current) {
-
-      meshRef.current.rotation.y += scrollSpeed * 0.004;
-      // meshRef.current.rotation.x += scrollSpeed * 0.001;
-      scrollSpeed *= 0.9;
-
-      meshRef.current.rotation.y -= 0.001;
-      // meshRef.current.rotation.x -= 0.002;
-    }
-  });
+  // ── Scroll-speed refs ────────────────────────────────────────────────────
+  // Plain `let` variables inside a React component body reset to 0 on every
+  // render. useRef persists the value for the component's lifetime without
+  // triggering re-renders.
+  const lastScrollY = useRef(0);
+  const scrollSpeed = useRef(0);
 
   useEffect(() => {
+    // Returns the current scroll position regardless of which element is
+    // actually scrolling (window, documentElement, or body).
+    const getScrollY = () =>
+      window.scrollY ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
+
+    lastScrollY.current = getScrollY();
+
     const handleScroll = () => {
-      // Calculate the speed based on the change in scroll position
-      const currentScrollY = document.body.scrollTop;
-      scrollSpeed = currentScrollY - lastScrollY;
-      lastScrollY = currentScrollY;
+      const currentY      = getScrollY();
+      scrollSpeed.current = currentY - lastScrollY.current;
+      lastScrollY.current = currentY;
     };
 
-    document.body.addEventListener('scroll', handleScroll);
-
-    return () => document.body.removeEventListener('scroll', handleScroll);
+    // document-level 'scroll' bubbles up from ANY scrolling element on the
+    // page, so this works whether the page scrolls on <html>, <body>, or a
+    // custom container — no ref-forwarding needed.
+    document.addEventListener('scroll', handleScroll, { passive: true });
+    return () => document.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // const [envMap] = useLoader(RGBELoader, ['./assets_3d/studio001small.hdr']);
-  const [envMap] = useLoader(RGBELoader, ['./assets_3d/abstract_05.hdr']);
+  useFrame(() => {
+    if (!meshRef.current) return;
 
+    // Scroll burst: apply accumulated speed then decay exponentially
+    meshRef.current.rotation.y += scrollSpeed.current * 0.004;
+    scrollSpeed.current *= 0.9;
+
+    // Constant idle rotation (always on)
+    meshRef.current.rotation.y -= 0.001;
+  });
 
   return (
     <group>
-      <primitive object={nodes.Cone} material={nodes['Material.001']} scale={[size, size, size]} ref={meshRef} >
+      <primitive
+        object={nodes.Cone}
+        material={nodes['Material.001']}
+        scale={[size, size, size]}
+        ref={meshRef}
+      >
         <MeshTransmissionMaterial
-          color={"white"}
+          color="white"
           backside={true}
           samples={1}
           thickness={2}
           chromaticAberration={0.2}
           anisotropy={1}
-          // distortion={0.1}
-          // iridescence={1}
-          // iridescenceIOR={1}
-          // iridescenceThicknessRange={[0, 1400]}
           background={envMap}
-          transmission={0.7} 
+          transmission={0.7}
         />
-        {/* <meshPhysicalMaterial {...mat}/> */}
-        {/* <meshNormalMaterial/> */}
-        {/* <meshToonMaterial/> */}
       </primitive>
-      <group ref={ref}>{children}</group>
+      <group ref={groupRef}>{children}</group>
     </group>
   );
 };

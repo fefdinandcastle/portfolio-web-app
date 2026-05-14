@@ -1,10 +1,11 @@
 import React from 'react';
 import { SiLinkerd, SiGithub } from 'react-icons/si';
 import { FiChevronDown } from 'react-icons/fi';
-import { translations } from '../../i18n/translations';
-import { Lang } from '../../types';
-import { SectionBadge } from '../ui/SectionBadge';
-import { Tag } from '../ui/Tag';
+import { Lang } from '../types';
+import { translations } from '../i18n/translations';
+import { Tag } from './ui/Tag';
+import { SectionBadge } from './ui/SectionBadge';
+import { HeroCanvas } from './3D/Canvas/Herocanvas';
 
 const HERO_TAGS = ['Spring Boot', 'Angular', 'React', 'Oracle SQL', 'AWS', 'Git / Jira'];
 
@@ -17,22 +18,33 @@ export function Hero({ lang }: HeroProps) {
 
   return (
     <section id="inicio" className="min-h-screen flex items-center relative overflow-hidden">
-      {/* Background blobs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-[50vw] h-[60vh] bg-teal-100/40 rounded-full blur-[120px] -translate-x-1/4 -translate-y-1/4" />
-        <div className="absolute top-0 right-0 w-[40vw] h-[50vh] bg-orange-100/40 rounded-full blur-[120px] translate-x-1/4 -translate-y-1/4" />
-        {/* Grid overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.035]"
-          style={{
-            backgroundImage:
-              'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)',
-            backgroundSize: '40px 40px',
-          }}
-        />
+
+      {/* ── Layer 0 – Three.js WebGL canvas (true background) ────────────────
+          alpha:true on the Canvas lets the page bg-color (#f5f4f0) show
+          through wherever three.js draws nothing.
+          pointer-events:none so it never intercepts clicks or scroll.      */}
+      <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }}>
+        <HeroCanvas />
       </div>
 
-      <div className="relative max-w-5xl mx-auto px-8 py-32 w-full">
+      {/* ── Layer 1 – CSS gradient blobs (kept light so 3D breathes through) */}
+      <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
+        <div className="absolute top-0 left-0 w-[50vw] h-[60vh] bg-teal-100/40 rounded-full blur-[120px] -translate-x-1/4 -translate-y-1/4" />
+        <div className="absolute top-0 right-0 w-[40vw] h-[50vh] bg-orange-100/40 rounded-full blur-[120px] translate-x-1/4 -translate-y-1/4" />
+      </div>
+
+      {/* ── Layer 2 – Grid overlay ───────────────────────────────────────── */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.035]"
+        style={{
+          zIndex: 2,
+          backgroundImage:
+            'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)',
+          backgroundSize: '40px 40px',
+        }}
+      />
+
+      <div className="relative max-w-5xl mx-auto px-8 py-32 w-full" style={{ zIndex: 3 }}>
         <div className="flex flex-col md:flex-row md:items-start gap-10">
           {/* Text */}
           <div className="flex-1 animate-fade-in">

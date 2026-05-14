@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Lang } from './types';
 import { Navbar } from './components/Navbar/Navbar';
-import { Hero } from './components/Hero/Hero';
 import { Experience } from './components/Experience';
 import { Education } from './components/Education';
 import { Certifications } from './components/Certifications';
@@ -9,6 +8,7 @@ import { Stack } from './components/Stack';
 import { Projects } from './components/Projects';
 import { Tools } from './components/Tools';
 import { Footer } from './components/Footer';
+import { Hero } from './components/Hero';
 
 export default function App() {
   const [lang, setLang] = useState<Lang>('es');

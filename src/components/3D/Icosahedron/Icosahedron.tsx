@@ -1,22 +1,19 @@
-import React, { Suspense, useEffect, useRef, useState } from 'react';
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { CubeTextureLoader } from 'three/src/loaders/CubeTextureLoader';
-import { Environment, MeshTransmissionMaterial, OrbitControls, useGLTF, useTexture } from '@react-three/drei';
-import { MeshPhysicalMaterial, Texture } from 'three';
+import React, { useRef } from 'react';
+import { useFrame, useLoader } from '@react-three/fiber';
+import { MeshTransmissionMaterial, useGLTF } from '@react-three/drei';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-interface PlumbobProps {
+
+interface IcosahedronProps {
   children?: React.ReactNode;
   size: number;
 }
 
-const Icosahedron : React.FC<PlumbobProps> = ({ children, size, ...props }) => {
-  const ref: any = useRef()
-  const { nodes, materials } = useGLTF('/assets_3d/ico_sphere.glb');
-  // const { nodes, materials } = useLoader(GLTFLoader, '/assets_3d/ico_sphere.glb');
+const Icosahedron: React.FC<IcosahedronProps> = ({ children, size }) => {
+  const groupRef  = useRef<THREE.Group>(null);
+  const meshRef   = useRef<THREE.Mesh>(null);
 
-  const meshRef: any = useRef<any>();
-
+  const { nodes } = useGLTF('/assets_3d/ico_sphere.glb');
+  const [envMap]  = useLoader(RGBELoader, ['./assets_3d/abstract_10.hdr']);
 
   useFrame(() => {
     if (meshRef.current) {
@@ -25,32 +22,27 @@ const Icosahedron : React.FC<PlumbobProps> = ({ children, size, ...props }) => {
     }
   });
 
-  const [envMap] = useLoader(RGBELoader, ['./assets_3d/abstract_10.hdr']);
-
   return (
     <group>
-      <primitive object={nodes.Icosphere} material={nodes['Material.001']} scale={[size, size, size]} ref={meshRef} >
+      <primitive
+        object={nodes.Icosphere}
+        material={nodes['Material.001']}
+        scale={[size, size, size]}
+        ref={meshRef}
+      >
         <MeshTransmissionMaterial
-          color={"white"}
-          // backside={true}
+          color="white"
           samples={1}
           thickness={1}
           chromaticAberration={0.1}
           anisotropy={1}
           distortion={0.0}
-          // distortionScale={1}
-          // temporalDistortion={1}
           iridescence={0}
-          // iridescenceIOR={1}
-          // iridescenceThicknessRange={[0, 1400]}
           background={envMap}
-          transmission={1} 
+          transmission={1}
         />
-        {/* <meshPhysicalMaterial {...mat}/> */}
-        {/* <meshNormalMaterial/> */}
-        {/* <meshToonMaterial/> */}
       </primitive>
-      <group ref={ref}>{children}</group>
+      <group ref={groupRef}>{children}</group>
     </group>
   );
 };
