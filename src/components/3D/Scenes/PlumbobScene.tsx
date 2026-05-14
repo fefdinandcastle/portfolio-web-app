@@ -16,36 +16,17 @@ const PlumbobScene: React.FC = () => (
   <Canvas
     gl={{ alpha: true, antialias: false }}
     dpr={[1, 1.5]}
-    style={{
-      position: 'absolute',
-      inset: 0,
-      width: '100%',
-      height: '100%',
-      background: 'transparent',
-    }}
+    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', background: 'transparent' }}
   >
     <PerspectiveCamera makeDefault fov={4.5} position={[0, 0, 5]} />
 
-    <Environment resolution={512} background={true}>
-      <group rotation={[-Math.PI / 3, 0, 0]}>
-        <Lightformer intensity={6} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={[10, 10, 1]} />
-        {[2, 0, 2, 0, 2, 0, 2, 0].map((x, i) => (
-          <Lightformer
-            key={i}
-            form="circle"
-            intensity={4}
-            rotation={[Math.PI / 2, 0, 0]}
-            position={[x, 4, i * 4]}
-            scale={[4, 1, 1]}
-          />
-        ))}
-        <Lightformer intensity={2} rotation-y={Math.PI / 2}  position={[-5, 1, -1]} scale={[50, 2, 1]} />
-        <Lightformer intensity={2} rotation-y={-Math.PI / 2} position={[10, 1, 0]}  scale={[50, 2, 1]} />
-      </group>
-      <group rotation={[-Math.PI / 1, 0, 0]}>
-        <Lightformer intensity={4} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={[10, 10, 1]} />
-      </group>
-    </Environment>
+    {/* Replace the dense Lightformer rig with 3 clean directional sources */}
+   <ambientLight intensity={0.6} color="#ffffff" />
+<directionalLight position={[3, 5, 3]}   intensity={4}   color="#ffffff" />
+<directionalLight position={[-3, -2, 2]} intensity={2}   color="#c8c8ff" />
+<directionalLight position={[0, -5, -2]} intensity={1.2} color="#ffffff" />
+    {/* Keep a minimal environment just for the transmission background */}
+    <Environment preset="studio" background={false} />
 
     <Suspense fallback={null}>
       <Plumbob size={0.08} />

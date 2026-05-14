@@ -30,7 +30,7 @@ const Icosahedron: React.FC<IcosahedronProps> = ({ children, size }) => {
         scale={[size, size, size]}
         ref={meshRef}
       >
-        <MeshTransmissionMaterial
+        {/* <MeshTransmissionMaterial
          color=
 "white"
 samples=
@@ -56,7 +56,13 @@ distortion=
 {0.05}
 background=
 {envMap}
-        />
+        /> */}
+       <meshPhysicalMaterial
+  color="#e8e4dc"           // warm off-white
+  roughness={1.0}           // fully matte
+  metalness={0}
+  flatShading={true}        // shows every polygon face — very brutalist
+/>
       </primitive>
       <group ref={groupRef}>{children}</group>
     </group>

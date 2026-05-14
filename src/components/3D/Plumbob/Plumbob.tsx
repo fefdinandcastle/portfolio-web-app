@@ -11,96 +11,63 @@ interface PlumbobProps {
 }
 
 const Plumbob: React.FC<PlumbobProps> = ({ children, size }) => {
-  const groupRef = useRef<THREE.Group>(null);
-  const meshRef  = useRef<THREE.Mesh>(null);
-
+  const meshRef = useRef<THREE.Mesh>(null);
   const { nodes } = useGLTF('/assets_3d/plumbob.glb');
-  const [envMap]  = useLoader(RGBELoader, ['./assets_3d/abstract_10.hdr']);
-  const coneMesh = nodes.Cone as THREE.Mesh
+  const coneMesh = nodes.Cone as THREE.Mesh;
 
-
-  // ── Scroll-speed refs ────────────────────────────────────────────────────
-  // Plain `let` variables inside a React component body reset to 0 on every
-  // render. useRef persists the value for the component's lifetime without
-  // triggering re-renders.
-  const lastScrollY = useRef(0);
   const scrollSpeed = useRef(0);
 
   useEffect(() => {
-  const container = document.getElementById('scroll-container') ?? window;
-
-  let lastY = (container instanceof Window) ? container.scrollY : (container as HTMLElement).scrollTop;
-
-  const handleScroll = () => {
-    const currentY = (container instanceof Window)
+    const container = document.getElementById('scroll-container') ?? window;
+    let lastY = container instanceof Window
       ? container.scrollY
       : (container as HTMLElement).scrollTop;
-    scrollSpeed.current += currentY - lastY;
-    lastY = currentY;
-  };
 
-  container.addEventListener('scroll', handleScroll, { passive: true });
-  return () => container.removeEventListener('scroll', handleScroll);
-}, []);
+    const handleScroll = () => {
+      const currentY = container instanceof Window
+        ? container.scrollY
+        : (container as HTMLElement).scrollTop;
+      scrollSpeed.current += currentY - lastY;
+      lastY = currentY;
+    };
 
-useFrame(() => {
-  if (!meshRef.current) return;
-  meshRef.current.rotation.y += scrollSpeed.current * 0.0025;
-  scrollSpeed.current *= 0.01;
-  meshRef.current.rotation.y -= 0.003;
-});
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useFrame(() => {
+    if (!meshRef.current) return;
+    meshRef.current.rotation.y += scrollSpeed.current * 0.0025;
+    scrollSpeed.current *= 0.01;
+    meshRef.current.rotation.y -= 0.003;
+  });
 
   return (
     <group>
       <primitive
         object={coneMesh}
-        material={nodes['Material.001']}
         scale={[size, size, size]}
         ref={meshRef}
       >
         <MeshTransmissionMaterial
-          color="white"
-          backside={true}
-          samples={1}
-          // was 1 — this is the main fix
+          color="#e8e8e8"
+          backside={false}          // ← was true; backside doubled the dark faces
+          samples={2}
           resolution={512}
-          // was default — dedicated FBO resolution
-          transmission={0.5}
-          // was 0.7 — full glass, use color for tint
-          thickness={10}
-          // was 2 — thinner = lighter, more delicate
-          roughness={0}
-          // perfectly smooth glass surface
-          ior={1.5}
-          // index of refraction (glass ≈ 1.5)
-          chromaticAberration={0.06}
-          // was 0.2 — subtle RGB split
-          anisotropy={0.1}
-          distortion={1}
-          // slight surface wobble
-          distortionScale={1}
-          temporalDistortion={0.05}
-          // animate the distortion over time
-          background={envMap}
+          transmission={0.55}       // partial glass — not full crystal
+          thickness={3}
+          roughness={0.05}          // smooth enough to catch light
+          ior={1.35}                // lower ior = less bending = less black
+          chromaticAberration={0}   // ← kill this; it's the "luxury" tell
+          anisotropy={0}
+          distortion={0}            // ← kill; caused the wobbly darkness
+          distortionScale={0}
+          temporalDistortion={0}    // ← kill; animated warping ≠ brutalism
+          envMapIntensity={1.2}
           metalness={0}
-          envMapIntensity={2}
         />
-        
       </primitive>
-      <mesh geometry={coneMesh.geometry} scale={[size, size, size]}>
-  <meshPhysicalMaterial
-    color="white"
-    transparent
-    opacity={0}
-    roughness={0}
-    metalness={0}
-    transmission={0}
-    thickness={0}
-    envMapIntensity={3}
-    side={THREE.BackSide}  // renders inner faces = rim glow
-  />
-</mesh>
-      <group ref={groupRef}>{children}</group>
+      {/* REMOVED the second <mesh> — it was doubling geometry and adding BackSide confusion */}
     </group>
   );
 };

@@ -24,7 +24,7 @@ const ShowcaseBG: React.FC<ShowcaseBGProps> = ({ scrollableRef }) => (
     style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
   >
     <PerspectiveCamera makeDefault fov={2} position={[0, 0, 5]} />
-     <Environment resolution={256} background={true}>
+     {/* <Environment resolution={256} background={true}>
           <group rotation={[-Math.PI / 3, 0, 0]}>
             <Lightformer intensity={6} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={[10, 10, 1]} />
             {[2, 0, 2, 0, 2, 0, 2, 0].map((x, i) => (
@@ -43,7 +43,10 @@ const ShowcaseBG: React.FC<ShowcaseBGProps> = ({ scrollableRef }) => (
           <group rotation={[-Math.PI / 1, 0, 0]}>
             <Lightformer intensity={4} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={[10, 10, 1]} />
           </group>
-        </Environment>
+        </Environment> */}
+        <ambientLight intensity={0.6} color="#ffffff" />
+<directionalLight position={[5, 5, 5]} intensity={2} color="#ffffff" />
+<directionalLight position={[-5, -5, -5]} intensity={0.5} color="#222222" />
     <Suspense fallback={null}>
       <Icosahedron size={0.4} />
     </Suspense>
