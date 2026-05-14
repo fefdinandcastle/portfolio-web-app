@@ -1,10 +1,11 @@
 import React from 'react';
 import { Lang } from '../types';
 import { translations } from '../i18n/translations';
-import { educations, awsCourses } from '../data/educations';
 import { useInView } from '../hooks/useInView';
-import { Tag } from './ui/Tag';
-import { SectionBadge } from './ui/SectionBadge';
+import { educations } from '../data/educations';
+
+// educations debe tener un solo elemento (tu universidad)
+// import { educations } from '../data/education';
 
 interface EducationProps {
   lang: Lang;
@@ -14,49 +15,236 @@ export function Education({ lang }: EducationProps) {
   const tr = translations[lang].education;
   const { ref, visible } = useInView();
 
+  const ed = educations[0]; // único registro: tu universidad
+
   return (
-    <section id="formacion" className="py-24" ref={ref}>
+    <section
+      id="formacion"
+      ref={ref}
+      style={{ background: '#fff', padding: '96px 0' }}
+    >
       <div
-        className={`max-w-5xl mx-auto px-8 transition-all duration-700 ${
-          visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
+        style={{
+          maxWidth: 1024,
+          margin: '0 auto',
+          padding: '0 32px',
+          transition: 'opacity 0.7s, transform 0.7s',
+          opacity: visible ? 1 : 0,
+          transform: visible ? 'translateY(0)' : 'translateY(28px)',
+        }}
       >
-        <SectionBadge text={tr.badge} />
-        <h2 className="text-4xl font-bold text-gray-900 mb-12">{tr.title}</h2>
 
-        <div className="grid md:grid-cols-2 gap-5 mb-5">
-          {educations.map((ed, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 hover:shadow-md transition-shadow"
-            >
-              <h3 className="font-bold text-gray-900 text-base mb-1">{ed.title[lang]}</h3>
-              <p className="text-teal-600 text-sm mb-1">{ed.institution}</p>
-              <p className="text-gray-400 text-sm mb-3">{ed.period[lang]}</p>
-              <p className="text-gray-600 text-sm mb-4">{ed.desc[lang]}</p>
-              <p className="text-xs font-semibold tracking-widest text-gray-400 mb-3">
-                {ed.badge}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {ed.tags.map((tag) => (
-                  <Tag key={tag} label={tag} />
-                ))}
-              </div>
-            </div>
-          ))}
+        {/* ── Section header ──────────────────────────────────────────────── */}
+        <div
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 6,
+            background: '#111',
+            color: '#f5f4f0',
+            fontSize: 11,
+            fontWeight: 500,
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+            padding: '5px 12px',
+            borderRadius: 0,
+            marginBottom: 20,
+          }}
+        >
+          <span
+            style={{
+              width: 6,
+              height: 6,
+              borderRadius: '50%',
+              background: '#7c6af7',
+              display: 'inline-block',
+              flexShrink: 0,
+            }}
+          />
+          {tr.badge}
         </div>
 
-        {/* AWS complementary block */}
-        <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
-          <h3 className="font-bold text-gray-900 mb-1">{tr.awsTitle}</h3>
-          <p className="text-gray-500 text-sm mb-4">{tr.awsDesc}</p>
-          <div className="flex flex-wrap gap-2">
-            {awsCourses.map((course) => (
-              <Tag key={course} label={course} />
-            ))}
-          </div>
-        </div>
+        <h2
+          style={{
+            fontSize: 'clamp(28px, 4vw, 40px)',
+            fontWeight: 700,
+            color: '#111',
+            letterSpacing: '-0.02em',
+            lineHeight: 1.1,
+            marginBottom: 48,
+          }}
+        >
+          {tr.title}
+        </h2>
+
+        {/* ── Single university card ───────────────────────────────────────── */}
+        <EducationCard ed={ed} lang={lang} />
+
       </div>
     </section>
+  );
+}
+
+// ── Card subcomponent ─────────────────────────────────────────────────────────
+interface CardProps {
+  ed: (typeof educations)[number];
+  lang: Lang;
+}
+
+function EducationCard({ ed, lang }: CardProps) {
+  const [hovered, setHovered] = React.useState(false);
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr',
+        background: '#f5f4f0',
+        border: '2px solid #111',
+        borderRadius: 0,
+        boxShadow: hovered ? '2px 2px 0 #111' : '5px 5px 0 #111',
+        transform: hovered ? 'translate(3px, 3px)' : 'translate(0, 0)',
+        transition: 'box-shadow 0.15s, transform 0.15s',
+        overflow: 'hidden',
+      }}
+    >
+      {/* Top accent bar */}
+      <div
+        style={{
+          height: 3,
+          background: '#7c6af7',
+          width: '100%',
+        }}
+      />
+
+      <div style={{ padding: '28px 32px 32px' }}>
+
+        {/* Header row */}
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+            gap: 12,
+            marginBottom: 6,
+          }}
+        >
+          <h3
+            style={{
+              fontSize: 20,
+              fontWeight: 700,
+              color: '#111',
+              letterSpacing: '-0.015em',
+              lineHeight: 1.2,
+            }}
+          >
+            {ed.title[lang]}
+          </h3>
+
+          {/* Period */}
+          <span
+            style={{
+              fontSize: 11,
+              fontWeight: 500,
+              color: '#888',
+              letterSpacing: '0.05em',
+              border: '1.5px solid #111',
+              padding: '3px 10px',
+              borderRadius: 0,
+              whiteSpace: 'nowrap',
+              background: '#fff',
+            }}
+          >
+            {ed.period[lang]}
+          </span>
+        </div>
+
+        {/* Institution */}
+        <p
+          style={{
+            fontSize: 14,
+            fontWeight: 600,
+            color: '#7c6af7',
+            letterSpacing: '0.01em',
+            marginBottom: 16,
+          }}
+        >
+          {ed.institution}
+        </p>
+
+        {/* Divider */}
+        <div
+          style={{
+            width: '100%',
+            height: 1,
+            background: '#111',
+            opacity: 0.1,
+            marginBottom: 16,
+          }}
+        />
+
+        {/* Description */}
+        <p
+          style={{
+            fontSize: 14,
+            color: '#555',
+            lineHeight: 1.65,
+            marginBottom: 24,
+          }}
+        >
+          {ed.desc[lang]}
+        </p>
+
+        {/* Badge label */}
+        <p
+          style={{
+            fontSize: 10,
+            fontWeight: 600,
+            letterSpacing: '0.1em',
+            color: '#aaa',
+            textTransform: 'uppercase',
+            marginBottom: 14,
+          }}
+        >
+          {ed.badge}
+        </p>
+
+        {/* Tags – mismo estilo que Hero */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+          {ed.tags.map((tag: string) => (
+            <TagItem key={tag} label={tag} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Tag subcomponent ──────────────────────────────────────────────────────────
+function TagItem({ label }: { label: string }) {
+  const [hovered, setHovered] = React.useState(false);
+  return (
+    <span
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        fontSize: 12,
+        fontWeight: 500,
+        color: hovered ? '#f5f4f0' : '#111',
+        background: hovered ? '#111' : 'transparent',
+        border: '1.5px solid #111',
+        padding: '4px 10px',
+        borderRadius: 0,
+        letterSpacing: '0.02em',
+        cursor: 'default',
+        transition: 'background 0.15s, color 0.15s',
+        display: 'inline-block',
+      }}
+    >
+      {label}
+    </span>
   );
 }
