@@ -49,7 +49,7 @@ export function Navbar({ lang, setLang }: NavbarProps) {
           onClick={() => scrollTo('inicio')}
           className="font-bold text-gray-900 text-sm tracking-tight"
         >
-          [Tu Nombre]
+          Gerardo Lerma
         </button>
 
         {/* Desktop links */}

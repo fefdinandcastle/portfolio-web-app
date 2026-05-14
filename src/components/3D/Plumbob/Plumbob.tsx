@@ -2,7 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { useFrame, useLoader } from '@react-three/fiber';
 import { MeshTransmissionMaterial, useGLTF } from '@react-three/drei';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
+import * as THREE from 'three'
 
+// Cast once — reuse everywhere
 interface PlumbobProps {
   children?: React.ReactNode;
   size: number;
@@ -13,7 +15,9 @@ const Plumbob: React.FC<PlumbobProps> = ({ children, size }) => {
   const meshRef  = useRef<THREE.Mesh>(null);
 
   const { nodes } = useGLTF('/assets_3d/plumbob.glb');
-  const [envMap]  = useLoader(RGBELoader, ['./assets_3d/abstract_05.hdr']);
+  const [envMap]  = useLoader(RGBELoader, ['./assets_3d/abstract_10.hdr']);
+  const coneMesh = nodes.Cone as THREE.Mesh
+
 
   // ── Scroll-speed refs ────────────────────────────────────────────────────
   // Plain `let` variables inside a React component body reset to 0 on every
@@ -60,7 +64,7 @@ const Plumbob: React.FC<PlumbobProps> = ({ children, size }) => {
   return (
     <group>
       <primitive
-        object={nodes.Cone}
+        object={coneMesh}
         material={nodes['Material.001']}
         scale={[size, size, size]}
         ref={meshRef}
@@ -69,13 +73,44 @@ const Plumbob: React.FC<PlumbobProps> = ({ children, size }) => {
           color="white"
           backside={true}
           samples={1}
-          thickness={2}
-          chromaticAberration={0.2}
-          anisotropy={1}
+          // was 1 — this is the main fix
+          resolution={512}
+          // was default — dedicated FBO resolution
+          transmission={0.5}
+          // was 0.7 — full glass, use color for tint
+          thickness={10}
+          // was 2 — thinner = lighter, more delicate
+          roughness={0}
+          // perfectly smooth glass surface
+          ior={1.5}
+          // index of refraction (glass ≈ 1.5)
+          chromaticAberration={0.06}
+          // was 0.2 — subtle RGB split
+          anisotropy={0.1}
+          distortion={1}
+          // slight surface wobble
+          distortionScale={1}
+          temporalDistortion={0.05}
+          // animate the distortion over time
           background={envMap}
-          transmission={0.7}
+          metalness={0}
+          envMapIntensity={2}
         />
+        
       </primitive>
+      <mesh geometry={coneMesh.geometry} scale={[size, size, size]}>
+  <meshPhysicalMaterial
+    color="white"
+    transparent
+    opacity={0}
+    roughness={0}
+    metalness={0}
+    transmission={0}
+    thickness={0}
+    envMapIntensity={3}
+    side={THREE.BackSide}  // renders inner faces = rim glow
+  />
+</mesh>
       <group ref={groupRef}>{children}</group>
     </group>
   );

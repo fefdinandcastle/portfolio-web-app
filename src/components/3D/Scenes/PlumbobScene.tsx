@@ -26,9 +26,9 @@ const PlumbobScene: React.FC = () => (
   >
     <PerspectiveCamera makeDefault fov={4.5} position={[0, 0, 5]} />
 
-    <Environment resolution={128} background>
+    <Environment resolution={512} background={true}>
       <group rotation={[-Math.PI / 3, 0, 0]}>
-        <Lightformer intensity={4} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={[10, 10, 1]} />
+        <Lightformer intensity={6} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={[10, 10, 1]} />
         {[2, 0, 2, 0, 2, 0, 2, 0].map((x, i) => (
           <Lightformer
             key={i}

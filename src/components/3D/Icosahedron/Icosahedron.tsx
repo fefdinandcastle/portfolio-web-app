@@ -31,15 +31,31 @@ const Icosahedron: React.FC<IcosahedronProps> = ({ children, size }) => {
         ref={meshRef}
       >
         <MeshTransmissionMaterial
-          color="white"
-          samples={1}
-          thickness={1}
-          chromaticAberration={0.1}
-          anisotropy={1}
-          distortion={0.0}
-          iridescence={0}
-          background={envMap}
-          transmission={1}
+         color=
+"white"
+samples=
+{4}
+// was 1 — background can be slightly lower
+resolution=
+{256}
+transmission=
+{1}
+thickness=
+{1.5}
+// chunkier feel for the bg sphere
+roughness=
+{0}
+ior=
+{1.45}
+chromaticAberration=
+{0.04}
+// was 0.1
+anisotropy=
+{0.5}
+distortion=
+{0.05}
+background=
+{envMap}
         />
       </primitive>
       <group ref={groupRef}>{children}</group>
