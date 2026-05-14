@@ -6,7 +6,7 @@ interface SectionBadgeProps {
 
 export function SectionBadge({ text }: SectionBadgeProps) {
   return (
-    <p className="text-xs font-semibold tracking-[0.18em] text-teal-600 mb-2">
+    <p className="bg-gray-900 text-[#f5f4f0] uppercase tracking-widest text-xs px-3 py-1.5 rounded-none">
       {text}
     </p>
   );
