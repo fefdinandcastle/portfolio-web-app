@@ -14,7 +14,7 @@ export default function App() {
   const [lang, setLang] = useState<Lang>('es');
 
   return (
-    <div className="min-h-screen bg-[#f5f4f0] text-gray-900 font-sans">
+<div className="min-h-screen bg-[#f5f4f0] text-gray-900 font-sans overflow-y-auto h-screen" id="scroll-container">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Sora', sans-serif; }
@@ -36,7 +36,6 @@ export default function App() {
         <Certifications lang={lang} />
         <Stack          lang={lang} />
         <Projects       lang={lang} />
-        <Tools          lang={lang} /> 
       </main>
 
       <Footer lang={lang} />

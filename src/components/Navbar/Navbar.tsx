@@ -80,11 +80,6 @@ export function Navbar({ lang, setLang }: NavbarProps) {
             {lang.toUpperCase()}
           </button>
 
-          {/* Settings (decorative) */}
-          <button className="p-2 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors text-gray-500">
-            <FiSettings size={15} />
-          </button>
-
           {/* Mobile menu toggle */}
           <button
             className="lg:hidden p-2 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors text-gray-500 ml-1"

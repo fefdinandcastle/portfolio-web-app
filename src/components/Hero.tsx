@@ -83,7 +83,7 @@ export function Hero({ lang }: HeroProps) {
           </div>
 
           {/* Circular photo */}
-          <div className="flex-shrink-0 flex justify-center md:justify-end md:pt-8 animate-fade-in-delay">
+          <div className="flex-shrink-0 flex justify-center md:justify-end md:pt-8 animate-fade-in-delay order-first md:order-last">
             <div className="relative">
               <div className="w-36 h-36 rounded-full overflow-hidden ring-4 ring-white shadow-xl">
                 {/*

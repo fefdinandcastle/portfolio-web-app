@@ -27,39 +27,28 @@ const Plumbob: React.FC<PlumbobProps> = ({ children, size }) => {
   const scrollSpeed = useRef(0);
 
   useEffect(() => {
-    // Returns the current scroll position regardless of which element is
-    // actually scrolling (window, documentElement, or body).
-    const getScrollY = () =>
-      window.scrollY ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop ||
-      0;
+  const container = document.getElementById('scroll-container') ?? window;
 
-    lastScrollY.current = getScrollY();
+  let lastY = (container instanceof Window) ? container.scrollY : (container as HTMLElement).scrollTop;
 
-    const handleScroll = () => {
-      const currentY      = getScrollY();
-      scrollSpeed.current = currentY - lastScrollY.current;
-      lastScrollY.current = currentY;
-    };
+  const handleScroll = () => {
+    const currentY = (container instanceof Window)
+      ? container.scrollY
+      : (container as HTMLElement).scrollTop;
+    scrollSpeed.current += currentY - lastY;
+    lastY = currentY;
+  };
 
-    // document-level 'scroll' bubbles up from ANY scrolling element on the
-    // page, so this works whether the page scrolls on <html>, <body>, or a
-    // custom container — no ref-forwarding needed.
-    document.addEventListener('scroll', handleScroll, { passive: true });
-    return () => document.removeEventListener('scroll', handleScroll);
-  }, []);
+  container.addEventListener('scroll', handleScroll, { passive: true });
+  return () => container.removeEventListener('scroll', handleScroll);
+}, []);
 
-  useFrame(() => {
-    if (!meshRef.current) return;
-
-    // Scroll burst: apply accumulated speed then decay exponentially
-    meshRef.current.rotation.y += scrollSpeed.current * 0.004;
-    scrollSpeed.current *= 0.9;
-
-    // Constant idle rotation (always on)
-    meshRef.current.rotation.y -= 0.001;
-  });
+useFrame(() => {
+  if (!meshRef.current) return;
+  meshRef.current.rotation.y += scrollSpeed.current * 0.0025;
+  scrollSpeed.current *= 0.01;
+  meshRef.current.rotation.y -= 0.003;
+});
 
   return (
     <group>
