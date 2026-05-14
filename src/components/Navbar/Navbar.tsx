@@ -1,105 +1,130 @@
-import { FC, useContext, useState } from "react";
-import { AppContext } from "../../context/appContext";
-import { Language } from "../../utils/globals";
-import { Option } from "../../interfaces/Global";
-import Dropdown from "../Dropdown/Dropdown";
-import styles from "./Navbar.module.css";
+import React, { useState, useEffect } from 'react';
+import { FiGlobe, FiSettings } from 'react-icons/fi';
+import { Lang } from '../../types';
+import { translations } from '../../i18n/translations';
+interface NavbarProps {
+  lang: Lang;
+  setLang: (l: Lang) => void;
+}
 
-const languageOptions: Option[] = [
-  { label: "EN", value: "english" },
-  { label: "ES", value: "spanish" },
-];
-
-const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-];
-
-export const Header = () => {
-  const { changeLanguage } = useContext(AppContext);
-  const [activeLang, setActiveLang] = useState<string>("english");
+export function Navbar({ lang, setLang }: NavbarProps) {
+  const tr = translations[lang].nav;
+  const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState('inicio');
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleLanguageChange = (value: string) => {
-    setActiveLang(value);
-    changeLanguage(value as Language);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const links = [
+    { id: 'inicio',          label: tr.inicio },
+    { id: 'trayectoria',     label: tr.trayectoria },
+    { id: 'formacion',       label: tr.formacion },
+    { id: 'certificaciones', label: tr.certificaciones },
+    { id: 'stack',           label: tr.stack },
+    { id: 'proyectos',       label: tr.proyectos },
+    { id: 'herramientas',    label: tr.herramientas },
+  ];
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setActive(id);
+    setMenuOpen(false);
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-[#f8f8f8] shadow-[0_2px_6px_rgba(0,0,0,0.07)]">
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 md:px-6">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-gray-100/50 ${
+        scrolled
+          ? 'bg-white/90 backdrop-blur-md shadow-sm'
+          : 'bg-white/70 backdrop-blur-sm'
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+        {/* Logo */}
+        <button
+          onClick={() => scrollTo('inicio')}
+          className="font-bold text-gray-900 text-sm tracking-tight"
+        >
+          [Tu Nombre]
+        </button>
 
-        {/* Left — Brand */}
-        <a href="#" className="flex items-center gap-2.5 no-underline">
-          <span className="text-base font-semibold text-gray-900">GL</span>
-        </a>
-
-        {/* Center — Nav links (hidden on mobile) */}
-        <nav className="hidden items-center gap-7 md:flex">
-          {
-          navLinks.map(({ label, href }) => (
-            <a
-              key={label}
-              href={href}
-              className="text-sm font-medium text-gray-500 transition-colors hover:text-gray-900"
+        {/* Desktop links */}
+        <div className="hidden lg:flex items-center gap-6">
+          {links.map((l) => (
+            <button
+              key={l.id}
+              onClick={() => scrollTo(l.id)}
+              className={`text-sm transition-colors ${
+                active === l.id
+                  ? 'text-teal-600 font-medium'
+                  : 'text-gray-500 hover:text-gray-900'
+              }`}
             >
-              {label}
-            </a>
-          ))
-          }
-        </nav>
+              {l.label}
+            </button>
+          ))}
+        </div>
 
-        {/* Right — Lang toggle + CTA */}
-        <div className="flex items-center gap-2.5">
+        {/* Right controls */}
+        <div className="flex items-center gap-2">
           {/* Language toggle */}
-          <div className="flex items-center gap-0.5 rounded-full bg-gray-100 p-1 ring-1 ring-gray-200">
-            {languageOptions.map(({ label, value }) => (
-              <button
-                key={value}
-                onClick={() => handleLanguageChange(value)}
-                className={`rounded-full px-3.5 py-1 text-xs font-medium transition-all duration-200 ${activeLang === value
-                    ? "bg-white text-gray-800 shadow-sm ring-1 ring-gray-200/80"
-                    : "bg-transparent text-gray-400 hover:text-gray-600"
-                  }`}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-
-          {/* Hamburger — mobile only */}
           <button
+            onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-gray-600"
+          >
+            <FiGlobe size={13} />
+            {lang.toUpperCase()}
+          </button>
+
+          {/* Settings (decorative) */}
+          <button className="p-2 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors text-gray-500">
+            <FiSettings size={15} />
+          </button>
+
+          {/* Mobile menu toggle */}
+          <button
+            className="lg:hidden p-2 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors text-gray-500 ml-1"
             onClick={() => setMenuOpen(!menuOpen)}
-            className="flex flex-col gap-1.5 rounded p-1 md:hidden"
             aria-label="Toggle menu"
           >
-            <span className={`block h-0.5 w-5 bg-gray-800 transition-transform ${menuOpen ? "translate-y-2 rotate-45" : ""}`} />
-            <span className={`block h-0.5 w-5 bg-gray-800 transition-opacity ${menuOpen ? "opacity-0" : ""}`} />
-            <span className={`block h-0.5 w-5 bg-gray-800 transition-transform ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
+            <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
+              {menuOpen ? (
+                <>
+                  <line x1="3" y1="3" x2="13" y2="13" />
+                  <line x1="13" y1="3" x2="3" y2="13" />
+                </>
+              ) : (
+                <>
+                  <line x1="2" y1="5" x2="14" y2="5" />
+                  <line x1="2" y1="9" x2="14" y2="9" />
+                  <line x1="2" y1="13" x2="14" y2="13" />
+                </>
+              )}
+            </svg>
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile drawer */}
       {menuOpen && (
-        <div className="border-t border-gray-100 bg-[#f8f8f8] px-4 pb-4 md:hidden">
-          <nav className="flex flex-col gap-3 pt-3">
-            {navLinks.map(({ label, href }) => (
-              <a
-                key={label}
-                href={href}
-                onClick={() => setMenuOpen(false)}
-                className="text-sm font-medium text-gray-600 hover:text-gray-900"
-              >
-                {label}
-              </a>
-            ))}
-          </nav>
+        <div className="lg:hidden bg-white/95 border-t border-gray-100 px-6 py-4 flex flex-col gap-3">
+          {links.map((l) => (
+            <button
+              key={l.id}
+              onClick={() => scrollTo(l.id)}
+              className={`text-sm text-left py-1 transition-colors ${
+                active === l.id ? 'text-teal-600 font-medium' : 'text-gray-600'
+              }`}
+            >
+              {l.label}
+            </button>
+          ))}
         </div>
       )}
-    </header>
+    </nav>
   );
-};
-
-export default Header;
+}
