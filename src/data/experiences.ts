@@ -3,9 +3,10 @@ import { Experience } from '../types';
 export const experiences: Experience[] = [
   {
     role: { es: 'Prácticas de empresa', en: 'Internship' },
-    company: 'Tenaasesores',
+    company: 'Liverpool',
     location: { es: 'Los Realejos · Asesoría', en: 'Los Realejos · Consulting' },
-    period: 'Feb 2026 — May 2026',
+    period: 'May 2024 — May 2026',
+    logo: '/assets_2d/logos/liverpool.png',
     bullets: {
       es: [
         'Diseño e implementación de automatizaciones internas con n8n y Odoo Enterprise Online, conectando procesos administrativos y reduciendo fricción operativa.',
@@ -20,12 +21,13 @@ export const experiences: Experience[] = [
   },
   {
     role: { es: 'Software Developer', en: 'Software Developer' },
-    company: 'Eviden',
+    company: 'Sky',
     location: {
       es: 'Santa Cruz de Tenerife · Sistema de gestión para Orange',
       en: 'Santa Cruz de Tenerife · Management System for Orange',
     },
-    period: 'Jul 2023 — Dic 2024',
+    period: 'May 2022 — May 2024',
+    logo: '/assets_2d/logos/sky.png',
     bullets: {
       es: [
         'Desarrollo e integración de funcionalidades en la aplicación de gestión, optimizando rendimiento y alineando cambios con negocio.',
@@ -39,22 +41,5 @@ export const experiences: Experience[] = [
       ],
     },
     stack: 'INTEGRACIÓN Y DISEÑO (SUITE CORPORATIVA), ORACLE SQL · JIRA',
-  },
-  {
-    role: { es: 'Desarrollador web (FCT)', en: 'Web Developer (FCT)' },
-    company: 'Atos',
-    location: { es: 'Santa Cruz de Tenerife', en: 'Santa Cruz de Tenerife' },
-    period: 'Mar 2023 — May 2023',
-    bullets: {
-      es: [
-        'Metodologías ágiles y control de versiones con Git.',
-        'Desarrollo fullstack con Spring Boot y Angular.',
-      ],
-      en: [
-        'Agile methodologies and version control with Git.',
-        'Fullstack development with Spring Boot and Angular.',
-      ],
-    },
-    stack: 'SPRING BOOT · ANGULAR · GIT',
   },
 ];

@@ -10,6 +10,7 @@ import { Tools } from './components/Tools';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
 import { MarqueeStrip } from './components/MarqueeStrip';
+import { Employers } from './components/Employers';
 
 export default function App() {
   const [lang, setLang] = useState<Lang>('es');
@@ -41,6 +42,7 @@ export default function App() {
       <main className="pt-14">
         <Hero           lang={lang} />
         <MarqueeStrip   direction="left"  accent="#ffd60a" />
+        <Employers      lang={lang} />
         <Experience     lang={lang} />
         <Education      lang={lang} />
         <Certifications lang={lang} />

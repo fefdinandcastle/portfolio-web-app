@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Lang } from '../types';
 import { translations } from '../i18n/translations';
 import { useInView } from '../hooks/useInView';
@@ -35,12 +36,16 @@ export function Experience({ lang }: ExperienceProps) {
 
         {/* Timeline */}
         <div className="relative">
-          {/* Vertical line */}
           <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-ink opacity-[0.15]" />
 
           <div className="flex flex-col gap-5 pl-12">
             {experiences.map((exp, i) => (
-              <ExperienceCard key={i} exp={exp} lang={lang} accentColor={CARD_COLORS[i % CARD_COLORS.length]} />
+              <ExperienceCard
+                key={i}
+                exp={exp}
+                lang={lang}
+                accentColor={CARD_COLORS[i % CARD_COLORS.length]}
+              />
             ))}
           </div>
         </div>
@@ -55,10 +60,18 @@ interface CardProps {
   accentColor: string;
 }
 
+function getInitials(name: string): string {
+  const words = name.split(/[\s·\-]+/).filter(Boolean);
+  if (words.length === 1) return name.slice(0, 2).toUpperCase();
+  return words.slice(0, 2).map((w) => w[0].toUpperCase()).join('');
+}
+
 function ExperienceCard({ exp, lang, accentColor }: CardProps) {
+  const [imgError, setImgError] = useState(false);
+  const showInitials = !exp.logo || imgError;
+
   return (
     <div className="relative group">
-
       {/* Timeline dot */}
       <div
         className="absolute -left-[34px] top-[22px] w-2.5 h-2.5 border-2 border-ink z-[1]"
@@ -70,42 +83,60 @@ function ExperienceCard({ exp, lang, accentColor }: CardProps) {
         {/* Accent bar */}
         <div className="h-1 w-full" style={{ background: accentColor }} />
 
-        <div className="py-5 px-6">
-          {/* Header */}
-          <div className="flex flex-wrap justify-between items-start gap-2 mb-1">
-            <h3 className="text-base font-semibold text-ink leading-[1.3] tracking-[-0.01em]">
-              {exp.role[lang]}{' '}
-              <span
-                className="inline-block w-1 h-1 align-middle mx-1.5 mb-0.5"
-                style={{ background: accentColor }}
-              />
-              {exp.company}
-            </h3>
+        <div className="flex gap-4 py-5 px-6">
 
-            <span className="text-[11px] font-medium text-[#888] tracking-[0.04em] whitespace-nowrap border border-ink/[0.15] py-0.5 px-2">
-              {exp.period}
-            </span>
+          {/* Logo badge */}
+          <div className="shrink-0">
+            <div className="w-11 h-11 border-2 border-ink bg-cream flex items-center justify-center overflow-hidden">
+              {showInitials ? (
+                <span className="text-[13px] font-bold text-ink">{getInitials(exp.company)}</span>
+              ) : (
+                <img
+                  src={exp.logo}
+                  alt={exp.company}
+                  className="w-full h-full object-contain p-1.5"
+                  onError={() => setImgError(true)}
+                />
+              )}
+            </div>
           </div>
 
-          <p className="text-[13px] text-[#888] mb-4 tracking-[0.01em]">{exp.location[lang]}</p>
-
-          <div className="w-full h-px bg-ink opacity-[0.07] mb-3.5" />
-
-          <ul className="flex flex-col gap-2 mb-4">
-            {exp.bullets[lang].map((bullet: string, j: number) => (
-              <li key={j} className="flex gap-2.5 text-[13px] text-[#444] leading-[1.55]">
+          {/* Content */}
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap justify-between items-start gap-2 mb-1">
+              <h3 className="text-base font-semibold text-ink leading-[1.3] tracking-[-0.01em]">
+                {exp.role[lang]}{' '}
                 <span
-                  className="shrink-0 mt-[5px] w-[5px] h-[5px] inline-block opacity-80"
+                  className="inline-block w-1 h-1 align-middle mx-1.5 mb-0.5"
                   style={{ background: accentColor }}
                 />
-                {bullet}
-              </li>
-            ))}
-          </ul>
+                {exp.company}
+              </h3>
+              <span className="text-[11px] font-medium text-[#888] tracking-[0.04em] whitespace-nowrap border border-ink/[0.15] py-0.5 px-2">
+                {exp.period}
+              </span>
+            </div>
 
-          <p className="text-[11px] font-semibold tracking-[0.08em] text-[#aaa] uppercase">
-            {exp.stack}
-          </p>
+            <p className="text-[13px] text-[#888] mb-4 tracking-[0.01em]">{exp.location[lang]}</p>
+
+            <div className="w-full h-px bg-ink opacity-[0.07] mb-3.5" />
+
+            <ul className="flex flex-col gap-2 mb-4">
+              {exp.bullets[lang].map((bullet: string, j: number) => (
+                <li key={j} className="flex gap-2.5 text-[13px] text-[#444] leading-[1.55]">
+                  <span
+                    className="shrink-0 mt-[5px] w-[5px] h-[5px] inline-block opacity-80"
+                    style={{ background: accentColor }}
+                  />
+                  {bullet}
+                </li>
+              ))}
+            </ul>
+
+            <p className="text-[11px] font-semibold tracking-[0.08em] text-[#aaa] uppercase">
+              {exp.stack}
+            </p>
+          </div>
         </div>
       </div>
     </div>

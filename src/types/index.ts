@@ -21,6 +21,7 @@ export interface Experience {
   period: string;
   bullets: LocalizedStringArray;
   stack: string;
+  logo?: string;
 }
 
 export interface Education {
@@ -30,6 +31,7 @@ export interface Education {
   desc: LocalizedString;
   badge: string;
   tags: string[];
+  logo?: string;
 }
 
 export interface Certification {
