@@ -7,8 +7,8 @@ import { HeroCanvas } from './3D/Canvas/Herocanvas';
 const HERO_TAGS = ['Spring Boot', 'Angular', 'React', 'Oracle SQL', 'AWS', 'Git / Jira'];
 
 const HERO_STATS = [
-  { label: '3+ yrs', color: '#7c6af7', textColor: '#fff' },
-  { label: 'Full Stack', color: '#ffd60a', textColor: '#111' },
+  { label: '3+ yrs',      color: '#7c6af7', textColor: '#fff' },
+  { label: 'Full Stack',  color: '#ffd60a', textColor: '#111' },
   { label: 'Java · React', color: '#e63946', textColor: '#fff' },
 ];
 
@@ -20,127 +20,59 @@ export function Hero({ lang }: HeroProps) {
   const tr = translations[lang].hero;
 
   return (
-    <section
-      id="inicio"
-      className="min-h-screen flex items-center relative overflow-hidden"
-      style={{ background: '#f5f4f0' }}
-    >
+    <section id="inicio" className="min-h-screen flex items-center relative overflow-hidden bg-cream">
 
-      {/* ── Layer 0 – Three.js WebGL canvas ──────────────────────────────── */}
-      <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }}>
+      {/* Layer 0 – Three.js canvas */}
+      <div className="absolute inset-0 pointer-events-none z-0">
         <HeroCanvas />
       </div>
 
-      {/* ── Layer 1 – Grid overlay ────────────────────────────────────────── */}
+      {/* Layer 1 – Grid overlay */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none z-[1]"
         style={{
-          zIndex: 1,
           backgroundImage:
             'linear-gradient(#11111109 1px, transparent 1px), linear-gradient(90deg, #11111109 1px, transparent 1px)',
           backgroundSize: '36px 36px',
         }}
       />
 
-      {/* ── Corner decorations — colored ────────────────────────────────── */}
-      <div
-        className="absolute top-0 right-0 pointer-events-none"
-        style={{
-          zIndex: 2,
-          width: 100,
-          height: 100,
-          borderLeft: '3px solid #ffd60a',
-          borderBottom: '3px solid #ffd60a',
-          opacity: 0.65,
-        }}
-      />
-      <div
-        className="absolute bottom-0 left-0 pointer-events-none"
-        style={{
-          zIndex: 2,
-          width: 72,
-          height: 72,
-          borderRight: '3px solid #e63946',
-          borderTop: '3px solid #e63946',
-          opacity: 0.55,
-        }}
-      />
-      <div
-        className="absolute top-0 left-0 pointer-events-none"
-        style={{
-          zIndex: 2,
-          width: 20,
-          height: 20,
-          background: '#06d6a0',
-          opacity: 0.7,
-        }}
-      />
+      {/* Corner decorations */}
+      <div className="absolute top-0 right-0 pointer-events-none z-[2] w-[100px] h-[100px] border-l-[3px] border-b-[3px] border-brand-yellow opacity-65" />
+      <div className="absolute bottom-0 left-0 pointer-events-none z-[2] w-[72px] h-[72px] border-r-[3px] border-t-[3px] border-brand-red opacity-55" />
+      <div className="absolute top-0 left-0 pointer-events-none z-[2] w-5 h-5 bg-brand-teal opacity-70" />
 
-      <div className="relative max-w-5xl mx-auto px-8 py-32 w-full" style={{ zIndex: 3 }}>
+      <div className="relative max-w-5xl mx-auto px-8 py-32 w-full z-[3]">
         <div className="flex flex-col md:flex-row md:items-start gap-10">
 
-          {/* ── Text column ──────────────────────────────────────────────── */}
+          {/* Text column */}
           <div className="flex-1 animate-fade-in">
 
             {/* Badge */}
-            <div
-              className="inline-flex items-center gap-2 mb-5"
-              style={{
-                background: '#111',
-                color: '#f5f4f0',
-                fontSize: 11,
-                fontWeight: 500,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                padding: '5px 12px',
-                borderRadius: 0,
-              }}
-            >
-              <span
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: '50%',
-                  background: '#7c6af7',
-                  display: 'inline-block',
-                  flexShrink: 0,
-                }}
-              />
+            <div className="inline-flex items-center gap-2 mb-5 bg-ink text-cream text-[11px] font-medium tracking-[0.08em] uppercase py-[5px] px-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-purple shrink-0 inline-block" />
               {tr.badge}
               <span
-                style={{
-                  display: 'inline-block',
-                  width: 2,
-                  height: '0.75em',
-                  background: '#7c6af7',
-                  marginLeft: 2,
-                  verticalAlign: 'text-bottom',
-                  animation: 'blink 1s step-end infinite',
-                }}
+                className="inline-block w-0.5 bg-brand-purple ml-0.5 align-text-bottom [animation:blink_1s_step-end_infinite]"
+                style={{ height: '0.75em' }}
               />
             </div>
 
             {/* Headline */}
             <h1
-              className="font-bold text-gray-900 mb-6"
-              style={{ fontSize: 'clamp(36px, 5vw, 56px)', lineHeight: 1.08, letterSpacing: '-0.02em' }}
+              className="font-bold text-gray-900 mb-6 tracking-[-0.02em] leading-[1.08]"
+              style={{ fontSize: 'clamp(36px,5vw,56px)' }}
             >
               {tr.headline1}{' '}
-              <span className="relative inline-block" style={{ color: '#7c6af7' }}>
+              <span className="relative inline-block text-brand-purple">
                 {tr.highlight}
-                <span
-                  className="absolute left-0 bottom-[3px] w-full pointer-events-none"
-                  style={{ height: 3, background: '#7c6af7', opacity: 0.3 }}
-                />
+                <span className="absolute left-0 bottom-[3px] w-full h-[3px] bg-brand-purple opacity-30 pointer-events-none" />
               </span>{' '}
               {tr.headline2}
             </h1>
 
             {/* Bio */}
-            <p
-              className="leading-relaxed max-w-xl mb-5"
-              style={{ color: '#555', fontSize: 15, lineHeight: 1.65 }}
-            >
+            <p className="leading-[1.65] max-w-xl mb-5 text-[#555] text-[15px]">
               {tr.bio}
             </p>
 
@@ -149,18 +81,8 @@ export function Hero({ lang }: HeroProps) {
               {HERO_STATS.map((stat) => (
                 <span
                   key={stat.label}
-                  style={{
-                    background: stat.color,
-                    color: stat.textColor,
-                    border: '2px solid #111',
-                    padding: '4px 10px',
-                    fontSize: 11,
-                    fontWeight: 700,
-                    letterSpacing: '0.06em',
-                    boxShadow: '2px 2px 0 #111',
-                    textTransform: 'uppercase',
-                    display: 'inline-block',
-                  }}
+                  className="border-2 border-ink py-1 px-[10px] text-[11px] font-bold tracking-[0.06em] uppercase shadow-brutal-sm inline-block"
+                  style={{ background: stat.color, color: stat.textColor }}
                 >
                   {stat.label}
                 </span>
@@ -172,27 +94,7 @@ export function Hero({ lang }: HeroProps) {
               {HERO_TAGS.map((tag) => (
                 <span
                   key={tag}
-                  className="transition-colors duration-150 cursor-default"
-                  style={{
-                    fontSize: 12,
-                    fontWeight: 500,
-                    color: '#111',
-                    border: '1.5px solid #111',
-                    padding: '4px 10px',
-                    borderRadius: 0,
-                    background: 'transparent',
-                    letterSpacing: '0.02em',
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = '#7c6af7';
-                    (e.currentTarget as HTMLElement).style.color = '#fff';
-                    (e.currentTarget as HTMLElement).style.borderColor = '#7c6af7';
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = 'transparent';
-                    (e.currentTarget as HTMLElement).style.color = '#111';
-                    (e.currentTarget as HTMLElement).style.borderColor = '#111';
-                  }}
+                  className="text-[12px] font-medium text-ink border-[1.5px] border-ink py-1 px-[10px] rounded-none bg-transparent tracking-[0.02em] cursor-default transition-all duration-150 hover:bg-brand-purple hover:text-white hover:border-brand-purple"
                 >
                   {tag}
                 </span>
@@ -205,26 +107,7 @@ export function Hero({ lang }: HeroProps) {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 transition-all duration-100"
-                style={{
-                  padding: '10px 20px',
-                  background: '#7c6af7',
-                  color: '#fff',
-                  fontSize: 13,
-                  fontWeight: 500,
-                  border: '2px solid #111',
-                  borderRadius: 0,
-                  textDecoration: 'none',
-                  boxShadow: '3px 3px 0 #111',
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = '1px 1px 0 #111';
-                  (e.currentTarget as HTMLElement).style.transform = 'translate(2px, 2px)';
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = '3px 3px 0 #111';
-                  (e.currentTarget as HTMLElement).style.transform = 'translate(0, 0)';
-                }}
+                className="inline-flex items-center gap-2 py-[10px] px-5 bg-brand-purple text-white text-[13px] font-medium border-2 border-ink no-underline shadow-brutal transition-all duration-100 hover:shadow-brutal-xs hover:translate-x-[2px] hover:translate-y-[2px]"
               >
                 <SiLinkerd size={15} /> {tr.linkedin}
               </a>
@@ -233,67 +116,21 @@ export function Hero({ lang }: HeroProps) {
                 href="https://github.com"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 transition-all duration-100"
-                style={{
-                  padding: '10px 20px',
-                  background: '#f5f4f0',
-                  color: '#111',
-                  fontSize: 13,
-                  fontWeight: 500,
-                  border: '2px solid #111',
-                  borderRadius: 0,
-                  textDecoration: 'none',
-                  boxShadow: '3px 3px 0 #111',
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = '1px 1px 0 #111';
-                  (e.currentTarget as HTMLElement).style.transform = 'translate(2px, 2px)';
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = '3px 3px 0 #111';
-                  (e.currentTarget as HTMLElement).style.transform = 'translate(0, 0)';
-                }}
+                className="inline-flex items-center gap-2 py-[10px] px-5 bg-cream text-ink text-[13px] font-medium border-2 border-ink no-underline shadow-brutal transition-all duration-100 hover:shadow-brutal-xs hover:translate-x-[2px] hover:translate-y-[2px]"
               >
                 <SiGithub size={15} /> {tr.github}
               </a>
             </div>
           </div>
 
-          {/* ── Photo column ──────────────────────────────────────────────── */}
+          {/* Photo column */}
           <div className="flex-shrink-0 flex justify-center md:justify-end md:pt-8 animate-fade-in-delay order-first md:order-last">
-            <div className="relative" style={{ width: 160, height: 160 }}>
-              {/* Yellow square offset accent */}
-              <div
-                className="absolute pointer-events-none"
-                style={{
-                  width: 144,
-                  height: 144,
-                  background: '#ffd60a',
-                  border: '2px solid #111',
-                  top: 8,
-                  left: 8,
-                  zIndex: 0,
-                }}
-              />
+            <div className="relative w-40 h-40">
+              {/* Yellow square offset */}
+              <div className="absolute w-36 h-36 bg-brand-yellow border-2 border-ink top-2 left-2 z-0 pointer-events-none" />
 
-              {/* Photo frame – circular */}
-              <div
-                className="overflow-hidden"
-                style={{
-                  width: 144,
-                  height: 144,
-                  borderRadius: '50%',
-                  border: '2.5px solid #111',
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  zIndex: 1,
-                }}
-              >
-                {/*
-                  Reemplaza este div con:
-                  <img src="/tu-foto.jpg" alt="Tu nombre" className="w-full h-full object-cover" />
-                */}
+              {/* Circular photo */}
+              <div className="absolute w-36 h-36 rounded-full border-[2.5px] border-ink top-0 left-0 z-10 overflow-hidden">
                 <div
                   className="w-full h-full flex items-center justify-center text-5xl select-none"
                   style={{ background: 'linear-gradient(135deg, #c4bbff 0%, #a08ef5 100%)' }}
@@ -305,46 +142,20 @@ export function Hero({ lang }: HeroProps) {
           </div>
         </div>
 
-        {/* ── Divider + Scroll indicator ────────────────────────────────── */}
-        <div
-          className="mt-12 mb-5"
-          style={{ width: '100%', height: 1, background: '#111', opacity: 0.1 }}
-        />
+        {/* Divider */}
+        <div className="mt-12 mb-5 w-full h-px bg-ink opacity-10" />
 
+        {/* Scroll indicator */}
         <div className="flex items-center gap-3">
-          <span
-            style={{
-              fontSize: 11,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: '#888',
-              fontWeight: 500,
-            }}
-          >
+          <span className="text-[11px] tracking-[0.1em] uppercase text-[#888] font-medium">
             Scroll
           </span>
           <button
             onClick={() => document.getElementById('trayectoria')?.scrollIntoView({ behavior: 'smooth' })}
-            className="flex items-center justify-center transition-colors duration-150"
-            style={{
-              width: 32,
-              height: 32,
-              border: '1.5px solid #111',
-              background: 'transparent',
-              borderRadius: 0,
-              cursor: 'pointer',
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.background = '#111';
-              (e.currentTarget as HTMLElement).querySelector('svg')!.style.color = '#f5f4f0';
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.background = 'transparent';
-              (e.currentTarget as HTMLElement).querySelector('svg')!.style.color = '#111';
-            }}
+            className="group flex items-center justify-center w-8 h-8 border-[1.5px] border-ink bg-transparent hover:bg-ink transition-colors duration-150 cursor-pointer rounded-none"
             aria-label="Scroll down"
           >
-            <FiChevronDown size={16} color="#111" />
+            <FiChevronDown size={16} className="text-ink group-hover:text-cream" />
           </button>
         </div>
       </div>

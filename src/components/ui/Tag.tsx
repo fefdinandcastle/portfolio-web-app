@@ -1,12 +1,10 @@
-import React from 'react';
-
 interface TagProps {
   label: string;
 }
 
 export function Tag({ label }: TagProps) {
   return (
-    <span className="px-3 py-1 text-xs border border-gray-200 rounded-full text-gray-600 bg-white/60">
+    <span className="text-[12px] font-medium text-ink border-[1.5px] border-ink py-1 px-[10px] bg-white tracking-[0.02em] inline-block">
       {label}
     </span>
   );

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Lang } from '../types';
 import { translations } from '../i18n/translations';
 import { useInView } from '../hooks/useInView';
@@ -11,203 +10,68 @@ interface EducationProps {
 export function Education({ lang }: EducationProps) {
   const tr = translations[lang].education;
   const { ref, visible } = useInView();
-
   const ed = educations[0];
 
   return (
-    <section
-      id="formacion"
-      ref={ref}
-      style={{ background: '#fff', padding: '96px 0', position: 'relative', overflow: 'hidden' }}
-    >
-      <span style={{ position: 'absolute', right: -12, top: 16, fontSize: 220, fontWeight: 800, color: '#111', opacity: 0.025, letterSpacing: '-0.06em', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>02</span>
-      <div
-        style={{
-          maxWidth: 1024,
-          margin: '0 auto',
-          padding: '0 32px',
-          transition: 'opacity 0.7s, transform 0.7s',
-          opacity: visible ? 1 : 0,
-          transform: visible ? 'translateY(0)' : 'translateY(28px)',
-        }}
-      >
+    <section id="formacion" ref={ref} className="bg-white py-24 relative overflow-hidden">
+      <span className="absolute -right-3 top-4 text-[220px] font-extrabold text-ink opacity-[0.025] tracking-[-0.06em] leading-none select-none pointer-events-none">02</span>
 
-        {/* ── Section header ──────────────────────────────────────────────── */}
-        <div
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 6,
-            background: '#ffd60a',
-            color: '#111',
-            fontSize: 11,
-            fontWeight: 500,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            padding: '5px 12px',
-            borderRadius: 0,
-            marginBottom: 20,
-            border: '2px solid #111',
-            boxShadow: '2px 2px 0 #111',
-          }}
-        >
-          <span
-            style={{
-              width: 6,
-              height: 6,
-              borderRadius: '50%',
-              background: '#111',
-              display: 'inline-block',
-              flexShrink: 0,
-            }}
-          />
+      <div className={`max-w-5xl mx-auto px-8 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-7'}`}>
+
+        {/* Section header */}
+        <div className="inline-flex items-center gap-1.5 bg-brand-yellow text-ink text-[11px] font-medium tracking-[0.08em] uppercase py-[5px] px-3 mb-5 border-2 border-ink shadow-brutal-sm">
+          <span className="w-1.5 h-1.5 rounded-full bg-ink shrink-0 inline-block" />
           {tr.badge}
         </div>
 
         <h2
-          style={{
-            fontSize: 'clamp(28px, 4vw, 40px)',
-            fontWeight: 700,
-            color: '#111',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.1,
-            marginBottom: 48,
-          }}
+          className="font-bold text-ink tracking-[-0.02em] leading-[1.1] mb-12"
+          style={{ fontSize: 'clamp(28px,4vw,40px)' }}
         >
           {tr.title}
         </h2>
 
-        {/* ── Single university card ───────────────────────────────────────── */}
         <EducationCard ed={ed} lang={lang} />
-
       </div>
     </section>
   );
 }
 
-// ── Card subcomponent ─────────────────────────────────────────────────────────
 interface CardProps {
   ed: (typeof educations)[number];
   lang: Lang;
 }
 
 function EducationCard({ ed, lang }: CardProps) {
-  const [hovered, setHovered] = React.useState(false);
-
   return (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr',
-        background: '#f5f4f0',
-        border: '2px solid #111',
-        borderRadius: 0,
-        boxShadow: hovered ? '2px 2px 0 #111' : '5px 5px 0 #111',
-        transform: hovered ? 'translate(3px, 3px)' : 'translate(0, 0)',
-        transition: 'box-shadow 0.15s, transform 0.15s',
-        overflow: 'hidden',
-      }}
-    >
-      {/* Top accent bar — yellow */}
-      <div style={{ height: 4, background: '#ffd60a', width: '100%' }} />
+    <div className="grid grid-cols-1 bg-cream border-2 border-ink shadow-brutal-lg hover:shadow-brutal-sm hover:translate-x-[3px] hover:translate-y-[3px] transition-all duration-150 overflow-hidden">
+      {/* Top accent bar */}
+      <div className="h-1 w-full bg-brand-yellow" />
 
-      <div style={{ padding: '28px 32px 32px' }}>
-
-        {/* Header row */}
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-            alignItems: 'flex-start',
-            gap: 12,
-            marginBottom: 6,
-          }}
-        >
-          <h3
-            style={{
-              fontSize: 20,
-              fontWeight: 700,
-              color: '#111',
-              letterSpacing: '-0.015em',
-              lineHeight: 1.2,
-            }}
-          >
+      <div className="pt-7 px-8 pb-8">
+        {/* Header */}
+        <div className="flex flex-wrap justify-between items-start gap-3 mb-1.5">
+          <h3 className="text-xl font-bold text-ink tracking-[-0.015em] leading-[1.2]">
             {ed.title[lang]}
           </h3>
-
-          {/* Period */}
-          <span
-            style={{
-              fontSize: 11,
-              fontWeight: 500,
-              color: '#888',
-              letterSpacing: '0.05em',
-              border: '1.5px solid #111',
-              padding: '3px 10px',
-              borderRadius: 0,
-              whiteSpace: 'nowrap',
-              background: '#fff',
-            }}
-          >
+          <span className="text-[11px] font-medium text-[#888] tracking-[0.05em] border-[1.5px] border-ink py-[3px] px-[10px] whitespace-nowrap bg-white">
             {ed.period[lang]}
           </span>
         </div>
 
-        {/* Institution */}
-        <p
-          style={{
-            fontSize: 14,
-            fontWeight: 600,
-            color: '#7c6af7',
-            letterSpacing: '0.01em',
-            marginBottom: 16,
-          }}
-        >
+        <p className="text-sm font-semibold text-brand-purple tracking-[0.01em] mb-4">
           {ed.institution}
         </p>
 
-        {/* Divider */}
-        <div
-          style={{
-            width: '100%',
-            height: 1,
-            background: '#111',
-            opacity: 0.1,
-            marginBottom: 16,
-          }}
-        />
+        <div className="w-full h-px bg-ink opacity-10 mb-4" />
 
-        {/* Description */}
-        <p
-          style={{
-            fontSize: 14,
-            color: '#555',
-            lineHeight: 1.65,
-            marginBottom: 24,
-          }}
-        >
-          {ed.desc[lang]}
-        </p>
+        <p className="text-sm text-[#555] leading-[1.65] mb-6">{ed.desc[lang]}</p>
 
-        {/* Badge label */}
-        <p
-          style={{
-            fontSize: 10,
-            fontWeight: 600,
-            letterSpacing: '0.1em',
-            color: '#aaa',
-            textTransform: 'uppercase',
-            marginBottom: 14,
-          }}
-        >
+        <p className="text-[10px] font-semibold tracking-[0.1em] text-[#aaa] uppercase mb-3.5">
           {ed.badge}
         </p>
 
-        {/* Tags */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+        <div className="flex flex-wrap gap-2">
           {ed.tags.map((tag: string) => (
             <TagItem key={tag} label={tag} />
           ))}
@@ -217,28 +81,9 @@ function EducationCard({ ed, lang }: CardProps) {
   );
 }
 
-// ── Tag subcomponent ──────────────────────────────────────────────────────────
 function TagItem({ label }: { label: string }) {
-  const [hovered, setHovered] = React.useState(false);
   return (
-    <span
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        fontSize: 12,
-        fontWeight: 500,
-        color: hovered ? '#111' : '#111',
-        background: hovered ? '#ffd60a' : 'transparent',
-        border: hovered ? '1.5px solid #111' : '1.5px solid #111',
-        padding: '4px 10px',
-        borderRadius: 0,
-        letterSpacing: '0.02em',
-        cursor: 'default',
-        transition: 'background 0.15s',
-        display: 'inline-block',
-        boxShadow: hovered ? '2px 2px 0 #111' : 'none',
-      }}
-    >
+    <span className="text-[12px] font-medium text-ink border-[1.5px] border-ink py-1 px-[10px] cursor-default transition-all duration-150 hover:bg-brand-yellow hover:shadow-brutal-sm inline-block">
       {label}
     </span>
   );

@@ -1,4 +1,3 @@
-import React from 'react';
 import { FiExternalLink } from 'react-icons/fi';
 import { Lang } from '../types';
 import { translations } from '../i18n/translations';
@@ -16,87 +15,34 @@ export function Certifications({ lang }: CertificationsProps) {
   const { ref, visible } = useInView();
 
   return (
-    <section
-      id="certificaciones"
-      ref={ref}
-      style={{ background: '#fff', padding: '96px 0', position: 'relative', overflow: 'hidden' }}
-    >
-      <span style={{ position: 'absolute', right: -12, top: 16, fontSize: 220, fontWeight: 800, color: '#111', opacity: 0.025, letterSpacing: '-0.06em', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>03</span>
-      <div
-        style={{
-          maxWidth: 1024,
-          margin: '0 auto',
-          padding: '0 32px',
-          transition: 'opacity 0.7s, transform 0.7s',
-          opacity: visible ? 1 : 0,
-          transform: visible ? 'translateY(0)' : 'translateY(28px)',
-        }}
-      >
+    <section id="certificaciones" ref={ref} className="bg-white py-24 relative overflow-hidden">
+      <span className="absolute -right-3 top-4 text-[220px] font-extrabold text-ink opacity-[0.025] tracking-[-0.06em] leading-none select-none pointer-events-none">03</span>
 
-        {/* ── Section header ──────────────────────────────────────────────── */}
-        <div
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 6,
-            background: '#ff9500',
-            color: '#111',
-            fontSize: 11,
-            fontWeight: 500,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            padding: '5px 12px',
-            borderRadius: 0,
-            marginBottom: 20,
-            border: '2px solid #111',
-            boxShadow: '2px 2px 0 #111',
-          }}
-        >
-          <span
-            style={{
-              width: 6,
-              height: 6,
-              borderRadius: '50%',
-              background: '#111',
-              display: 'inline-block',
-              flexShrink: 0,
-            }}
-          />
+      <div className={`max-w-5xl mx-auto px-8 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-7'}`}>
+
+        {/* Section header */}
+        <div className="inline-flex items-center gap-1.5 bg-brand-orange text-ink text-[11px] font-medium tracking-[0.08em] uppercase py-[5px] px-3 mb-5 border-2 border-ink shadow-brutal-sm">
+          <span className="w-1.5 h-1.5 rounded-full bg-ink shrink-0 inline-block" />
           {tr.badge}
         </div>
 
         <h2
-          style={{
-            fontSize: 'clamp(28px, 4vw, 40px)',
-            fontWeight: 700,
-            color: '#111',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.1,
-            marginBottom: 48,
-          }}
+          className="font-bold text-ink tracking-[-0.02em] leading-[1.1] mb-12"
+          style={{ fontSize: 'clamp(28px,4vw,40px)' }}
         >
           {tr.title}
         </h2>
 
-        {/* ── Grid ─────────────────────────────────────────────────────────── */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: 12,
-          }}
-        >
+        <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
           {certifications.map((cert, i) => (
             <CertCard key={i} cert={cert} lang={lang} index={i} accentColor={CERT_COLORS[i % CERT_COLORS.length]} />
           ))}
         </div>
-
       </div>
     </section>
   );
 }
 
-// ── Card subcomponent ─────────────────────────────────────────────────────────
 interface CertCardProps {
   cert: (typeof certifications)[number];
   lang: Lang;
@@ -105,104 +51,35 @@ interface CertCardProps {
 }
 
 function CertCard({ cert, lang, accentColor }: CertCardProps) {
-  const [hovered, setHovered] = React.useState(false);
+  const isYellow = accentColor === '#ffd60a';
 
   return (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        background: '#f5f4f0',
-        border: '2px solid #111',
-        borderRadius: 0,
-        boxShadow: hovered ? '1px 1px 0 #111' : '4px 4px 0 #111',
-        transform: hovered ? 'translate(3px, 3px)' : 'translate(0, 0)',
-        transition: 'box-shadow 0.15s, transform 0.15s',
-        overflow: 'hidden',
-      }}
-    >
-      {/* Colored top accent bar */}
-      <div style={{ height: 4, background: accentColor }} />
+    <div className="group flex flex-col bg-cream border-2 border-ink shadow-brutal-md hover:shadow-brutal-xs hover:translate-x-[3px] hover:translate-y-[3px] transition-all duration-150 overflow-hidden">
+      {/* Accent bar */}
+      <div className="h-1" style={{ background: accentColor }} />
 
-      <div style={{ padding: '20px 22px 22px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+      <div className="flex flex-col flex-1 pt-5 px-[22px] pb-[22px]">
 
-        {/* Category */}
         <p
-          style={{
-            fontSize: 10,
-            fontWeight: 600,
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            color: accentColor === '#ffd60a' ? '#b38f00' : accentColor,
-            marginBottom: 10,
-          }}
+          className="text-[10px] font-semibold tracking-[0.1em] uppercase mb-2.5"
+          style={{ color: isYellow ? '#b38f00' : accentColor }}
         >
           {cert.cat[lang]}
         </p>
 
-        {/* Title */}
-        <h3
-          style={{
-            fontSize: 15,
-            fontWeight: 700,
-            color: '#111',
-            lineHeight: 1.3,
-            letterSpacing: '-0.01em',
-            marginBottom: 6,
-          }}
-        >
+        <h3 className="text-[15px] font-bold text-ink leading-[1.3] tracking-[-0.01em] mb-1.5">
           {cert.title}
         </h3>
 
-        {/* Date */}
-        <p
-          style={{
-            fontSize: 12,
-            color: '#999',
-            letterSpacing: '0.02em',
-            marginBottom: 20,
-          }}
-        >
-          {cert.date[lang]}
-        </p>
+        <p className="text-[12px] text-[#999] tracking-[0.02em] mb-5">{cert.date[lang]}</p>
 
-        {/* Divider */}
-        <div
-          style={{
-            width: '100%',
-            height: 1,
-            background: '#111',
-            opacity: 0.08,
-            marginBottom: 16,
-            marginTop: 'auto',
-          }}
-        />
+        <div className="w-full h-px bg-ink opacity-[0.08] mb-4 mt-auto" />
 
-        {/* Link */}
         <a
           href={cert.link}
           target="_blank"
           rel="noreferrer"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 5,
-            fontSize: 12,
-            fontWeight: 600,
-            color: hovered ? '#f5f4f0' : '#111',
-            background: hovered ? '#111' : 'transparent',
-            border: '1.5px solid #111',
-            padding: '5px 10px',
-            borderRadius: 0,
-            textDecoration: 'none',
-            width: 'fit-content',
-            letterSpacing: '0.02em',
-            boxShadow: hovered ? 'none' : '2px 2px 0 #111',
-            transform: hovered ? 'translate(2px, 2px)' : 'translate(0,0)',
-            transition: 'background 0.15s, color 0.15s, box-shadow 0.15s, transform 0.15s',
-          }}
+          className="inline-flex items-center gap-[5px] text-[12px] font-semibold text-ink border-[1.5px] border-ink py-[5px] px-[10px] no-underline w-fit tracking-[0.02em] shadow-brutal-sm transition-all duration-150 group-hover:bg-ink group-hover:text-cream group-hover:shadow-none group-hover:translate-x-[2px] group-hover:translate-y-[2px]"
         >
           {cert.linkText[lang]}
           <FiExternalLink size={11} />

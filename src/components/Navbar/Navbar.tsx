@@ -42,123 +42,46 @@ export function Navbar({ lang, setLang }: NavbarProps) {
 
   return (
     <nav
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 50,
-        background: scrolled ? '#f5f4f0' : 'rgba(245,244,240,0.85)',
-        backdropFilter: scrolled ? 'none' : 'blur(8px)',
-        borderBottom: scrolled ? '2px solid #111' : '1px solid rgba(17,17,17,0.12)',
-        transition: 'border-color 0.25s, background 0.25s',
-      }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-[250ms]
+        ${scrolled
+          ? 'bg-cream border-b-2 border-ink'
+          : 'bg-cream/85 backdrop-blur border-b border-ink/[0.12]'
+        }`}
     >
-      <div
-        style={{
-          maxWidth: 1152,
-          margin: '0 auto',
-          padding: '0 24px',
-          height: 52,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: 16,
-        }}
-      >
-        {/* ── Logo ──────────────────────────────────────────────────────── */}
+      <div className="max-w-[1152px] mx-auto px-6 h-[52px] flex items-center justify-between gap-4">
+
+        {/* Logo */}
         <button
           onClick={() => scrollTo('inicio')}
-          style={{
-            fontWeight: 700,
-            fontSize: 13,
-            letterSpacing: '-0.01em',
-            color: '#111',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            padding: 0,
-            flexShrink: 0,
-            fontFamily: 'inherit',
-          }}
+          className="font-bold text-[13px] tracking-[-0.01em] text-ink bg-transparent border-none cursor-pointer p-0 shrink-0"
         >
           Gerardo Lerma
-          <span style={{ color: '#7c6af7', marginLeft: 2 }}>.</span>
         </button>
 
-        {/* ── Desktop links ─────────────────────────────────────────────── */}
-        <div className="hidden lg:flex" style={{ alignItems: 'center', gap: 4 }}>
+        {/* Desktop links */}
+        <div className="hidden lg:flex items-center gap-1">
           {links.map((l) => (
             <button
               key={l.id}
               onClick={() => scrollTo(l.id)}
-              style={{
-                fontSize: 12,
-                fontWeight: active === l.id ? 600 : 400,
-                background: active === l.id ? '#111' : 'transparent',
-                color: active === l.id ? '#f5f4f0' : '#666',
-                border: 'none',
-                cursor: 'pointer',
-                padding: '5px 10px',
-                borderRadius: 0,
-                letterSpacing: active === l.id ? '0.02em' : '0',
-                fontFamily: 'inherit',
-                transition: 'background 0.15s, color 0.15s',
-                textTransform: 'lowercase',
-              }}
-              onMouseEnter={(e) => {
-                if (active !== l.id) {
-                  (e.currentTarget as HTMLElement).style.color = '#111';
-                  (e.currentTarget as HTMLElement).style.background = 'rgba(17,17,17,0.06)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (active !== l.id) {
-                  (e.currentTarget as HTMLElement).style.color = '#666';
-                  (e.currentTarget as HTMLElement).style.background = 'transparent';
-                }
-              }}
+              className={`text-[12px] px-[10px] py-[5px] border-none cursor-pointer lowercase transition-all duration-150 rounded-none
+                ${active === l.id
+                  ? 'font-semibold bg-ink text-cream tracking-[0.02em]'
+                  : 'font-normal bg-transparent text-[#666] hover:text-ink hover:bg-ink/[0.06]'
+                }`}
             >
               {l.label}
             </button>
           ))}
         </div>
 
-        {/* ── Right controls ────────────────────────────────────────────── */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+        {/* Right controls */}
+        <div className="flex items-center gap-2 shrink-0">
 
           {/* Language toggle */}
           <button
             onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 5,
-              padding: '5px 10px',
-              fontSize: 11,
-              fontWeight: 600,
-              letterSpacing: '0.06em',
-              color: '#111',
-              background: 'transparent',
-              border: '1.5px solid #111',
-              borderRadius: 0,
-              cursor: 'pointer',
-              fontFamily: 'inherit',
-              transition: 'background 0.15s, color 0.15s',
-              boxShadow: '2px 2px 0 #111',
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.background = '#111';
-              (e.currentTarget as HTMLElement).style.color = '#f5f4f0';
-              (e.currentTarget as HTMLElement).style.boxShadow = '1px 1px 0 #111';
-              (e.currentTarget as HTMLElement).style.transform = 'translate(1px, 1px)';
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.background = 'transparent';
-              (e.currentTarget as HTMLElement).style.color = '#111';
-              (e.currentTarget as HTMLElement).style.boxShadow = '2px 2px 0 #111';
-              (e.currentTarget as HTMLElement).style.transform = 'translate(0, 0)';
-            }}
+            className="inline-flex items-center gap-[5px] py-[5px] px-[10px] text-[11px] font-semibold tracking-[0.06em] text-ink bg-transparent border-[1.5px] border-ink cursor-pointer shadow-brutal-sm rounded-none transition-all duration-150 hover:bg-ink hover:text-cream hover:shadow-brutal-xs hover:translate-x-[1px] hover:translate-y-[1px]"
           >
             <FiGlobe size={12} />
             {lang.toUpperCase()}
@@ -166,22 +89,10 @@ export function Navbar({ lang, setLang }: NavbarProps) {
 
           {/* Mobile menu toggle */}
           <button
-            className="lg:hidden"
+            className={`lg:hidden flex items-center justify-center w-8 h-8 border-[1.5px] border-ink cursor-pointer transition-all duration-150 rounded-none
+              ${menuOpen ? 'bg-ink text-cream' : 'bg-transparent text-ink'}`}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: 32,
-              height: 32,
-              border: '1.5px solid #111',
-              borderRadius: 0,
-              background: menuOpen ? '#111' : 'transparent',
-              cursor: 'pointer',
-              transition: 'background 0.15s',
-              color: menuOpen ? '#f5f4f0' : '#111',
-            }}
           >
             <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2">
               {menuOpen ? (
@@ -201,49 +112,18 @@ export function Navbar({ lang, setLang }: NavbarProps) {
         </div>
       </div>
 
-      {/* ── Mobile drawer ─────────────────────────────────────────────────── */}
+      {/* Mobile drawer */}
       {menuOpen && (
-        <div
-          style={{
-            background: '#f5f4f0',
-            borderTop: '2px solid #111',
-            padding: '16px 24px 20px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 2,
-          }}
-        >
+        <div className="bg-cream border-t-2 border-ink px-6 pt-4 pb-5 flex flex-col gap-0.5">
           {links.map((l) => (
             <button
               key={l.id}
               onClick={() => scrollTo(l.id)}
-              style={{
-                fontSize: 13,
-                fontWeight: active === l.id ? 600 : 400,
-                color: active === l.id ? '#f5f4f0' : '#444',
-                background: active === l.id ? '#111' : 'transparent',
-                border: 'none',
-                borderRadius: 0,
-                cursor: 'pointer',
-                padding: '7px 10px',
-                textAlign: 'left',
-                fontFamily: 'inherit',
-                letterSpacing: '0.01em',
-                transition: 'background 0.12s, color 0.12s',
-                textTransform: 'lowercase',
-              }}
-              onMouseEnter={(e) => {
-                if (active !== l.id) {
-                  (e.currentTarget as HTMLElement).style.background = 'rgba(17,17,17,0.07)';
-                  (e.currentTarget as HTMLElement).style.color = '#111';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (active !== l.id) {
-                  (e.currentTarget as HTMLElement).style.background = 'transparent';
-                  (e.currentTarget as HTMLElement).style.color = '#444';
-                }
-              }}
+              className={`text-[13px] py-[7px] px-[10px] border-none cursor-pointer lowercase transition-all duration-[120ms] text-left tracking-[0.01em] rounded-none
+                ${active === l.id
+                  ? 'font-semibold bg-ink text-cream'
+                  : 'font-normal bg-transparent text-[#444] hover:bg-ink/[0.07] hover:text-ink'
+                }`}
             >
               {l.label}
             </button>

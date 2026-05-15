@@ -4,8 +4,6 @@ import { translations } from '../i18n/translations';
 import { useInView } from '../hooks/useInView';
 import { learningStack, stackIcons } from '../data/stack';
 
-// import { stackIcons, learningStack } from '../data/stack';
-
 interface StackProps {
   lang: Lang;
 }
@@ -15,123 +13,54 @@ export function Stack({ lang }: StackProps) {
   const { ref, visible } = useInView();
 
   return (
-    <section
-      id="stack"
-      ref={ref}
-      style={{ background: '#f5f4f0', padding: '96px 0', position: 'relative', overflow: 'hidden' }}
-    >
-      <span style={{ position: 'absolute', right: -12, top: 16, fontSize: 220, fontWeight: 800, color: '#111', opacity: 0.03, letterSpacing: '-0.06em', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>04</span>
-      <div
-        style={{
-          maxWidth: 1024,
-          margin: '0 auto',
-          padding: '0 32px',
-          transition: 'opacity 0.7s, transform 0.7s',
-          opacity: visible ? 1 : 0,
-          transform: visible ? 'translateY(0)' : 'translateY(28px)',
-        }}
-      >
+    <section id="stack" ref={ref} className="bg-cream py-24 relative overflow-hidden">
+      <span className="absolute -right-3 top-4 text-[220px] font-extrabold text-ink opacity-[0.03] tracking-[-0.06em] leading-none select-none pointer-events-none">04</span>
 
-        {/* ── Section header ──────────────────────────────────────────────── */}
-        <div
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 6,
-            background: '#7c6af7',
-            color: '#fff',
-            fontSize: 11,
-            fontWeight: 500,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            padding: '5px 12px',
-            borderRadius: 0,
-            marginBottom: 20,
-            border: '2px solid #111',
-            boxShadow: '2px 2px 0 #111',
-          }}
-        >
-          <span
-            style={{
-              width: 6,
-              height: 6,
-              borderRadius: '50%',
-              background: '#fff',
-              display: 'inline-block',
-              flexShrink: 0,
-            }}
-          />
+      <div className={`max-w-5xl mx-auto px-8 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-7'}`}>
+
+        {/* Section header */}
+        <div className="inline-flex items-center gap-1.5 bg-brand-purple text-white text-[11px] font-medium tracking-[0.08em] uppercase py-[5px] px-3 mb-5 border-2 border-ink shadow-brutal-sm">
+          <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0 inline-block" />
           {tr.badge}
         </div>
 
         <h2
-          style={{
-            fontSize: 'clamp(28px, 4vw, 40px)',
-            fontWeight: 700,
-            color: '#111',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.1,
-            marginBottom: 8,
-          }}
+          className="font-bold text-ink tracking-[-0.02em] leading-[1.1] mb-2"
+          style={{ fontSize: 'clamp(28px,4vw,40px)' }}
         >
           {tr.title}
         </h2>
-        <p style={{ color: '#777', fontSize: 15, marginBottom: 48 }}>
-          {tr.subtitle}
-        </p>
+        <p className="text-[#777] text-[15px] mb-12">{tr.subtitle}</p>
 
-        {/* ── Icon grid ────────────────────────────────────────────────────── */}
+        {/* Icon grid */}
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(88px, 1fr))',
-            gap: 10,
-            marginBottom: 48,
-          }}
+          className="grid gap-2.5 mb-12"
+          style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(88px, 1fr))' }}
         >
           {stackIcons.map(({ name, icon: Icon, color }) => (
             <StackItem key={name} name={name} Icon={Icon} color={color} />
           ))}
         </div>
 
-        {/* ── Divider ──────────────────────────────────────────────────────── */}
-        <div
-          style={{
-            width: '100%',
-            height: 1,
-            background: '#111',
-            opacity: 0.1,
-            marginBottom: 28,
-          }}
-        />
+        {/* Divider */}
+        <div className="w-full h-px bg-ink opacity-10 mb-7" />
 
-        {/* ── Learning stack ───────────────────────────────────────────────── */}
+        {/* Learning stack */}
         <div>
-          <p
-            style={{
-              fontSize: 10,
-              fontWeight: 600,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: '#aaa',
-              marginBottom: 14,
-            }}
-          >
+          <p className="text-[10px] font-semibold tracking-[0.12em] uppercase text-[#aaa] mb-3.5">
             {tr.learning}
           </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+          <div className="flex flex-wrap gap-2">
             {learningStack.map((item: string) => (
               <LearningTag key={item} label={item} />
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );
 }
 
-// ── Stack icon card ───────────────────────────────────────────────────────────
 interface StackItemProps {
   name: string;
   Icon: React.ComponentType<{ size?: number; color?: string }>;
@@ -145,78 +74,21 @@ function StackItem({ name, Icon, color }: StackItemProps) {
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 10,
-        padding: '16px 8px 14px',
-        background: hovered ? '#111' : '#fff',
-        border: '2px solid #111',
-        borderRadius: 0,
-        boxShadow: hovered ? '1px 1px 0 #111' : '3px 3px 0 #111',
-        transform: hovered ? 'translate(2px, 2px)' : 'translate(0, 0)',
-        transition: 'background 0.15s, box-shadow 0.15s, transform 0.15s',
-        cursor: 'default',
-      }}
+      className={`flex flex-col items-center justify-center gap-2.5 py-4 px-2 border-2 border-ink shadow-brutal transition-all duration-150 cursor-default
+        ${hovered ? 'bg-ink shadow-brutal-xs translate-x-[2px] translate-y-[2px]' : 'bg-white'}`}
     >
-      {/* Icon — stays colored on hover for legibility */}
       <Icon size={26} color={hovered ? '#f5f4f0' : color} />
-
-      <span
-        style={{
-          fontSize: 11,
-          fontWeight: 500,
-          color: hovered ? '#f5f4f0' : '#444',
-          textAlign: 'center',
-          lineHeight: 1.3,
-          letterSpacing: '0.01em',
-          transition: 'color 0.15s',
-        }}
-      >
+      <span className={`text-[11px] font-medium text-center leading-[1.3] tracking-[0.01em] transition-colors duration-150 ${hovered ? 'text-cream' : 'text-[#444]'}`}>
         {name}
       </span>
     </div>
   );
 }
 
-// ── Learning tag ──────────────────────────────────────────────────────────────
 function LearningTag({ label }: { label: string }) {
-  const [hovered, setHovered] = React.useState(false);
-
   return (
-    <span
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: 6,
-        fontSize: 12,
-        fontWeight: 500,
-        color: hovered ? '#f5f4f0' : '#111',
-        background: hovered ? '#111' : 'transparent',
-        border: '1.5px solid #111',
-        padding: '4px 10px',
-        borderRadius: 0,
-        letterSpacing: '0.02em',
-        cursor: 'default',
-        transition: 'background 0.15s, color 0.15s',
-      }}
-    >
-      {/* Small pulsing dot to suggest "in progress" */}
-      <span
-        style={{
-          width: 5,
-          height: 5,
-          borderRadius: '50%',
-          background: hovered ? '#a08ef5' : '#7c6af7',
-          display: 'inline-block',
-          flexShrink: 0,
-          opacity: 0.8,
-        }}
-      />
+    <span className="inline-flex items-center gap-1.5 text-[12px] font-medium text-ink border-[1.5px] border-ink py-1 px-[10px] tracking-[0.02em] cursor-default transition-all duration-150 hover:bg-ink hover:text-cream">
+      <span className="w-[5px] h-[5px] rounded-full bg-brand-purple shrink-0 opacity-80 inline-block" />
       {label}
     </span>
   );
