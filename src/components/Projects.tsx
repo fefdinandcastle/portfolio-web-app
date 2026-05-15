@@ -5,6 +5,8 @@ import { translations } from '../i18n/translations';
 import { projects } from '../data/projects';
 import { useInView } from '../hooks/useInView';
 
+const ACCENT_COLORS = ['#06d6a0', '#7c6af7', '#e63946', '#ffd60a', '#ff9500'];
+
 interface ProjectsProps {
   lang: Lang;
 }
@@ -36,8 +38,8 @@ export function Projects({ lang }: ProjectsProps) {
             display: 'inline-flex',
             alignItems: 'center',
             gap: 6,
-            background: '#111',
-            color: '#f5f4f0',
+            background: '#06d6a0',
+            color: '#111',
             fontSize: 11,
             fontWeight: 500,
             letterSpacing: '0.08em',
@@ -45,6 +47,8 @@ export function Projects({ lang }: ProjectsProps) {
             padding: '5px 12px',
             borderRadius: 0,
             marginBottom: 20,
+            border: '2px solid #111',
+            boxShadow: '2px 2px 0 #111',
           }}
         >
           <span
@@ -52,7 +56,7 @@ export function Projects({ lang }: ProjectsProps) {
               width: 6,
               height: 6,
               borderRadius: '50%',
-              background: '#7c6af7',
+              background: '#111',
               display: 'inline-block',
               flexShrink: 0,
             }}
@@ -85,7 +89,14 @@ export function Projects({ lang }: ProjectsProps) {
           }}
         >
           {projects.map((project, i) => (
-            <ProjectCard key={i} project={project} lang={lang} repoLabel={tr.repo} index={i} />
+            <ProjectCard
+              key={i}
+              project={project}
+              lang={lang}
+              repoLabel={tr.repo}
+              index={i}
+              accentColor={ACCENT_COLORS[i % ACCENT_COLORS.length]}
+            />
           ))}
         </div>
 
@@ -100,9 +111,10 @@ interface ProjectCardProps {
   lang: Lang;
   repoLabel: string;
   index: number;
+  accentColor: string;
 }
 
-function ProjectCard({ project, lang, repoLabel, index }: ProjectCardProps) {
+function ProjectCard({ project, lang, repoLabel, index, accentColor }: ProjectCardProps) {
   const [hovered, setHovered] = React.useState(false);
   const [linkHovered, setLinkHovered] = React.useState(false);
 
@@ -122,16 +134,16 @@ function ProjectCard({ project, lang, repoLabel, index }: ProjectCardProps) {
         overflow: 'hidden',
       }}
     >
-      {/* Index label — top-left corner stamp */}
+      {/* Colored header strip */}
       <div
         style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '10px 18px',
-          borderBottom: '1.5px solid rgba(17,17,17,0.08)',
-          background: hovered ? '#111' : '#f5f4f0',
+          background: hovered ? '#111' : accentColor,
           transition: 'background 0.15s',
+          borderBottom: '1.5px solid #111',
         }}
       >
         <span
@@ -139,7 +151,7 @@ function ProjectCard({ project, lang, repoLabel, index }: ProjectCardProps) {
             fontSize: 10,
             fontWeight: 700,
             letterSpacing: '0.1em',
-            color: hovered ? '#f5f4f0' : '#aaa',
+            color: hovered ? '#f5f4f0' : '#111',
             textTransform: 'uppercase',
             transition: 'color 0.15s',
           }}
@@ -148,12 +160,11 @@ function ProjectCard({ project, lang, repoLabel, index }: ProjectCardProps) {
         </span>
         <span
           style={{
-            width: 6,
-            height: 6,
+            width: 8,
+            height: 8,
             borderRadius: 0,
-            background: '#7c6af7',
-            opacity: hovered ? 1 : 0.5,
-            transition: 'opacity 0.15s',
+            background: hovered ? accentColor : '#111',
+            transition: 'background 0.15s',
           }}
         />
       </div>

@@ -5,7 +5,7 @@ import { translations } from '../i18n/translations';
 import { useInView } from '../hooks/useInView';
 import { certifications } from '../data/certifications';
 
-// import { certifications } from '../data/certifications';
+const CERT_COLORS = ['#7c6af7', '#e63946', '#ffd60a', '#06d6a0', '#ff9500'];
 
 interface CertificationsProps {
   lang: Lang;
@@ -38,8 +38,8 @@ export function Certifications({ lang }: CertificationsProps) {
             display: 'inline-flex',
             alignItems: 'center',
             gap: 6,
-            background: '#111',
-            color: '#f5f4f0',
+            background: '#ff9500',
+            color: '#111',
             fontSize: 11,
             fontWeight: 500,
             letterSpacing: '0.08em',
@@ -47,6 +47,8 @@ export function Certifications({ lang }: CertificationsProps) {
             padding: '5px 12px',
             borderRadius: 0,
             marginBottom: 20,
+            border: '2px solid #111',
+            boxShadow: '2px 2px 0 #111',
           }}
         >
           <span
@@ -54,7 +56,7 @@ export function Certifications({ lang }: CertificationsProps) {
               width: 6,
               height: 6,
               borderRadius: '50%',
-              background: '#7c6af7',
+              background: '#111',
               display: 'inline-block',
               flexShrink: 0,
             }}
@@ -84,7 +86,7 @@ export function Certifications({ lang }: CertificationsProps) {
           }}
         >
           {certifications.map((cert, i) => (
-            <CertCard key={i} cert={cert} lang={lang} index={i} />
+            <CertCard key={i} cert={cert} lang={lang} index={i} accentColor={CERT_COLORS[i % CERT_COLORS.length]} />
           ))}
         </div>
 
@@ -98,14 +100,11 @@ interface CertCardProps {
   cert: (typeof certifications)[number];
   lang: Lang;
   index: number;
+  accentColor: string;
 }
 
-function CertCard({ cert, lang, index }: CertCardProps) {
+function CertCard({ cert, lang, accentColor }: CertCardProps) {
   const [hovered, setHovered] = React.useState(false);
-
-  // Subtle index-based offset so cards don't all look identical
-  const shadowSize = hovered ? '1px 1px' : '4px 4px';
-  const translate = hovered ? 'translate(3px, 3px)' : 'translate(0, 0)';
 
   return (
     <div
@@ -117,14 +116,14 @@ function CertCard({ cert, lang, index }: CertCardProps) {
         background: '#f5f4f0',
         border: '2px solid #111',
         borderRadius: 0,
-        boxShadow: `${shadowSize} 0 #111`,
-        transform: translate,
+        boxShadow: hovered ? '1px 1px 0 #111' : '4px 4px 0 #111',
+        transform: hovered ? 'translate(3px, 3px)' : 'translate(0, 0)',
         transition: 'box-shadow 0.15s, transform 0.15s',
         overflow: 'hidden',
       }}
     >
-      {/* Top accent — thin violet bar */}
-      <div style={{ height: 2, background: '#7c6af7', opacity: index % 2 === 0 ? 1 : 0.45 }} />
+      {/* Colored top accent bar */}
+      <div style={{ height: 4, background: accentColor }} />
 
       <div style={{ padding: '20px 22px 22px', display: 'flex', flexDirection: 'column', flex: 1 }}>
 
@@ -135,7 +134,7 @@ function CertCard({ cert, lang, index }: CertCardProps) {
             fontWeight: 600,
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
-            color: '#7c6af7',
+            color: accentColor === '#ffd60a' ? '#b38f00' : accentColor,
             marginBottom: 10,
           }}
         >

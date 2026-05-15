@@ -4,9 +4,6 @@ import { translations } from '../i18n/translations';
 import { useInView } from '../hooks/useInView';
 import { educations } from '../data/educations';
 
-// educations debe tener un solo elemento (tu universidad)
-// import { educations } from '../data/education';
-
 interface EducationProps {
   lang: Lang;
 }
@@ -15,7 +12,7 @@ export function Education({ lang }: EducationProps) {
   const tr = translations[lang].education;
   const { ref, visible } = useInView();
 
-  const ed = educations[0]; // único registro: tu universidad
+  const ed = educations[0];
 
   return (
     <section
@@ -40,8 +37,8 @@ export function Education({ lang }: EducationProps) {
             display: 'inline-flex',
             alignItems: 'center',
             gap: 6,
-            background: '#111',
-            color: '#f5f4f0',
+            background: '#ffd60a',
+            color: '#111',
             fontSize: 11,
             fontWeight: 500,
             letterSpacing: '0.08em',
@@ -49,6 +46,8 @@ export function Education({ lang }: EducationProps) {
             padding: '5px 12px',
             borderRadius: 0,
             marginBottom: 20,
+            border: '2px solid #111',
+            boxShadow: '2px 2px 0 #111',
           }}
         >
           <span
@@ -56,7 +55,7 @@ export function Education({ lang }: EducationProps) {
               width: 6,
               height: 6,
               borderRadius: '50%',
-              background: '#7c6af7',
+              background: '#111',
               display: 'inline-block',
               flexShrink: 0,
             }}
@@ -110,14 +109,8 @@ function EducationCard({ ed, lang }: CardProps) {
         overflow: 'hidden',
       }}
     >
-      {/* Top accent bar */}
-      <div
-        style={{
-          height: 3,
-          background: '#7c6af7',
-          width: '100%',
-        }}
-      />
+      {/* Top accent bar — yellow */}
+      <div style={{ height: 4, background: '#ffd60a', width: '100%' }} />
 
       <div style={{ padding: '28px 32px 32px' }}>
 
@@ -212,7 +205,7 @@ function EducationCard({ ed, lang }: CardProps) {
           {ed.badge}
         </p>
 
-        {/* Tags – mismo estilo que Hero */}
+        {/* Tags */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
           {ed.tags.map((tag: string) => (
             <TagItem key={tag} label={tag} />
@@ -233,15 +226,16 @@ function TagItem({ label }: { label: string }) {
       style={{
         fontSize: 12,
         fontWeight: 500,
-        color: hovered ? '#f5f4f0' : '#111',
-        background: hovered ? '#111' : 'transparent',
-        border: '1.5px solid #111',
+        color: hovered ? '#111' : '#111',
+        background: hovered ? '#ffd60a' : 'transparent',
+        border: hovered ? '1.5px solid #111' : '1.5px solid #111',
         padding: '4px 10px',
         borderRadius: 0,
         letterSpacing: '0.02em',
         cursor: 'default',
-        transition: 'background 0.15s, color 0.15s',
+        transition: 'background 0.15s',
         display: 'inline-block',
+        boxShadow: hovered ? '2px 2px 0 #111' : 'none',
       }}
     >
       {label}

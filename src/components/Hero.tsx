@@ -1,72 +1,89 @@
-import React from 'react';
 import { SiLinkerd, SiGithub } from 'react-icons/si';
 import { FiChevronDown } from 'react-icons/fi';
 import { Lang } from '../types';
 import { translations } from '../i18n/translations';
 import { HeroCanvas } from './3D/Canvas/Herocanvas';
- 
+
 const HERO_TAGS = ['Spring Boot', 'Angular', 'React', 'Oracle SQL', 'AWS', 'Git / Jira'];
- 
+
+const HERO_STATS = [
+  { label: '3+ yrs', color: '#7c6af7', textColor: '#fff' },
+  { label: 'Full Stack', color: '#ffd60a', textColor: '#111' },
+  { label: 'Java · React', color: '#e63946', textColor: '#fff' },
+];
+
 interface HeroProps {
   lang: Lang;
 }
- 
+
 export function Hero({ lang }: HeroProps) {
   const tr = translations[lang].hero;
- 
+
   return (
     <section
       id="inicio"
       className="min-h-screen flex items-center relative overflow-hidden"
       style={{ background: '#f5f4f0' }}
     >
- 
+
       {/* ── Layer 0 – Three.js WebGL canvas ──────────────────────────────── */}
       <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }}>
         <HeroCanvas />
       </div>
- 
+
       {/* ── Layer 1 – Grid overlay (neo brutalism subtle) ─────────────────── */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           zIndex: 1,
           backgroundImage:
-            'linear-gradient(#11111109 1px, transparent 1px), linear-gradient(90deg, #11111109 1px, transparent 1px)',
+            'linear-gradient(#11111112 1px, transparent 1px), linear-gradient(90deg, #11111112 1px, transparent 1px)',
           backgroundSize: '36px 36px',
         }}
       />
- 
-      {/* ── Corner decorations ───────────────────────────────────────────── */}
+
+      {/* ── Corner decorations — colored ────────────────────────────────── */}
       <div
         className="absolute top-0 right-0 pointer-events-none"
         style={{
           zIndex: 2,
-          width: 88,
-          height: 88,
-          borderLeft: '2px solid #111',
-          borderBottom: '2px solid #111',
-          opacity: 0.07,
+          width: 100,
+          height: 100,
+          borderLeft: '3px solid #ffd60a',
+          borderBottom: '3px solid #ffd60a',
+          opacity: 0.65,
         }}
       />
       <div
         className="absolute bottom-0 left-0 pointer-events-none"
         style={{
           zIndex: 2,
-          width: 64,
-          height: 64,
-          borderRight: '2px solid #111',
-          borderTop: '2px solid #111',
-          opacity: 0.06,
+          width: 72,
+          height: 72,
+          borderRight: '3px solid #e63946',
+          borderTop: '3px solid #e63946',
+          opacity: 0.55,
         }}
       />
- 
+
+      {/* ── Extra accent: top-left small square ────────────────────────── */}
+      <div
+        className="absolute top-0 left-0 pointer-events-none"
+        style={{
+          zIndex: 2,
+          width: 20,
+          height: 20,
+          background: '#06d6a0',
+          opacity: 0.7,
+        }}
+      />
+
       <div className="relative max-w-5xl mx-auto px-8 py-32 w-full" style={{ zIndex: 3 }}>
         <div className="flex flex-col md:flex-row md:items-start gap-10">
- 
+
           {/* ── Text column ──────────────────────────────────────────────── */}
           <div className="flex-1 animate-fade-in">
- 
+
             {/* Badge */}
             <div
               className="inline-flex items-center gap-2 mb-5"
@@ -93,7 +110,7 @@ export function Hero({ lang }: HeroProps) {
               />
               {tr.badge}
             </div>
- 
+
             {/* Headline */}
             <h1
               className="font-bold text-gray-900 mb-6"
@@ -113,15 +130,38 @@ export function Hero({ lang }: HeroProps) {
               </span>{' '}
               {tr.headline2}
             </h1>
- 
+
             {/* Bio */}
             <p
-              className="leading-relaxed max-w-xl mb-6"
+              className="leading-relaxed max-w-xl mb-5"
               style={{ color: '#555', fontSize: 15, lineHeight: 1.65 }}
             >
               {tr.bio}
             </p>
- 
+
+            {/* Stats chips */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              {HERO_STATS.map((stat) => (
+                <span
+                  key={stat.label}
+                  style={{
+                    background: stat.color,
+                    color: stat.textColor,
+                    border: '2px solid #111',
+                    padding: '4px 10px',
+                    fontSize: 11,
+                    fontWeight: 700,
+                    letterSpacing: '0.06em',
+                    boxShadow: '2px 2px 0 #111',
+                    textTransform: 'uppercase',
+                    display: 'inline-block',
+                  }}
+                >
+                  {stat.label}
+                </span>
+              ))}
+            </div>
+
             {/* Tags – neo brutalism: square border, no radius */}
             <div className="flex flex-wrap gap-2 mb-8">
               {HERO_TAGS.map((tag) => (
@@ -139,19 +179,21 @@ export function Hero({ lang }: HeroProps) {
                     letterSpacing: '0.02em',
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = '#111';
-                    (e.currentTarget as HTMLElement).style.color = '#f5f4f0';
+                    (e.currentTarget as HTMLElement).style.background = '#7c6af7';
+                    (e.currentTarget as HTMLElement).style.color = '#fff';
+                    (e.currentTarget as HTMLElement).style.borderColor = '#7c6af7';
                   }}
                   onMouseLeave={(e) => {
                     (e.currentTarget as HTMLElement).style.background = 'transparent';
                     (e.currentTarget as HTMLElement).style.color = '#111';
+                    (e.currentTarget as HTMLElement).style.borderColor = '#111';
                   }}
                 >
                   {tag}
                 </span>
               ))}
             </div>
- 
+
             {/* CTA buttons – neo brutalism: square + offset shadow */}
             <div className="flex gap-3 flex-wrap">
               <a
@@ -181,7 +223,7 @@ export function Hero({ lang }: HeroProps) {
               >
                 <SiLinkerd size={15} /> {tr.linkedin}
               </a>
- 
+
               <a
                 href="https://github.com"
                 target="_blank"
@@ -211,26 +253,25 @@ export function Hero({ lang }: HeroProps) {
               </a>
             </div>
           </div>
- 
-          {/* ── Circular photo ────────────────────────────────────────────── */}
+
+          {/* ── Photo column ──────────────────────────────────────────────── */}
           <div className="flex-shrink-0 flex justify-center md:justify-end md:pt-8 animate-fade-in-delay order-first md:order-last">
-            <div className="relative">
-              {/* Dashed ring accent */}
+            <div className="relative" style={{ width: 160, height: 160 }}>
+              {/* Yellow square offset accent — neo brutalism */}
               <div
                 className="absolute pointer-events-none"
                 style={{
                   width: 144,
                   height: 144,
-                  borderRadius: '50%',
-                  border: '2px dashed #7c6af7',
+                  background: '#ffd60a',
+                  border: '2px solid #111',
                   top: 8,
                   left: 8,
-                  opacity: 0.45,
                   zIndex: 0,
                 }}
               />
- 
-              {/* Photo frame – circular, neo brutalism border + offset shadow */}
+
+              {/* Photo frame – circular, neo brutalism border */}
               <div
                 className="overflow-hidden"
                 style={{
@@ -238,33 +279,34 @@ export function Hero({ lang }: HeroProps) {
                   height: 144,
                   borderRadius: '50%',
                   border: '2.5px solid #111',
-                  boxShadow: '5px 5px 0 #111',
-                  position: 'relative',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
                   zIndex: 1,
                 }}
               >
-                {/*
-                  Reemplaza el contenido de este div con:
-                  <img src="/tu-foto.jpg" alt="Tu nombre" className="w-full h-full object-cover" />
-                  y coloca tu foto en la carpeta public/
-                */}
-                <div
+                
+                  {/* Reemplaza el contenido de este div con: */}
+                  <img src="/avatar_real_3.jpg" alt="Tu nombre" className="w-full h-full object-cover bg-purple-400" />
+                  {/* y coloca tu foto en la carpeta public/ */}
+               
+                {/* <div
                   className="w-full h-full flex items-center justify-center text-5xl select-none"
                   style={{ background: 'linear-gradient(135deg, #c4bbff 0%, #a08ef5 100%)' }}
                 >
                   👤
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
         </div>
- 
+
         {/* ── Divider + Scroll indicator ────────────────────────────────── */}
         <div
           className="mt-12 mb-5"
           style={{ width: '100%', height: 1, background: '#111', opacity: 0.1 }}
         />
- 
+
         <div className="flex items-center gap-3">
           <span
             style={{
