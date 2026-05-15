@@ -18,8 +18,9 @@ export function Stack({ lang }: StackProps) {
     <section
       id="stack"
       ref={ref}
-      style={{ background: '#f5f4f0', padding: '96px 0' }}
+      style={{ background: '#f5f4f0', padding: '96px 0', position: 'relative', overflow: 'hidden' }}
     >
+      <span style={{ position: 'absolute', right: -12, top: 16, fontSize: 220, fontWeight: 800, color: '#111', opacity: 0.03, letterSpacing: '-0.06em', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>04</span>
       <div
         style={{
           maxWidth: 1024,
@@ -37,8 +38,8 @@ export function Stack({ lang }: StackProps) {
             display: 'inline-flex',
             alignItems: 'center',
             gap: 6,
-            background: '#111',
-            color: '#f5f4f0',
+            background: '#7c6af7',
+            color: '#fff',
             fontSize: 11,
             fontWeight: 500,
             letterSpacing: '0.08em',
@@ -46,6 +47,8 @@ export function Stack({ lang }: StackProps) {
             padding: '5px 12px',
             borderRadius: 0,
             marginBottom: 20,
+            border: '2px solid #111',
+            boxShadow: '2px 2px 0 #111',
           }}
         >
           <span
@@ -53,7 +56,7 @@ export function Stack({ lang }: StackProps) {
               width: 6,
               height: 6,
               borderRadius: '50%',
-              background: '#7c6af7',
+              background: '#fff',
               display: 'inline-block',
               flexShrink: 0,
             }}

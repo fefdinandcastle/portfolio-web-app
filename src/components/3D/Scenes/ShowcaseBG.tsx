@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Environment, Lightformer, PerspectiveCamera } from '@react-three/drei';
+import { PerspectiveCamera } from '@react-three/drei';
 import Icosahedron from '../Icosahedron/Icosahedron';
 interface ShowcaseBGProps {
   scrollableRef?: React.RefObject<HTMLElement>;
@@ -17,7 +17,7 @@ interface ShowcaseBGProps {
  * antialias:false  → saves GPU; this is a blurry background layer
  * alpha:false      → no transparency needed; this is the bottommost canvas
  */
-const ShowcaseBG: React.FC<ShowcaseBGProps> = ({ scrollableRef }) => (
+const ShowcaseBG: React.FC<ShowcaseBGProps> = (_props) => (
   <Canvas
     gl={{ antialias: false, alpha: false }}
     dpr={[1, 1.5]}
@@ -44,9 +44,11 @@ const ShowcaseBG: React.FC<ShowcaseBGProps> = ({ scrollableRef }) => (
             <Lightformer intensity={4} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={[10, 10, 1]} />
           </group>
         </Environment> */}
-        <ambientLight intensity={0.6} color="#ffffff" />
-<directionalLight position={[5, 5, 5]} intensity={2} color="#ffffff" />
-<directionalLight position={[-5, -5, -5]} intensity={0.5} color="#222222" />
+        {/* Background matches the hero section */}
+        <color attach="background" args={['#f5f4f0']} />
+        <ambientLight intensity={0.7}  color="#ffffff" />
+        <directionalLight position={[5, 5, 5]}   intensity={2}   color="#ffffff" />
+        <directionalLight position={[-5, -5, -5]} intensity={0.4} color="#e8e0d8" />
     <Suspense fallback={null}>
       <Icosahedron size={0.4} />
     </Suspense>

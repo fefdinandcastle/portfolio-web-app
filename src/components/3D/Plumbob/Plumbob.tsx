@@ -50,20 +50,20 @@ const Plumbob: React.FC<PlumbobProps> = ({ children, size }) => {
         ref={meshRef}
       >
         <MeshTransmissionMaterial
-          color="#e8e8e8"
-          backside={false}          // ← was true; backside doubled the dark faces
+          color="#c4bbff"
+          backside={false}
           samples={2}
           resolution={512}
-          transmission={0.55}       // partial glass — not full crystal
+          transmission={0.6}
           thickness={3}
-          roughness={0.05}          // smooth enough to catch light
-          ior={1.35}                // lower ior = less bending = less black
-          chromaticAberration={0}   // ← kill this; it's the "luxury" tell
+          roughness={0.04}
+          ior={1.35}
+          chromaticAberration={0}
           anisotropy={0}
-          distortion={0}            // ← kill; caused the wobbly darkness
+          distortion={0}
           distortionScale={0}
-          temporalDistortion={0}    // ← kill; animated warping ≠ brutalism
-          envMapIntensity={1.2}
+          temporalDistortion={0}
+          envMapIntensity={1.4}
           metalness={0}
         />
       </primitive>

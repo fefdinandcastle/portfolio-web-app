@@ -15,9 +15,13 @@ export function Navbar({ lang, setLang }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    const container = document.getElementById('scroll-container') ?? window;
+    const onScroll = () => {
+      const top = container instanceof Window ? container.scrollY : (container as HTMLElement).scrollTop;
+      setScrolled(top > 20);
+    };
+    container.addEventListener('scroll', onScroll, { passive: true });
+    return () => container.removeEventListener('scroll', onScroll);
   }, []);
 
   const links = [
@@ -79,15 +83,11 @@ export function Navbar({ lang, setLang }: NavbarProps) {
           }}
         >
           Gerardo Lerma
-          {/* Accent dot */}
           <span style={{ color: '#7c6af7', marginLeft: 2 }}>.</span>
         </button>
 
         {/* ── Desktop links ─────────────────────────────────────────────── */}
-        <div
-          className="hidden lg:flex"
-          style={{ alignItems: 'center', gap: 4 }}
-        >
+        <div className="hidden lg:flex" style={{ alignItems: 'center', gap: 4 }}>
           {links.map((l) => (
             <button
               key={l.id}

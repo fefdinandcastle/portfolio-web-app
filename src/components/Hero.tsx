@@ -31,13 +31,13 @@ export function Hero({ lang }: HeroProps) {
         <HeroCanvas />
       </div>
 
-      {/* ── Layer 1 – Grid overlay (neo brutalism subtle) ─────────────────── */}
+      {/* ── Layer 1 – Grid overlay ────────────────────────────────────────── */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           zIndex: 1,
           backgroundImage:
-            'linear-gradient(#11111112 1px, transparent 1px), linear-gradient(90deg, #11111112 1px, transparent 1px)',
+            'linear-gradient(#11111109 1px, transparent 1px), linear-gradient(90deg, #11111109 1px, transparent 1px)',
           backgroundSize: '36px 36px',
         }}
       />
@@ -65,8 +65,6 @@ export function Hero({ lang }: HeroProps) {
           opacity: 0.55,
         }}
       />
-
-      {/* ── Extra accent: top-left small square ────────────────────────── */}
       <div
         className="absolute top-0 left-0 pointer-events-none"
         style={{
@@ -109,6 +107,17 @@ export function Hero({ lang }: HeroProps) {
                 }}
               />
               {tr.badge}
+              <span
+                style={{
+                  display: 'inline-block',
+                  width: 2,
+                  height: '0.75em',
+                  background: '#7c6af7',
+                  marginLeft: 2,
+                  verticalAlign: 'text-bottom',
+                  animation: 'blink 1s step-end infinite',
+                }}
+              />
             </div>
 
             {/* Headline */}
@@ -117,12 +126,8 @@ export function Hero({ lang }: HeroProps) {
               style={{ fontSize: 'clamp(36px, 5vw, 56px)', lineHeight: 1.08, letterSpacing: '-0.02em' }}
             >
               {tr.headline1}{' '}
-              <span
-                className="relative inline-block"
-                style={{ color: '#7c6af7' }}
-              >
+              <span className="relative inline-block" style={{ color: '#7c6af7' }}>
                 {tr.highlight}
-                {/* Underline accent */}
                 <span
                   className="absolute left-0 bottom-[3px] w-full pointer-events-none"
                   style={{ height: 3, background: '#7c6af7', opacity: 0.3 }}
@@ -162,7 +167,7 @@ export function Hero({ lang }: HeroProps) {
               ))}
             </div>
 
-            {/* Tags – neo brutalism: square border, no radius */}
+            {/* Tags */}
             <div className="flex flex-wrap gap-2 mb-8">
               {HERO_TAGS.map((tag) => (
                 <span
@@ -194,7 +199,7 @@ export function Hero({ lang }: HeroProps) {
               ))}
             </div>
 
-            {/* CTA buttons – neo brutalism: square + offset shadow */}
+            {/* CTA buttons */}
             <div className="flex gap-3 flex-wrap">
               <a
                 href="https://linkedin.com"
@@ -257,7 +262,7 @@ export function Hero({ lang }: HeroProps) {
           {/* ── Photo column ──────────────────────────────────────────────── */}
           <div className="flex-shrink-0 flex justify-center md:justify-end md:pt-8 animate-fade-in-delay order-first md:order-last">
             <div className="relative" style={{ width: 160, height: 160 }}>
-              {/* Yellow square offset accent — neo brutalism */}
+              {/* Yellow square offset accent */}
               <div
                 className="absolute pointer-events-none"
                 style={{
@@ -271,7 +276,7 @@ export function Hero({ lang }: HeroProps) {
                 }}
               />
 
-              {/* Photo frame – circular, neo brutalism border */}
+              {/* Photo frame – circular */}
               <div
                 className="overflow-hidden"
                 style={{
@@ -285,17 +290,16 @@ export function Hero({ lang }: HeroProps) {
                   zIndex: 1,
                 }}
               >
-                
-                  {/* Reemplaza el contenido de este div con: */}
-                  <img src="/avatar_real_3.jpg" alt="Tu nombre" className="w-full h-full object-cover bg-purple-400" />
-                  {/* y coloca tu foto en la carpeta public/ */}
-               
-                {/* <div
+                {/*
+                  Reemplaza este div con:
+                  <img src="/tu-foto.jpg" alt="Tu nombre" className="w-full h-full object-cover" />
+                */}
+                <div
                   className="w-full h-full flex items-center justify-center text-5xl select-none"
                   style={{ background: 'linear-gradient(135deg, #c4bbff 0%, #a08ef5 100%)' }}
                 >
                   👤
-                </div> */}
+                </div>
               </div>
             </div>
           </div>

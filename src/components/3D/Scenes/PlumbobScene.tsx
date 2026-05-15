@@ -21,10 +21,10 @@ const PlumbobScene: React.FC = () => (
     <PerspectiveCamera makeDefault fov={4.5} position={[0, 0, 5]} />
 
     {/* Replace the dense Lightformer rig with 3 clean directional sources */}
-   <ambientLight intensity={0.6} color="#ffffff" />
-<directionalLight position={[3, 5, 3]}   intensity={4}   color="#ffffff" />
-<directionalLight position={[-3, -2, 2]} intensity={2}   color="#c8c8ff" />
-<directionalLight position={[0, -5, -2]} intensity={1.2} color="#ffffff" />
+    <ambientLight intensity={0.6}  color="#ffffff" />
+    <directionalLight position={[3, 5, 3]}   intensity={4}   color="#ffffff" />
+    <directionalLight position={[-3, -2, 2]} intensity={2.5} color="#d4c8ff" />
+    <directionalLight position={[0, -5, -2]} intensity={1.0} color="#ffffff" />
     {/* Keep a minimal environment just for the transmission background */}
     <Environment preset="studio" background={false} />
 

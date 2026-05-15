@@ -58,10 +58,10 @@ background=
 {envMap}
         /> */}
        <meshPhysicalMaterial
-  color="#e8e4dc"           // warm off-white
-  roughness={1.0}           // fully matte
+  color="#e8e4dc"
+  roughness={1.0}
   metalness={0}
-  flatShading={true}        // shows every polygon face — very brutalist
+  flatShading={true}
 />
       </primitive>
       <group ref={groupRef}>{children}</group>

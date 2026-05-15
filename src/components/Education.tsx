@@ -18,8 +18,9 @@ export function Education({ lang }: EducationProps) {
     <section
       id="formacion"
       ref={ref}
-      style={{ background: '#fff', padding: '96px 0' }}
+      style={{ background: '#fff', padding: '96px 0', position: 'relative', overflow: 'hidden' }}
     >
+      <span style={{ position: 'absolute', right: -12, top: 16, fontSize: 220, fontWeight: 800, color: '#111', opacity: 0.025, letterSpacing: '-0.06em', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>02</span>
       <div
         style={{
           maxWidth: 1024,
