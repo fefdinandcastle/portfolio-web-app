@@ -6,7 +6,6 @@ import { Education } from './components/Education';
 import { Certifications } from './components/Certifications';
 import { Stack } from './components/Stack';
 import { Projects } from './components/Projects';
-import { Tools } from './components/Tools';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
 import { MarqueeStrip } from './components/MarqueeStrip';

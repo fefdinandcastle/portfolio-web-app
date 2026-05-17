@@ -1,10 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { useFrame, useLoader } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 import { MeshTransmissionMaterial, useGLTF } from '@react-three/drei';
-import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
 import * as THREE from 'three'
 
-// Cast once — reuse everywhere
 interface PlumbobProps {
   children?: React.ReactNode;
   size: number;
@@ -67,7 +65,6 @@ const Plumbob: React.FC<PlumbobProps> = ({ children, size }) => {
           metalness={0}
         />
       </primitive>
-      {/* REMOVED the second <mesh> — it was doubling geometry and adding BackSide confusion */}
     </group>
   );
 };

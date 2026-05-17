@@ -1,10 +1,8 @@
 import {
-  SiTypescript, SiJavascript, SiReact, SiNextdotjs, SiAngular,
-  SiSpringboot, SiNodedotjs, SiPython, SiPhp,
-  SiPostgresql, SiMysql, SiMongodb, SiDocker, SiGit, SiGithub, SiJira,
-  SiTailwindcss, SiFlutter,
-  SiJenkins,
-  SiGooglecloud,
+  SiTypescript, SiJavascript, SiReact, SiNextdotjs,
+  SiSpringboot, SiNodedotjs, SiPython, SiPostgresql, 
+  SiMysql, SiDocker, SiGit, SiGithub, SiJira,
+  SiTailwindcss, SiJenkins, SiGooglecloud,
 } from 'react-icons/si';
 import { StackIcon } from '../types';
 

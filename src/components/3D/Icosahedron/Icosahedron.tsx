@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
-import { useFrame, useLoader } from '@react-three/fiber';
-import { MeshTransmissionMaterial, useGLTF } from '@react-three/drei';
-import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
+import { useFrame } from '@react-three/fiber';
+import { useGLTF } from '@react-three/drei';
 
 interface IcosahedronProps {
   children?: React.ReactNode;
@@ -13,7 +12,6 @@ const Icosahedron: React.FC<IcosahedronProps> = ({ children, size }) => {
   const meshRef   = useRef<THREE.Mesh>(null);
 
   const { nodes } = useGLTF('/assets_3d/ico_sphere.glb');
-  const [envMap]  = useLoader(RGBELoader, ['./assets_3d/abstract_10.hdr']);
 
   useFrame(() => {
     if (meshRef.current) {
@@ -30,39 +28,12 @@ const Icosahedron: React.FC<IcosahedronProps> = ({ children, size }) => {
         scale={[size, size, size]}
         ref={meshRef}
       >
-        {/* <MeshTransmissionMaterial
-         color=
-"white"
-samples=
-{4}
-// was 1 — background can be slightly lower
-resolution=
-{256}
-transmission=
-{1}
-thickness=
-{1.5}
-// chunkier feel for the bg sphere
-roughness=
-{0}
-ior=
-{1.45}
-chromaticAberration=
-{0.04}
-// was 0.1
-anisotropy=
-{0.5}
-distortion=
-{0.05}
-background=
-{envMap}
-        /> */}
        <meshPhysicalMaterial
-  color="#e8e4dc"
-  roughness={1.0}
-  metalness={0}
-  flatShading={true}
-/>
+          color="#e8e4dc"
+          roughness={1.0}
+          metalness={0}
+          flatShading={true}
+        />
       </primitive>
       <group ref={groupRef}>{children}</group>
     </group>

@@ -73,12 +73,3 @@ function StackItem({ name, Icon, color }: StackItemProps) {
     </div>
   );
 }
-
-function LearningTag({ label }: { label: string }) {
-  return (
-    <span className="inline-flex items-center gap-1.5 text-[12px] font-medium text-ink border-[1.5px] border-ink py-1 px-[10px] tracking-[0.02em] cursor-default transition-all duration-150 hover:bg-ink hover:text-cream">
-      <span className="w-[5px] h-[5px] rounded-full bg-brand-purple shrink-0 opacity-80 inline-block" />
-      {label}
-    </span>
-  );
-}
