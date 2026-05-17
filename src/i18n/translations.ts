@@ -72,7 +72,7 @@ export const translations = {
       headline1: 'Technical leadership focused on',
       highlight: 'delivery',
       headline2: 'and product.',
-      bio: "I'm Gerardo Lerma, a technical project lead with a full-stack background. I coordinate back-end (Java) and front-end (React) teams, manage GCP infrastructure and Jenkins pipelines, and lead sprint planning in corporate environments.",
+      bio: "I'm Gerardo Lerma, a full-stack tech lead. I coordinate back-end (Java) and front-end (React) teams, manage GCP infrastructure and Jenkins pipelines, and lead sprint planning in corporate environments.",
       linkedin: 'LinkedIn',
       cv: 'Download CV',
     },

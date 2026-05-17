@@ -109,7 +109,7 @@ export function Hero({ lang }: HeroProps) {
             {/* CTA buttons */}
             <div className="flex gap-3 flex-wrap">
               <a
-                href="https://www.linkedin.com/in/"
+                href="https://www.linkedin.com/in/gerardo-lerma/"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 py-[10px] px-5 bg-brand-purple text-white text-[13px] font-medium border-2 border-ink no-underline shadow-brutal transition-all duration-100 hover:shadow-brutal-xs hover:translate-x-[2px] hover:translate-y-[2px]"

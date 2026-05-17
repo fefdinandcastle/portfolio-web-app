@@ -6,7 +6,7 @@ import { FaLinkedin } from 'react-icons/fa';
 const YOUR_NAME = 'Gerardo Lerma';
 
 const SOCIAL_LINKS = [
-  { href: 'https://linkedin.com', icon: FaLinkedin, label: 'LinkedIn',    color: '#06d6a0' },
+  { href: 'https://www.linkedin.com/in/gerardo-lerma', icon: FaLinkedin, label: 'LinkedIn',    color: '#06d6a0' },
 ];
 
 interface FooterProps {
