@@ -47,8 +47,8 @@ export function Hero({ lang }: HeroProps) {
       <div className="absolute bottom-0 left-0 pointer-events-none z-[2] w-[72px] h-[72px] border-r-[3px] border-t-[3px] border-brand-red opacity-55" />
       <div className="absolute top-0 left-0 pointer-events-none z-[2] w-5 h-5 bg-brand-teal opacity-70" />
 
-      <div className="relative max-w-5xl mx-auto px-8 py-32 w-full z-[3]">
-        <div className="flex flex-col md:flex-row md:items-start gap-10">
+      <div className="relative max-w-5xl mx-auto px-8 pt-14 pb-14 md:py-32 w-full z-[3]">
+        <div className="flex flex-col md:flex-row md:items-start gap-5 md:gap-10">
 
           {/* Text column */}
           <div className="flex-1 animate-fade-in">
@@ -65,8 +65,8 @@ export function Hero({ lang }: HeroProps) {
 
             {/* Headline */}
             <h1
-              className="font-bold text-gray-900 mb-6 tracking-[-0.02em] leading-[1.08]"
-              style={{ fontSize: 'clamp(36px,5vw,56px)' }}
+              className="font-bold text-gray-900 mb-4 md:mb-6 tracking-[-0.02em] leading-[1.08]"
+              style={{ fontSize: 'clamp(26px,5vw,56px)' }}
             >
               {tr.headline1}{' '}
               <span className="relative inline-block text-brand-purple">
@@ -77,12 +77,12 @@ export function Hero({ lang }: HeroProps) {
             </h1>
 
             {/* Bio */}
-            <p className="leading-[1.65] max-w-xl mb-5 text-[#555] text-[15px]">
+            <p className="leading-[1.65] max-w-xl mb-3 md:mb-5 text-[#555] text-[13px] md:text-[15px]">
               {tr.bio}
             </p>
 
             {/* Stats chips */}
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-2 mb-3 md:mb-6">
               {HERO_STATS.map((stat) => (
                 <span
                   key={stat.label}
@@ -95,7 +95,7 @@ export function Hero({ lang }: HeroProps) {
             </div>
 
             {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-8">
+            <div className="flex flex-wrap gap-2 mb-5 md:mb-8">
               {HERO_TAGS.map((tag) => (
                 <span
                   key={tag}
@@ -128,12 +128,12 @@ export function Hero({ lang }: HeroProps) {
 
           {/* Photo column */}
           <div className="flex-shrink-0 flex justify-center md:justify-end md:pt-8 animate-fade-in-delay order-first md:order-last">
-            <div className="relative w-40 h-40">
+            <div className="relative w-28 h-28 md:w-40 md:h-40">
               {/* Yellow square offset */}
-              <div className="absolute w-36 h-36 bg-brand-yellow border-2 border-ink top-2 left-2 z-0 pointer-events-none" />
+              <div className="absolute w-24 h-24 md:w-36 md:h-36 bg-brand-yellow border-2 border-ink top-2 left-2 z-0 pointer-events-none" />
 
               {/* Circular photo */}
-              <div className="absolute w-36 h-36 rounded-full border-[2.5px] border-ink top-0 left-0 z-10 overflow-hidden">
+              <div className="absolute w-24 h-24 md:w-36 md:h-36 rounded-full border-[2.5px] border-ink top-0 left-0 z-10 overflow-hidden">
                 <div
                   className="w-full h-full flex items-center justify-center text-5xl select-none"
                   style={{ background: 'linear-gradient(135deg, #c4bbff 0%, #a08ef5 100%)' }}
@@ -146,7 +146,7 @@ export function Hero({ lang }: HeroProps) {
         </div>
 
         {/* Divider */}
-        <div className="mt-12 mb-5 w-full h-px bg-ink opacity-10" />
+        <div className="mt-8 md:mt-12 mb-5 w-full h-px bg-ink opacity-10" />
 
         {/* Scroll indicator */}
         <div className="flex items-center gap-3">
