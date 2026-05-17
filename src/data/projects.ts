@@ -8,7 +8,7 @@ export const projects: Project[] = [
       en: 'Sky Mexico streaming platform, now izzi go. Developed front-end features with React and Next.js, with a strong focus on UX and user experience on TV devices.',
     },
     tags: ['React', 'Next.js', 'UX Design'],
-    url: 'https://www.izzigo.tv',
+    url: 'https://www.izzigo.tv/webclient',
   },
   {
     name: 'The Sims Car Mods',
