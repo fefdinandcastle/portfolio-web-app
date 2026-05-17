@@ -1,5 +1,5 @@
 const ITEMS = [
-  'Spring Boot', 'React', 'TypeScript',
+  'Spring Boot', 'React', 'TypeScript', 'Tailwind', 'Three.js', 'Jenkins',
   'AWS', 'Java', 'Docker', 'PostgreSQL', 'Git',
   'Full Stack', 'REST APIs', 'GCP', 'Node.js', 'CI / CD',
 ];

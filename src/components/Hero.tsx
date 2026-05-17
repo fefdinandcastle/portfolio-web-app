@@ -77,7 +77,7 @@ export function Hero({ lang }: HeroProps) {
             </h1>
 
             {/* Bio */}
-            <p className="leading-[1.65] max-w-xl mb-3 md:mb-5 text-[#555] text-[13px] md:text-[15px]">
+            <p className="leading-[1.65] max-w-xl mb-10 md:mb-5 text-[#555] text-[13px] md:text-[15px]">
               {tr.bio}
             </p>
 
@@ -134,12 +134,20 @@ export function Hero({ lang }: HeroProps) {
 
               {/* Circular photo */}
               <div className="absolute w-24 h-24 md:w-36 md:h-36 rounded-full border-[2.5px] border-ink top-0 left-0 z-10 overflow-hidden">
-                <div
+                {/* Emoji placeholder (kept for reference) */}
+                {/* <div
                   className="w-full h-full flex items-center justify-center text-5xl select-none"
                   style={{ background: 'linear-gradient(135deg, #c4bbff 0%, #a08ef5 100%)' }}
                 >
                   👤
-                </div>
+                </div> */}
+
+                {/* Profile picture */}
+                <img
+                  src="/avatar_real_3.JPEG"
+                  alt="Profile"
+                  className="w-full h-full object-cover object-center"
+                />
               </div>
             </div>
           </div>
@@ -150,7 +158,7 @@ export function Hero({ lang }: HeroProps) {
 
         {/* Scroll indicator */}
         <div className="flex items-center gap-3">
-          <span className="text-[11px] tracking-[0.1em] uppercase text-[#888] font-medium">
+          <span className="text-[11px] tracking-[0.1em] uppercase text-[#444] font-medium">
             Scroll
           </span>
           <button
