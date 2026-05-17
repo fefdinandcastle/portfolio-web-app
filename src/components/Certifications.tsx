@@ -1,8 +1,10 @@
-import { FiExternalLink } from 'react-icons/fi';
+import { useState } from 'react';
+import { FiExternalLink, FiFileText } from 'react-icons/fi';
 import { Lang } from '../types';
 import { translations } from '../i18n/translations';
 import { useInView } from '../hooks/useInView';
 import { certifications } from '../data/certifications';
+import { PdfModal } from './ui/PdfModal';
 
 const CERT_COLORS = ['#7c6af7', '#e63946', '#ffd60a', '#06d6a0', '#ff9500'];
 
@@ -13,6 +15,7 @@ interface CertificationsProps {
 export function Certifications({ lang }: CertificationsProps) {
   const tr = translations[lang].certs;
   const { ref, visible } = useInView();
+  const [openPdf, setOpenPdf] = useState<{ url: string; title: string } | null>(null);
 
   return (
     <section id="certificaciones" ref={ref} className="bg-white py-24 relative overflow-hidden">
@@ -35,10 +38,26 @@ export function Certifications({ lang }: CertificationsProps) {
 
         <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
           {certifications.map((cert, i) => (
-            <CertCard key={i} cert={cert} lang={lang} index={i} accentColor={CERT_COLORS[i % CERT_COLORS.length]} />
+            <CertCard
+              key={i}
+              cert={cert}
+              lang={lang}
+              index={i}
+              accentColor={CERT_COLORS[i % CERT_COLORS.length]}
+              onOpenPdf={(url, title) => setOpenPdf({ url, title })}
+            />
           ))}
         </div>
       </div>
+
+      {openPdf && (
+        <PdfModal
+          pdfUrl={openPdf.url}
+          title={openPdf.title}
+          lang={lang}
+          onClose={() => setOpenPdf(null)}
+        />
+      )}
     </section>
   );
 }
@@ -48,10 +67,22 @@ interface CertCardProps {
   lang: Lang;
   index: number;
   accentColor: string;
+  onOpenPdf: (url: string, title: string) => void;
 }
 
-function CertCard({ cert, lang, accentColor }: CertCardProps) {
+function CertCard({ cert, lang, accentColor, onOpenPdf }: CertCardProps) {
   const isYellow = accentColor === '#ffd60a';
+
+  const handleAction = (e: React.MouseEvent) => {
+    if (cert.pdf) {
+      e.preventDefault();
+      onOpenPdf(cert.pdf, cert.title);
+    }
+  };
+
+  const actionProps = cert.pdf
+    ? { as: 'button' as const, onClick: handleAction }
+    : { as: 'a' as const, href: cert.link ?? '#', target: '_blank', rel: 'noreferrer' };
 
   return (
     <div className="group flex flex-col bg-cream border-2 border-ink shadow-brutal-md hover:shadow-brutal-xs hover:translate-x-[3px] hover:translate-y-[3px] transition-all duration-150 overflow-hidden">
@@ -75,15 +106,25 @@ function CertCard({ cert, lang, accentColor }: CertCardProps) {
 
         <div className="w-full h-px bg-ink opacity-[0.08] mb-4 mt-auto" />
 
-        <a
-          href={cert.link}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-[5px] text-[12px] font-semibold text-ink border-[1.5px] border-ink py-[5px] px-[10px] no-underline w-fit tracking-[0.02em] shadow-brutal-sm transition-all duration-150 group-hover:bg-ink group-hover:text-cream group-hover:shadow-none group-hover:translate-x-[2px] group-hover:translate-y-[2px]"
-        >
-          {cert.linkText[lang]}
-          <FiExternalLink size={11} />
-        </a>
+        {cert.pdf ? (
+          <button
+            onClick={() => onOpenPdf(cert.pdf!, cert.title)}
+            className="inline-flex items-center gap-[5px] text-[12px] font-semibold text-ink border-[1.5px] border-ink py-[5px] px-[10px] w-fit tracking-[0.02em] shadow-brutal-sm transition-all duration-150 group-hover:bg-ink group-hover:text-cream group-hover:shadow-none group-hover:translate-x-[2px] group-hover:translate-y-[2px] bg-transparent cursor-pointer"
+          >
+            {cert.linkText[lang]}
+            <FiFileText size={11} />
+          </button>
+        ) : (
+          <a
+            href={cert.link ?? '#'}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-[5px] text-[12px] font-semibold text-ink border-[1.5px] border-ink py-[5px] px-[10px] no-underline w-fit tracking-[0.02em] shadow-brutal-sm transition-all duration-150 group-hover:bg-ink group-hover:text-cream group-hover:shadow-none group-hover:translate-x-[2px] group-hover:translate-y-[2px]"
+          >
+            {cert.linkText[lang]}
+            <FiExternalLink size={11} />
+          </a>
+        )}
       </div>
     </div>
   );

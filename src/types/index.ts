@@ -38,7 +38,8 @@ export interface Certification {
   cat: LocalizedString;
   title: string;
   date: LocalizedString;
-  link: string;
+  link?: string;
+  pdf?: string;
   linkText: LocalizedString;
 }
 

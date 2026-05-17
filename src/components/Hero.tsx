@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { FaLinkedinIn } from 'react-icons/fa';
-import { FiChevronDown, FiDownload } from 'react-icons/fi';
+import { FiChevronDown, FiFileText } from 'react-icons/fi';
 import { Lang } from '../types';
 import { translations } from '../i18n/translations';
 import { HeroCanvas } from './3D/Canvas/Herocanvas';
+import { PdfModal } from './ui/PdfModal';
 
 const HERO_TAGS = ['React', 'TypeScript', 'Spring Boot', 'PostgreSQL', 'Cloud'];
 
@@ -18,6 +20,9 @@ interface HeroProps {
 
 export function Hero({ lang }: HeroProps) {
   const tr = translations[lang].hero;
+  const [cvOpen, setCvOpen] = useState(false);
+  const cvUrl = lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf';
+  const cvFileName = lang === 'es' ? 'CV-Gerardo-Lerma-ES.pdf' : 'CV-Gerardo-Lerma-EN.pdf';
 
   return (
     <section id="inicio" className="min-h-screen flex items-center relative overflow-hidden bg-cream">
@@ -112,13 +117,12 @@ export function Hero({ lang }: HeroProps) {
                 <FaLinkedinIn size={15} /> {tr.linkedin}
               </a>
 
-              <a
-                href={lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf'}
-                download
-                className="inline-flex items-center gap-2 py-[10px] px-5 bg-cream text-ink text-[13px] font-medium border-2 border-ink no-underline shadow-brutal transition-all duration-100 hover:shadow-brutal-xs hover:translate-x-[2px] hover:translate-y-[2px]"
+              <button
+                onClick={() => setCvOpen(true)}
+                className="inline-flex items-center gap-2 py-[10px] px-5 bg-cream text-ink text-[13px] font-medium border-2 border-ink shadow-brutal transition-all duration-100 hover:shadow-brutal-xs hover:translate-x-[2px] hover:translate-y-[2px] cursor-pointer"
               >
-                <FiDownload size={15} /> {tr.cv}
-              </a>
+                <FiFileText size={15} /> {tr.cv}
+              </button>
             </div>
           </div>
 
@@ -158,6 +162,16 @@ export function Hero({ lang }: HeroProps) {
           </button>
         </div>
       </div>
+
+      {cvOpen && (
+        <PdfModal
+          pdfUrl={cvUrl}
+          title={cvFileName}
+          lang={lang}
+          downloadFileName={cvFileName}
+          onClose={() => setCvOpen(false)}
+        />
+      )}
     </section>
   );
 }
