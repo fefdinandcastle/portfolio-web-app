@@ -17,6 +17,7 @@ body {
   overflow-x: hidden;
   perspective: 1px;
   margin: 0;
+  min-width: 400px;
 }
 
 :root {
