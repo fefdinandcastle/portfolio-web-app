@@ -2,9 +2,9 @@ import { Experience } from '../types';
 
 export const experiences: Experience[] = [
   {
-    role: { es: 'Prácticas de empresa', en: 'Internship' },
+    role: { es: 'Desarrollador Frontend', en: 'Frontend Developer' },
     company: 'Liverpool',
-    location: { es: 'Los Realejos · Asesoría', en: 'Los Realejos · Consulting' },
+    location: { es: 'Cuajimalpa de Morelos · CDMX', en: 'Cuajimalpa de Morelos · CDMX' },
     period: 'May 2024 — May 2026',
     logo: '/assets_2d/logos/liverpool.png',
     bullets: {
@@ -23,7 +23,7 @@ export const experiences: Experience[] = [
     role: { es: 'Software Developer', en: 'Software Developer' },
     company: 'Sky',
     location: {
-      es: 'Santa Cruz de Tenerife · Sistema de gestión para Orange',
+      es: 'Benito Juárez · CDMX',
       en: 'Santa Cruz de Tenerife · Management System for Orange',
     },
     period: 'May 2022 — May 2024',

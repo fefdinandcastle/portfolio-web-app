@@ -4,12 +4,12 @@ import { Lang } from '../types';
 import { translations } from '../i18n/translations';
 import { HeroCanvas } from './3D/Canvas/Herocanvas';
 
-const HERO_TAGS = ['Spring Boot', 'Angular', 'React', 'Oracle SQL', 'AWS', 'Git / Jira'];
+const HERO_TAGS = ['React', 'TypeScript', 'Spring Boot', 'PostgreSQL', 'Cloud', 'Git / Jira'];
 
 const HERO_STATS = [
-  { label: '3+ yrs',      color: '#7c6af7', textColor: '#fff' },
+  { label: '4+ yrs',      color: '#7c6af7', textColor: '#fff' },
   { label: 'Full Stack',  color: '#ffd60a', textColor: '#111' },
-  { label: 'Java · React', color: '#e63946', textColor: '#fff' },
+  { label: 'React · Java', color: '#e63946', textColor: '#fff' },
 ];
 
 interface HeroProps {

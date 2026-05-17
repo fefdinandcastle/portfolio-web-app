@@ -3,18 +3,18 @@ import { Education } from '../types';
 export const educations: Education[] = [
   {
     title: {
-      es: 'CFGS — Desarrollo de aplicaciones multiplataforma',
+      es: 'Ingeniería en Computación',
       en: 'CFGS — Multiplatform Application Development',
     },
-    institution: 'IES Puerto de la Cruz · Telesforo Bravo',
+    institution: '(UAM) Universidad Autónoma Metropolitana | Unidad Cuajimalpa',
     period: { es: '2016 — 2022', en: '2016 — 2022' },
     logo: '/assets_2d/logos/uam.png',
     desc: {
-      es: 'Formación en curso para ampliar competencias multiplataforma y buenas prácticas de desarrollo.',
+      es: 'Formación sólida centrada en el diseño de algoritmos complejos, administración de proyectos de software y aplicación de metodologías ágiles para el ciclo de vida de desarrollo.',
       en: 'Ongoing training to expand multiplatform competencies and development best practices.',
     },
     badge: 'STACK DAM',
-    tags: ['Angular', 'Spring', 'PHP', 'Java', 'PostgreSQL', 'React Native', 'Flutter', 'Expo', 'Unity', 'Odoo'],
+    tags: ['Python', 'Java', 'JavaScript', 'C', 'C++'],
   },
 ];
 
