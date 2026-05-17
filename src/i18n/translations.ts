@@ -11,12 +11,12 @@ export const translations = {
     },
     hero: {
       badge: 'PORTAFOLIO',
-      headline1: 'Desarrollo full-stack con enfoque en',
-      highlight: 'integración',
+      headline1: 'Liderazgo técnico con enfoque en',
+      highlight: 'entrega',
       headline2: 'y producto.',
-      bio: 'Soy Gerardo Lerma, desarrollador de software full-stack. Experiencia en entornos corporativos con React, Spring Boot, Oracle SQL y ciclo completo de entrega: desde scripts y datos hasta incidencias en producción.',
+      bio: 'Soy Gerardo Lerma, líder técnico de proyecto con perfil full-stack. Coordino equipos de back-end (Java) y front-end (React), gestiono infraestructura en GCP y pipelines en Jenkins, y lidero la planeación de sprints en entornos corporativos.',
       linkedin: 'LinkedIn',
-      github: 'GitHub',
+      cv: 'Descargar CV',
     },
     experience: {
       badge: 'EXPERIENCIA',
@@ -37,13 +37,12 @@ export const translations = {
       badge: 'HABILIDADES',
       title: 'Stack y herramientas',
       subtitle: 'Palabras clave de mi perfil: integración, datos, entrega y calidad.',
-      learning: 'STACK EN APRENDIZAJE',
     },
     projects: {
-      badge: 'GITHUB',
+      badge: 'PROYECTOS',
       title: 'Proyectos destacados',
-      subtitle: 'Selección de repositorios públicos en GitHub.',
-      repo: 'Ver repositorio',
+      subtitle: 'Proyectos profesionales y personales en los que he participado.',
+      repo: 'Visitar sitio',
     },
     tools: {
       badge: 'HERRAMIENTAS',
@@ -53,9 +52,9 @@ export const translations = {
       homelabDesc: 'Explorando el homelab: contenedores, proxy inverso, uptime y métricas en un entorno controlado.',
     },
     footer: {
-      role: 'Desarrollador full-stack',
-      location: 'Localización',
-      made: 'Hecho con React, Tailwind y café.',
+      role: 'Líder Técnico · Full Stack',
+      location: 'CDMX, México',
+      made: 'Hecho con React y Tailwind.',
     },
   },
   en: {
@@ -70,12 +69,12 @@ export const translations = {
     },
     hero: {
       badge: 'PORTFOLIO',
-      headline1: 'Full-stack development focused on',
-      highlight: 'integration',
+      headline1: 'Technical leadership focused on',
+      highlight: 'delivery',
       headline2: 'and product.',
-      bio: "I'm Gerardo Lerma, a full-stack software developer. Experience in corporate environments with React, Spring Boot, Oracle SQL and complete delivery cycle: from scripts and data to production incidents.",
+      bio: "I'm Gerardo Lerma, a technical project lead with a full-stack background. I coordinate back-end (Java) and front-end (React) teams, manage GCP infrastructure and Jenkins pipelines, and lead sprint planning in corporate environments.",
       linkedin: 'LinkedIn',
-      github: 'GitHub',
+      cv: 'Download CV',
     },
     experience: {
       badge: 'EXPERIENCE',
@@ -99,10 +98,10 @@ export const translations = {
       learning: 'LEARNING STACK',
     },
     projects: {
-      badge: 'GITHUB',
+      badge: 'PROJECTS',
       title: 'Featured projects',
-      subtitle: 'Selection of public repositories on GitHub.',
-      repo: 'View repository',
+      subtitle: 'Professional and personal projects I have been part of.',
+      repo: 'Visit site',
     },
     tools: {
       badge: 'TOOLS',
@@ -112,9 +111,9 @@ export const translations = {
       homelabDesc: 'Exploring homelab: containers, reverse proxy, uptime and metrics in a controlled environment.',
     },
     footer: {
-      role: 'Full-stack developer',
-      location: 'Location',
-      made: 'Made with React, Tailwind and coffee.',
+      role: 'Technical Project Lead · Full Stack',
+      location: 'CDMX, Mexico',
+      made: 'Made with React and Tailwind',
     },
   },
 } as const;

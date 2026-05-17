@@ -2,39 +2,21 @@ import { Project } from '../types';
 
 export const projects: Project[] = [
   {
-    name: 'CVOrotava-Team-Manager',
+    name: 'Sky+ / izzi tv',
     desc: {
-      es: 'Aplicación web para gestión centralizada de información deportiva de club.',
-      en: 'Web application for centralized management of club sports information.',
+      es: 'Plataforma de streaming de Sky México, actualmente izzi tv. Desarrollé funcionalidades front-end con React y Next.js, con fuerte enfoque en UX y experiencia del usuario en dispositivos de TV.',
+      en: 'Sky Mexico streaming platform, now izzi tv. Developed front-end features with React and Next.js, with a strong focus on UX and user experience on TV devices.',
     },
-    tags: ['TypeScript', 'Aplicación web', 'Gestión deportiva'],
-    url: '#',
+    tags: ['React', 'Next.js', 'UX Design'],
+    url: 'https://www.izzi.mx',
   },
   {
-    name: 'tic-tac-toe',
+    name: 'The Sims Car Mods',
     desc: {
-      es: 'Tres en raya moderno con animaciones, estadísticas detalladas y temas personalizables.',
-      en: 'Modern tic-tac-toe with animations, detailed statistics and customizable themes.',
+      es: 'Proyecto personal de modelado 3D: creé mods de autos para Los Sims 3 y Los Sims 4. Incluye diseño propio del sitio web donde se publican y distribuyen los mods.',
+      en: 'Personal 3D modeling project: created car mods for The Sims 3 and The Sims 4. Includes custom web design for the site where mods are published and distributed.',
     },
-    tags: ['TypeScript', 'Animaciones UI', 'UX de juego'],
-    url: '#',
-  },
-  {
-    name: 'CVOrotava-back',
-    desc: {
-      es: 'Backend Java para dashboard interno de club de voleibol con enfoque en gestión de tareas.',
-      en: 'Java backend for volleyball club internal dashboard focused on task management.',
-    },
-    tags: ['Java', 'API', 'Backend'],
-    url: '#',
-  },
-  {
-    name: 'NetPulse',
-    desc: {
-      es: 'Marcador de voleibol con diseño moderno, foco en dinamismo de partido y control de rachas de puntos.',
-      en: 'Volleyball scoreboard with modern design, focused on match dynamics and point streak control.',
-    },
-    tags: ['TypeScript', 'UX deportiva', 'Voleibol'],
+    tags: ['3D Modeling', 'The Sims 3', 'The Sims 4', 'Web Design'],
     url: '#',
   },
 ];

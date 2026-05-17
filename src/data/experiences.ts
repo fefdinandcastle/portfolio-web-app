@@ -2,44 +2,48 @@ import { Experience } from '../types';
 
 export const experiences: Experience[] = [
   {
-    role: { es: 'Desarrollador Frontend', en: 'Frontend Developer' },
+    role: { es: 'Líder Técnico de Proyecto', en: 'Technical Project Lead' },
     company: 'Liverpool',
     location: { es: 'Cuajimalpa de Morelos · CDMX', en: 'Cuajimalpa de Morelos · CDMX' },
-    period: 'May 2024 — May 2026',
+    period: 'May 2024 — Present',
     logo: '/assets_2d/logos/liverpool.png',
     bullets: {
       es: [
-        'Diseño e implementación de automatizaciones internas con n8n y Odoo Enterprise Online, conectando procesos administrativos y reduciendo fricción operativa.',
-        'Impacto medible en eficiencia: en semanas pico, los flujos automatizados registraron hasta 26 horas semanales de ahorro de trabajo manual.',
+        'Liderazgo técnico de proyecto: coordinación entre equipos de back-end (Java / Spring Boot) y front-end (React), asegurando alineación técnica y calidad del entregable.',
+        'Configuración y mantenimiento de pipelines CI/CD en Jenkins y gestión de infraestructura en Google Cloud Platform (GCP).',
+        'Planeación y conducción de sprints: refinamiento de backlog, estimaciones y seguimiento de avance con el equipo de desarrollo.',
       ],
       en: [
-        'Design and implementation of internal automations with n8n and Odoo Enterprise Online, connecting administrative processes and reducing operational friction.',
-        'Measurable efficiency impact: during peak weeks, automated flows saved up to 26 hours of manual work weekly.',
+        'Technical project lead: cross-team coordination between back-end (Java / Spring Boot) and front-end (React), ensuring technical alignment and delivery quality.',
+        'Configuration and maintenance of CI/CD pipelines in Jenkins and infrastructure management on Google Cloud Platform (GCP).',
+        'Sprint planning and facilitation: backlog refinement, estimations and progress tracking with the development team.',
       ],
     },
-    stack: 'N8N · ODOO ENTERPRISE ONLINE',
+    stack: 'JAVA · SPRING BOOT · REACT · GCP · JENKINS · JIRA',
   },
   {
-    role: { es: 'Software Developer', en: 'Software Developer' },
+    role: { es: 'Desarrollador Frontend', en: 'Frontend Developer' },
     company: 'Sky',
     location: {
       es: 'Benito Juárez · CDMX',
-      en: 'Santa Cruz de Tenerife · Management System for Orange',
+      en: 'Benito Juárez · CDMX',
     },
     period: 'May 2022 — May 2024',
     logo: '/assets_2d/logos/sky.png',
     bullets: {
       es: [
-        'Desarrollo e integración de funcionalidades en la aplicación de gestión, optimizando rendimiento y alineando cambios con negocio.',
-        'Scripts SQL para poblar bases de datos en entornos no productivos e integración de nuevos productos.',
-        'Resolución de incidencias: investigación, depuración y soluciones para continuidad del servicio.',
+        'Desarrollo colaborativo de la parrilla de programación de TV en web con React: scroll infinito en ambos ejes, carga dinámica de datos conforme el usuario navega y optimización de rendimiento para equipos de bajos recursos.',
+        'Consumo e integración de APIs REST: llamadas eficientes y gestión de estado para mantener la parrilla sincronizada con los servicios de back-end.',
+        'Uso de servicios AWS en el entorno del proyecto: Lambda, S3 y EC2 para soporte de la infraestructura de contenido.',
+        'Maquetado de interfaces siguiendo lineamientos de diseño en Figma, trasladando componentes con fidelidad al diseño aprobado.',
       ],
       en: [
-        'Development and integration of features in the management application, optimizing performance and aligning changes with business.',
-        'SQL scripts to populate databases in non-productive environments and integration of new products.',
-        'Incident resolution: investigation, debugging and solutions for service continuity.',
+        'Collaborative development of the TV programming grid on web with React: infinite scroll on both axes, dynamic data loading as the user navigates, and performance optimization for low-resource devices.',
+        'REST API consumption and integration: efficient request design and state management to keep the grid in sync with back-end services.',
+        'AWS service usage in the project environment: Lambda, S3 and EC2 to support content infrastructure.',
+        'UI mockups from Figma following design guidelines, translating components with fidelity to approved designs.',
       ],
     },
-    stack: 'INTEGRACIÓN Y DISEÑO (SUITE CORPORATIVA), ORACLE SQL · JIRA',
+    stack: 'REACT · API REST · AWS (LAMBDA · S3 · EC2) · FIGMA · JIRA',
   },
 ];

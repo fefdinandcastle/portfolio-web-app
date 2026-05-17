@@ -45,9 +45,9 @@ export default function App() {
         <Employers      lang={lang} />
         <Experience     lang={lang} />
         <Education      lang={lang} />
-        <Certifications lang={lang} />
         <Stack          lang={lang} />
         <Projects       lang={lang} />
+        <Certifications lang={lang} />
         <MarqueeStrip   direction="right" accent="#7c6af7" />
       </main>
 

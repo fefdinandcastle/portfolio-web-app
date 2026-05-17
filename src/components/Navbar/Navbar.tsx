@@ -28,9 +28,9 @@ export function Navbar({ lang, setLang }: NavbarProps) {
     { id: 'inicio',          label: tr.inicio },
     { id: 'trayectoria',     label: tr.trayectoria },
     { id: 'formacion',       label: tr.formacion },
-    { id: 'certificaciones', label: tr.certificaciones },
     { id: 'stack',           label: tr.stack },
     { id: 'proyectos',       label: tr.proyectos },
+    { id: 'certificaciones', label: tr.certificaciones },
   ];
 
   const scrollTo = (id: string) => {

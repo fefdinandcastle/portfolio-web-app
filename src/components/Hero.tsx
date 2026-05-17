@@ -1,10 +1,10 @@
-import { SiLinkerd, SiGithub } from 'react-icons/si';
-import { FiChevronDown } from 'react-icons/fi';
+import { FaLinkedinIn } from 'react-icons/fa';
+import { FiChevronDown, FiDownload } from 'react-icons/fi';
 import { Lang } from '../types';
 import { translations } from '../i18n/translations';
 import { HeroCanvas } from './3D/Canvas/Herocanvas';
 
-const HERO_TAGS = ['React', 'TypeScript', 'Spring Boot', 'PostgreSQL', 'Cloud', 'Git / Jira'];
+const HERO_TAGS = ['React', 'TypeScript', 'Spring Boot', 'PostgreSQL', 'Cloud'];
 
 const HERO_STATS = [
   { label: '4+ yrs',      color: '#7c6af7', textColor: '#fff' },
@@ -104,21 +104,20 @@ export function Hero({ lang }: HeroProps) {
             {/* CTA buttons */}
             <div className="flex gap-3 flex-wrap">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 py-[10px] px-5 bg-brand-purple text-white text-[13px] font-medium border-2 border-ink no-underline shadow-brutal transition-all duration-100 hover:shadow-brutal-xs hover:translate-x-[2px] hover:translate-y-[2px]"
               >
-                <SiLinkerd size={15} /> {tr.linkedin}
+                <FaLinkedinIn size={15} /> {tr.linkedin}
               </a>
 
               <a
-                href="https://github.com"
-                target="_blank"
-                rel="noreferrer"
+                href={lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf'}
+                download
                 className="inline-flex items-center gap-2 py-[10px] px-5 bg-cream text-ink text-[13px] font-medium border-2 border-ink no-underline shadow-brutal transition-all duration-100 hover:shadow-brutal-xs hover:translate-x-[2px] hover:translate-y-[2px]"
               >
-                <SiGithub size={15} /> {tr.github}
+                <FiDownload size={15} /> {tr.cv}
               </a>
             </div>
           </div>

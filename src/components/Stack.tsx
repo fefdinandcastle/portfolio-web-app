@@ -2,7 +2,7 @@ import React from 'react';
 import { Lang } from '../types';
 import { translations } from '../i18n/translations';
 import { useInView } from '../hooks/useInView';
-import { learningStack, stackIcons } from '../data/stack';
+import { stackIcons } from '../data/stack';
 
 interface StackProps {
   lang: Lang;
@@ -43,19 +43,8 @@ export function Stack({ lang }: StackProps) {
         </div>
 
         {/* Divider */}
-        <div className="w-full h-px bg-ink opacity-10 mb-7" />
+        <div className="w-full h-px bg-ink opacity-10" />
 
-        {/* Learning stack */}
-        <div>
-          <p className="text-[10px] font-semibold tracking-[0.12em] uppercase text-[#aaa] mb-3.5">
-            {tr.learning}
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {learningStack.map((item: string) => (
-              <LearningTag key={item} label={item} />
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

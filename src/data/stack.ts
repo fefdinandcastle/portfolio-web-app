@@ -22,16 +22,7 @@ export const stackIcons: StackIcon[] = [
   { name: 'Git',         icon: SiGit,         color: '#F05032' },
   { name: 'GitHub',      icon: SiGithub,      color: '#181717' },
   { name: 'Jira',        icon: SiJira,        color: '#0052CC' },
-  { name: 'PHP',         icon: SiPhp,         color: '#777BB4' },
   { name: 'Python',      icon: SiPython,      color: '#3776AB' },
   { name: 'Jenkins',     icon: SiJenkins,     color: '#02569B' },
   { name: 'Google Cloud', icon: SiGooglecloud, color: '#4284F3' },
-];
-
-export const learningStack: string[] = [
-  'Next.js',
-  'Supabase',
-  'n8n',
-  'Docker',
-  'Sistemas agénticos',
 ];

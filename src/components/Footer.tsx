@@ -1,14 +1,12 @@
 import React from 'react';
-import { SiX, SiGithub, SiLinkerd } from 'react-icons/si';
 import { Lang } from '../types';
 import { translations } from '../i18n/translations';
+import { FaLinkedin } from 'react-icons/fa';
 
-const YOUR_NAME = '[Tu Nombre]';
+const YOUR_NAME = 'Gerardo Lerma';
 
 const SOCIAL_LINKS = [
-  { href: 'https://x.com',       icon: SiX,       label: 'X / Twitter', color: '#ffd60a' },
-  { href: 'https://github.com',  icon: SiGithub,  label: 'GitHub',      color: '#7c6af7' },
-  { href: 'https://linkedin.com', icon: SiLinkerd, label: 'LinkedIn',    color: '#06d6a0' },
+  { href: 'https://linkedin.com', icon: FaLinkedin, label: 'LinkedIn',    color: '#06d6a0' },
 ];
 
 interface FooterProps {

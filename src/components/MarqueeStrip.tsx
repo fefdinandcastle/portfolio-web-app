@@ -1,7 +1,7 @@
 const ITEMS = [
-  'Spring Boot', 'Angular', 'React', 'TypeScript', 'Oracle SQL',
+  'Spring Boot', 'React', 'TypeScript',
   'AWS', 'Java', 'Docker', 'PostgreSQL', 'Git',
-  'Full Stack', 'REST APIs', 'Agile', 'Node.js', 'CI / CD',
+  'Full Stack', 'REST APIs', 'GCP', 'Node.js', 'CI / CD',
 ];
 
 interface MarqueeStripProps {
