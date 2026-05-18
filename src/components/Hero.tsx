@@ -6,7 +6,7 @@ import { translations } from '../i18n/translations';
 import { HeroCanvas } from './3D/Canvas/Herocanvas';
 import { PdfModal } from './ui/PdfModal';
 
-const HERO_TAGS = ['React', 'TypeScript', 'Spring Boot', 'PostgreSQL', 'Cloud'];
+const HERO_TAGS = ['Next.js', 'TypeScript', 'Spring Boot', 'PostgreSQL', 'Cloud'];
 
 const HERO_STATS = [
   { label: '4+ yrs',      color: '#7c6af7', textColor: '#fff' },
@@ -145,7 +145,7 @@ export function Hero({ lang }: HeroProps) {
                 {/* Profile picture */}
                 <img
                   src="/avatar_real_3.JPEG"
-                  alt="Profile"
+                  alt="Gerardo Lerma - Desarrollador Frontend y Full Stack"
                   className="w-full h-full object-cover object-center"
                 />
               </div>
